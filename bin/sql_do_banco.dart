@@ -3,50 +3,50 @@ use execut;
 
 create table usuario(
 	idUsuario int auto_increment primary key,
-    nomeUsuario varchar(100) not null,
-    razaoSocial varchar(50) not null,
-    logradouro varchar(50) not null,
-    complemento varchar(100),
-    cpfCnpj varchar(15) not null,
-    telefone varchar(12) not null
+  nomeUsuario varchar(100) not null,
+  razaoSocial varchar(50) not null,
+  logradouro varchar(50) not null,
+  complemento varchar(100),
+  cpfCnpj varchar(15) not null,
+  telefone varchar(12) not null
 ); 
 create table cliente(
 	idCliente int auto_increment primary key,
-    nomeCliente varchar(100) not null,
-    razaoSocial varchar(50) not null,
-    logradouro varchar(50) not null,
-    complemento varchar(100),
-    cpfCnpj varchar(15) not null,
-    telefone varchar(12) not null
+  nomeCliente varchar(100) not null,
+  razaoSocial varchar(50) not null,
+  logradouro varchar(50) not null,
+  complemento varchar(100),
+  cpfCnpj varchar(15) not null,
+  telefone varchar(12) not null
 );  
 create table tipo_mao_de_obra(
 	idTipo int auto_increment primary key,
-    nomeTipo varchar(20) not null,
-    descricao varchar(50) not null
+  nomeTipo varchar(20) not null,
+  descricao varchar(50) not null
 );  
 create table tempo_de_obra(
 	idTempo int auto_increment primary key,
-    nomeTempo varchar(20) not null
+  nomeTempo varchar(20) not null
 );
 create table tipo_de_fornecedor(
 	idTipo int auto_increment primary key,
-    nomeTipo varchar(50) not null,
-    descricao varchar(80) not null
+  nomeTipo varchar(50) not null,
+  descricao varchar(80) not null
 );
 create table tipo_de_obra(
 	idTipo int auto_increment primary key,
-    nomeTipo varchar(50) not null,
-    descricaoTipo varchar(80) not null
+  nomeTipo varchar(50) not null,
+  descricaoTipo varchar(80) not null
 );    
 create table origem_recurso(
 	idOrigem int auto_increment primary key,
-    tipoOrigem varchar(50) not null,
-    percentual float
+  tipoOrigem varchar(50) not null,
+  percentual float
 );    
 create table pagamento(
 	idPagamento int auto_increment primary key,
-    tipoPagamento varchar(50) not null,
-    moeda varchar(80)
+  tipoPagamento varchar(50) not null,
+  moeda varchar(80)
 );
 create table funcao_prestador(
     idFuncao int auto_increment primary key,
@@ -73,11 +73,11 @@ create table prestador(
 );    
 create table custo_prestador(
 	idCusto int auto_increment primary key,
-    valor double not null,
-    idPrestador int not null,
-    FOREIGN KEY (idPrestador) REFERENCES prestador(idPrestador),
-    idFuncao int not null,
-    FOREIGN KEY (idFuncao) REFERENCES funcao_prestador(idFuncao)
+  valor double not null,
+  idPrestador int not null,
+  FOREIGN KEY (idPrestador) REFERENCES prestador(idPrestador),
+  idFuncao int not null,
+  FOREIGN KEY (idFuncao) REFERENCES funcao_prestador(idFuncao)
 );    
 create table material_de_obra(
 	idMaterial int auto_increment primary key,
@@ -88,12 +88,12 @@ create table material_de_obra(
 	FOREIGN KEY (idTipo) REFERENCES tipo_de_obra(idTipo),
 	idOrigem int not null,
 	FOREIGN KEY (idOrigem) REFERENCES origem_recurso(idOrigem),
-    idFornecedor int not null,
-    FOREIGN KEY (idFornecedor) REFERENCES fornecedor(idFornecedor)
+  idFornecedor int not null,
+  FOREIGN KEY (idFornecedor) REFERENCES fornecedor(idFornecedor)
 );
 create table mao_de_obra(
 	idMao int auto_increment primary key,
-    descricao varchar(40) not null,
+  descricao varchar(40) not null,
 	idTipo int not null,
 	FOREIGN KEY (idTipo) REFERENCES tipo_mao_de_obra(idTipo),
 	idPrestador int not null,
@@ -115,8 +115,8 @@ create table obra(
 	FOREIGN KEY (idPagamento) REFERENCES pagamento(idPagamento),
 	idTempo int not null,
 	FOREIGN KEY (idTempo) REFERENCES tempo_de_obra(idTempo),
-    idPrestador int not null,
-    FOREIGN KEY (idPrestador) REFERENCES prestador(idPrestador)
+  idPrestador int not null,
+  FOREIGN KEY (idPrestador) REFERENCES prestador(idPrestador)
 );
 create table prestadorObra(
 	idPrestadorObra int auto_increment primary key,

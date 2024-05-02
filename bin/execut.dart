@@ -5,8 +5,7 @@ import 'package:shelf/shelf_io.dart' as io;
 import 'database.dart';
 
 void main() async{
-    var handler = const shelf.Pipeline().addMiddleware(shelf.logRequests()).addHandler(_echoRequest);
-
+  var handler = const shelf.Pipeline().addMiddleware(shelf.logRequests()).addHandler(_echoRequest);
   var server = await io.serve(handler, 'localhost', 8080);
   database();
   print('Servidor iniciado em ${server.address}:${server.port}');
