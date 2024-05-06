@@ -17,11 +17,11 @@ Future database() async {
   // Insert some data
   var result = await conn.query(
       'select * from usuario');
-  print('Lendo a linha id=${result.insertId}');
+  print('Lendo a linha id=${result.toList()}');
 
   // Query the database using a parameterized query
   var results = await conn.query(
-      'select * from usuario', [result.insertId]);
+      'select * from usuario', [result.toList()]);
   for (var row in results) {
     print(' $row');
   }
