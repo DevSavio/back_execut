@@ -3,8 +3,10 @@
 import 'package:shelf/shelf.dart' as shelf;
 import 'package:shelf/shelf_io.dart' as io;
 
-import 'cliente/cliente_controller.dart';
-import 'obra/obra_controller.dart';
+// import 'cliente/cliente_controller.dart';
+// import 'obra/obra_controller.dart';
+// import 'usuario/usuario_controller.dart';
+// import 'tipoMaoDeObra/tipoMaoDeObra_controller.dart';
 
 void main() async {
   // aqui
