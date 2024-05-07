@@ -7,42 +7,7 @@ import 'cliente/cliente_controller.dart';
 import 'obra/obra_controller.dart';
 
 void main() async {
-  // ObraController obraController = ObraController();
-  // obraController.create();
-
-  ClienteController clienteController = ClienteController();
-
-  // clienteController.create(
-  //   complemento: "'Apto 45'",
-  //   cpfCnpj: "12345678901234",
-  //   logradouro: "'Rua das Flores, 123'",
-  //   nomeCliente: "'João Silva'",
-  //   razaoSocial: "'JS Serviços'",
-  //   telefone: "11987654321",
-  // );
-
-  // clienteController.readByID(
-  //   idCliente: 9,
-  // );
-
-  // clienteController.update(
-  //   complemento: "'Apto 1010'",
-  //   cpfCnpj: "12345678901234",
-  //   logradouro: "'Rua das Flores, 123'",
-  //   nomeCliente: "'João Silva'",
-  //   razaoSocial: "'JS Serviços'",
-  //   telefone: "11987654321",
-  //   idCliente: 8,
-  // );
-
-  // clienteController.delete(
-  //   idCliente: 8,
-  // );
-
-  //  clienteController.list();
-
-  // clienteController.search(
-  //     operator: "like", value: "'%Jo%'", paramter: "nomeCliente");
+  // aqui
 }
 
 shelf.Response _echoRequest(shelf.Request request) {
