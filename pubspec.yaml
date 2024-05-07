@@ -8,8 +8,8 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
-  # path: ^1.8.0
-  mysql1: ^0.20.0
+  # path: ^1.8.0 
+  mysql_client: ^0.0.27
   shelf: ^1.4.1
 
 dev_dependencies:
