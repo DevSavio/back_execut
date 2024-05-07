@@ -27,11 +27,26 @@ class ClienteController {
   }
 
   void read() {
-    print('read');
+    print('Cliente obtido com sucesso');
   }
 
-  void update() {
-    print('update');
+  void update({
+    required String nomeCliente,
+    required String razaoSocial,
+    required String logradouro,
+    required String complemento,
+    required String cpfCnpj,
+    required String telefone,
+    required int idCliente,
+  }) {
+    String sql =
+        "Update cliente set nomeCliente = $nomeCliente, razaoSocial = $razaoSocial, logradouro = $logradouro, complemento = $complemento, cpfCnpj = $cpfCnpj, telefone = $telefone"
+        " where idCliente = $idCliente;";
+    ControllerConnection c = ControllerConnection();
+    c.update(
+      sql,
+    );
+    print('Cliente Atualizado com sucesso');
   }
 
   void delete() {
