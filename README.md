@@ -86,6 +86,33 @@ rodando pela primeira vez:
         operator: "like", value: "'%Ex%'", paramter: "nomeCliente"); -->
 
 
+<!-- TipoMaoDeObraController tipoMaoDeObraController = TipoMaoDeObraController();
+
+    tipoMaoDeObraController.create(
+       nomeTipo: "Eletricista",
+       descricao: "instalações elétricas"
+    );
+
+    tipoMaoDeObraController.readByID(
+      idTipo: 1,
+    );
+
+    tipoMaoDeObraController.update(
+      nomeTipo: "",
+      descricao: "",
+      idTipo: 1,
+    );
+
+    tipoMaoDeObraController.delete(
+      idTipo: 1,
+    );
+
+     tipoMaoDeObraController.list();
+
+    tipoMaoDeObraController.search(
+        operator: "like", value: "'%Ex%'", paramter: "nomeCliente"); -->
+
+
 
 
 --- 
