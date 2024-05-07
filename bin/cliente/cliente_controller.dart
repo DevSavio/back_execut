@@ -3,12 +3,6 @@ import 'package:mysql_client/mysql_client.dart';
 import '../base/database.dart';
 
 class ClienteController {
-  Cliente() {
-    print('Cliente');
-
-    // c.database();
-  }
-
   Future<void> create({
     required String nomeCliente,
     required String razaoSocial,
