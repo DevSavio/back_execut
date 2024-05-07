@@ -15,7 +15,7 @@ rodando pela primeira vez:
 /*  fazer o mesmo para as outras tabelas simples - de 16 a 50 , colocar no execute->main para testar e depois colocar no final deste arquivo
 
 
-  // ClienteController clienteController = ClienteController();
+  <!-- // ClienteController clienteController = ClienteController();
 
     // clienteController.create(
     //   complemento: "'Apto 45'",
@@ -47,7 +47,8 @@ rodando pela primeira vez:
     //  clienteController.list();
 
     // clienteController.search(
-    //     operator: "like", value: "'%Jo%'", paramter: "nomeCliente");
+    //     operator: "like", value: "'%Jo%'", paramter: "nomeCliente"); -->
+
 
 
 
