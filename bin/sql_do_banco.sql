@@ -144,6 +144,9 @@ INSERT INTO pagamento (tipoPagamento, moeda)
 VALUES ('À vista', 'PIX');
 INSERT INTO funcao_prestador (nomeFuncao, descricaoFuncao)
 VALUES ('Encanador', 'Profissional responsável por instalações hidráulicas');
+
+
+
 INSERT INTO fornecedor (razaoSocial, logradouro, complemento, telefone, idTipo)
 VALUES ('ConstruTudo Ltda', 'Avenida Central, 456', 'Loja 10', '1133344556', 1);
 INSERT INTO prestador (nomePrestador, tipoPrestador, cpfCnpj, telefone, idFuncao)
@@ -158,4 +161,4 @@ INSERT INTO obra (valorFinal, responsavelObra, dataInicio, dataFim, logradouro, 
 VALUES (50000.00, 'João Silva', '2024-01-01', '2024-12-31', 'Rua das Flores, 123', 'Apto 45', 1, 1, 1, 1);
 INSERT INTO prestador_obra (idPrestador, idObra)
 VALUES (1, 1);
-}
+ 
