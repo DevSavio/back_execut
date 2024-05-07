@@ -1,60 +1,31 @@
-// import 'package:execut/execut.dart' as execut;
-// import 'dart:io';
-import 'package:shelf/shelf.dart' as shelf;
+import 'package:shelf_router/shelf_router.dart';
+import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 
-import 'cliente/cliente_controller.dart';
-import 'obra/obra_controller.dart';
+import 'cliente/cliente_service.dart';
 
 void main() async {
-  // ObraController obraController = ObraController();
-  // obraController.create();
+  var app = Router();
 
-  ClienteController clienteController = ClienteController();
+  app.get('/hello', (Request request) {
+    return Response.ok('hello-world');
+  });
 
-  // clienteController.create(
-  //   complemento: "'Apto 45'",
-  //   cpfCnpj: "12345678901234",
-  //   logradouro: "'Rua das Flores, 123'",
-  //   nomeCliente: "'João Silva'",
-  //   razaoSocial: "'JS Serviços'",
-  //   telefone: "11987654321",
-  // );
+  app.get('/clientes', (Request request) {
+    // return Response.ok('hello');
 
-  // clienteController.readByID(
-  //   idCliente: 9,
-  // );
+    ClienteService clienteService = ClienteService();
+    clienteService.listarClientes();
+  });
 
-  // clienteController.update(
-  //   complemento: "'Apto 1010'",
-  //   cpfCnpj: "12345678901234",
-  //   logradouro: "'Rua das Flores, 123'",
-  //   nomeCliente: "'João Silva'",
-  //   razaoSocial: "'JS Serviços'",
-  //   telefone: "11987654321",
-  //   idCliente: 8,
-  // );
+  app.get('/clientes/<id>', (Request request, int idCliente) {
+    // return Response.ok('hello');
 
-  // clienteController.delete(
-  //   idCliente: 8,
-  // );
+    ClienteService clienteService = ClienteService();
+    clienteService.buscarCliente(idCliente);
 
-  //  clienteController.list();
+    return Response.ok('hello');
+  });
 
-  // clienteController.search(
-  //     operator: "like", value: "'%Jo%'", paramter: "nomeCliente");
-}
-
-shelf.Response _echoRequest(shelf.Request request) {
-  return shelf.Response.ok(
-      'Request recebida: ${request.method} ${request.url}');
-}
-
-Future<void> initShelf() async {
-  var handler = const shelf.Pipeline()
-      .addMiddleware(shelf.logRequests())
-      .addHandler(_echoRequest);
-  var server = await io.serve(handler, 'localhost', 8080);
-
-  print('Servidor iniciado em ${server.address}:${server.port}');
+  var server = await io.serve(app, 'localhost', 8080);
 }
