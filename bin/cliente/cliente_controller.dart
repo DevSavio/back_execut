@@ -1,4 +1,3 @@
-import 'package:mysql1/mysql1.dart';
 import 'package:mysql_client/mysql_client.dart';
 
 import '../base/database.dart';
