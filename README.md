@@ -49,6 +49,41 @@ rodando pela primeira vez:
     // clienteController.search(
     //     operator: "like", value: "'%Jo%'", paramter: "nomeCliente"); -->
 
+<!-- usuario
+
+    UsuarioController usuarioController = UsuarioController();
+
+    usuarioController.create(
+      complemento: "Quadra 13 Lote 20 Casa 01 Setor: Mansões Paraíso",
+      cpfCnpj: "23132089000145",
+      logradouro: "Rua J70, s/n",
+      nomeUsuario: "Antônio Almeida",
+      razaoSocial: "Execut Construções e Reformas",
+      telefone: "62996551100",
+    );
+
+    usuarioController.readByID(
+      idUsuario: 1,
+    );
+
+    usuarioController.update(
+      complemento: "Quadra 13 Lote 20 Casa 01 Setor: Mansões Paraíso",
+      cpfCnpj: "23132089000145",
+      logradouro: "Rua J70, s/n",
+      nomeUsuario: "Antônio Almeida de Souza",
+      razaoSocial: "Execut Construções e Reformas",
+      telefone: "62996551100",
+      idUsuario: 1,
+    );
+
+    usuarioController.delete(
+      idUsuario: 1,
+    );
+
+     usuarioController.list();
+
+    usuarioController.search(
+        operator: "like", value: "'%Ex%'", paramter: "nomeCliente"); -->
 
 
 
