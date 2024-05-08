@@ -44,7 +44,7 @@ rodando pela primeira vez:
     //   idCliente: 8,
     // );
 
-    //  clienteController.list();
+    // clienteController.list();
 
     // clienteController.search(
     //     operator: "like", value: "'%Jo%'", paramter: "nomeCliente"); -->
@@ -80,13 +80,14 @@ rodando pela primeira vez:
       idUsuario: 1,
     );
 
-     usuarioController.list();
+    usuarioController.list();
 
     usuarioController.search(
         operator: "like", value: "'%Ex%'", paramter: "nomeCliente"); -->
 
 
-<!-- TipoMaoDeObraController tipoMaoDeObraController = TipoMaoDeObraController();
+<!-- 
+TipoMaoDeObraController tipoMaoDeObraController = TipoMaoDeObraController();
 
     tipoMaoDeObraController.create(
        nomeTipo: "Eletricista",
@@ -107,7 +108,7 @@ rodando pela primeira vez:
       idTipo: 1,
     );
 
-     tipoMaoDeObraController.list();
+    tipoMaoDeObraController.list();
 
     tipoMaoDeObraController.search(
         operator: "like", value: "'%Ex%'", paramter: "nomeCliente"); -->
@@ -135,6 +136,34 @@ rodando pela primeira vez:
     tempoDeObraController.list();
 
     tempoDeObraController.search(
+        operator: "like", value: "'%Ex%'", paramter: "nomeCliente");
+  -->
+
+  <!-- 
+  TipoDeFornecedorController tipoDeFornecedorController = TipoDeFornecedorController();
+
+    tipoDeFornecedorController.create(
+       nomeTipo: "Material de construção",
+       descricao: "Fornecedor de materiais para construção civil",
+    );
+
+    tipoDeFornecedorController.readByID(
+      idTipo: 1,
+    );
+
+    tipoDeFornecedorController.update(
+      nomeTipo: "Material elétrico",
+      descricao: "Fornecedor de materiais para construção civil",
+      idTipo: 1,
+    );
+
+    tipoDeFornecedorController.delete(
+      idTipo: 1,
+    );
+
+    tipoDeFornecedorController.list();
+
+    tipoDeFornecedorController.search(
         operator: "like", value: "'%Ex%'", paramter: "nomeCliente");
   -->
 
