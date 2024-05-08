@@ -11,6 +11,7 @@ import 'package:shelf/shelf_io.dart' as io;
 // import 'tipo_de_fornecedor/tipo_de_fornecedor_controller.dart';
 // import 'origem_recurso/origem_recurso_controller.dart';
 // import 'pagamento/pagamento_controller.dart';
+// import 'funcao_prestador/funcao_prestador_controller.dart';
 
 void main() async {
 
@@ -20,6 +21,7 @@ void main() async {
   //tipoDeFornecedor
   //origemRecurso
   //pagamento
+  //funcaoPrestador
 
     
 
