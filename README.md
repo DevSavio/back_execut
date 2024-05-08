@@ -195,6 +195,36 @@ TipoMaoDeObraController tipoMaoDeObraController = TipoMaoDeObraController();
         operator: "like", value: "'%Ex%'", paramter: "nomeCliente");
    -->
 
+   <!-- 
+    PagamentoController pagamentoController = PagamentoController();
+
+    pagamentoController.create(
+      tipoPagamento: "À vista",
+      moeda: "PIX",
+    );
+
+    pagamentoController.readByID(
+      idPagamento: 1,
+    );
+
+    pagamentoController.update(
+      tipoPagamento: "A prazo",
+      moeda: "Cartão de Crédito 4x",
+      idPagamento: 1,
+    );
+
+    pagamentoController.delete(
+      idPagamento: 1,
+    );
+
+    pagamentoController.list();
+
+    pagamentoController.search(
+        operator: "like", value: "'%Ex%'", paramter: "tipoPagamento");
+
+
+    -->
+
 
 
 
