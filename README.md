@@ -14,8 +14,7 @@ rodando pela primeira vez:
 
 /*  fazer o mesmo para as outras tabelas simples - de 16 a 50 , colocar no execute->main para testar e depois colocar no final deste arquivo
 
-cliente / usuario / tipoMaoDeObra /tempoDeObra / tipoDeFornecedor / origemRecurso
-pagamento / funcaoPrestador
+cliente / usuario / tipoMaoDeObra /tempoDeObra / tipoDeFornecedor / origemRecurso / pagamento / funcaoPrestador / 
 
   <!-- // ClienteController clienteController = ClienteController();
 
@@ -224,7 +223,6 @@ TipoMaoDeObraController tipoMaoDeObraController = TipoMaoDeObraController();
 -->
 
 <!--
-
 FuncaoPrestadorController funcaoPrestadorController = FuncaoPrestadorController();
   funcaoPrestadorController.create(
     nomeFuncao: "Encanador",
@@ -249,7 +247,6 @@ FuncaoPrestadorController funcaoPrestadorController = FuncaoPrestadorController(
 
   funcaoPrestadorController.search(
       operator: "like", value: "'%Ex%'", paramter: "tipoPagamento");
-
  -->
 
 
