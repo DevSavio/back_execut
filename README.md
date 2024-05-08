@@ -49,8 +49,7 @@ rodando pela primeira vez:
     // clienteController.search(
     //     operator: "like", value: "'%Jo%'", paramter: "nomeCliente"); -->
 
-<!-- usuario
-
+<!--
     UsuarioController usuarioController = UsuarioController();
 
     usuarioController.create(
@@ -84,7 +83,6 @@ rodando pela primeira vez:
 
     usuarioController.search(
         operator: "like", value: "'%Ex%'", paramter: "nomeCliente"); -->
-
 
 <!-- 
 TipoMaoDeObraController tipoMaoDeObraController = TipoMaoDeObraController();
@@ -139,91 +137,88 @@ TipoMaoDeObraController tipoMaoDeObraController = TipoMaoDeObraController();
         operator: "like", value: "'%Ex%'", paramter: "nomeCliente");
   -->
 
-  <!-- 
+<!-- 
   TipoDeFornecedorController tipoDeFornecedorController = TipoDeFornecedorController();
 
-    tipoDeFornecedorController.create(
-       nomeTipo: "Material de construção",
-       descricao: "Fornecedor de materiais para construção civil",
-    );
-
-    tipoDeFornecedorController.readByID(
-      idTipo: 1,
-    );
-
-    tipoDeFornecedorController.update(
-      nomeTipo: "Material elétrico",
+  tipoDeFornecedorController.create(
+      nomeTipo: "Material de construção",
       descricao: "Fornecedor de materiais para construção civil",
-      idTipo: 1,
-    );
+  );
 
-    tipoDeFornecedorController.delete(
-      idTipo: 1,
-    );
+  tipoDeFornecedorController.readByID(
+    idTipo: 1,
+  );
 
-    tipoDeFornecedorController.list();
+  tipoDeFornecedorController.update(
+    nomeTipo: "Material elétrico",
+    descricao: "Fornecedor de materiais para construção civil",
+    idTipo: 1,
+  );
 
-    tipoDeFornecedorController.search(
-        operator: "like", value: "'%Ex%'", paramter: "nomeCliente");
+  tipoDeFornecedorController.delete(
+    idTipo: 1,
+  );
+
+  tipoDeFornecedorController.list();
+
+  tipoDeFornecedorController.search(
+      operator: "like", value: "'%Ex%'", paramter: "nomeCliente");
   -->
 
-  <!--
-    OrigemRecursoController origemRecursoController = OrigemRecursoController();
+<!--
+  OrigemRecursoController origemRecursoController = OrigemRecursoController();
 
-    origemRecursoController.create(
-       tipoOrigem: "Material de construção",
-       percentual: "Fornecedor de materiais para construção civil",
-    );
-
-    origemRecursoController.readByID(
-      idOrigem: 1,
-    );
-
-    origemRecursoController.update(
-      tipoOrigem: "Material elétrico",
+  origemRecursoController.create(
+      tipoOrigem: "Material de construção",
       percentual: "Fornecedor de materiais para construção civil",
-      idOrigem: 1,
-    );
+  );
 
-    origemRecursoController.delete(
-      idOrigem: 1,
-    );
+  origemRecursoController.readByID(
+    idOrigem: 1,
+  );
 
-    origemRecursoController.list();
+  origemRecursoController.update(
+    tipoOrigem: "Material elétrico",
+    percentual: "Fornecedor de materiais para construção civil",
+    idOrigem: 1,
+  );
 
-    origemRecursoController.search(
-        operator: "like", value: "'%Ex%'", paramter: "nomeCliente");
-   -->
+  origemRecursoController.delete(
+    idOrigem: 1,
+  );
 
-   <!-- 
-    PagamentoController pagamentoController = PagamentoController();
+  origemRecursoController.list();
 
-    pagamentoController.create(
-      tipoPagamento: "À vista",
-      moeda: "PIX",
-    );
+  origemRecursoController.search(
+      operator: "like", value: "'%Ex%'", paramter: "nomeCliente");
+-->
 
-    pagamentoController.readByID(
-      idPagamento: 1,
-    );
+<!-- 
+  PagamentoController pagamentoController = PagamentoController();
 
-    pagamentoController.update(
-      tipoPagamento: "A prazo",
-      moeda: "Cartão de Crédito 4x",
-      idPagamento: 1,
-    );
+  pagamentoController.create(
+    tipoPagamento: "À vista",
+    moeda: "PIX",
+  );
 
-    pagamentoController.delete(
-      idPagamento: 1,
-    );
+  pagamentoController.readByID(
+    idPagamento: 1,
+  );
 
-    pagamentoController.list();
+  pagamentoController.update(
+    tipoPagamento: "A prazo",
+    moeda: "Cartão de Crédito 4x",
+    idPagamento: 1,
+  );
 
-    pagamentoController.search(
-        operator: "like", value: "'%Ex%'", paramter: "tipoPagamento");
+  pagamentoController.delete(
+    idPagamento: 1,
+  );
 
+  pagamentoController.list();
 
-    -->
+  pagamentoController.search(
+      operator: "like", value: "'%Ex%'", paramter: "tipoPagamento");
 
 
 
