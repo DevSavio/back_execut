@@ -112,6 +112,32 @@ rodando pela primeira vez:
     tipoMaoDeObraController.search(
         operator: "like", value: "'%Ex%'", paramter: "nomeCliente"); -->
 
+<!--
+    TempoDeObraController tempoDeObraController = TempoDeObraController();
+
+    tempoDeObraController.create(
+       nomeTempo: "Curto prazo",
+    );
+
+    tempoDeObraController.readByID(
+      idTempo: 1,
+    );
+
+    tempoDeObraController.update(
+      nomeTempo: "",
+      idTempo: 1,
+    );
+
+    tempoDeObraController.delete(
+      idTempo: 1,
+    );
+
+    tempoDeObraController.list();
+
+    tempoDeObraController.search(
+        operator: "like", value: "'%Ex%'", paramter: "nomeCliente");
+  -->
+
 
 
 
