@@ -167,6 +167,34 @@ TipoMaoDeObraController tipoMaoDeObraController = TipoMaoDeObraController();
         operator: "like", value: "'%Ex%'", paramter: "nomeCliente");
   -->
 
+  <!--
+    OrigemRecursoController origemRecursoController = OrigemRecursoController();
+
+    origemRecursoController.create(
+       tipoOrigem: "Material de construção",
+       percentual: "Fornecedor de materiais para construção civil",
+    );
+
+    origemRecursoController.readByID(
+      idOrigem: 1,
+    );
+
+    origemRecursoController.update(
+      tipoOrigem: "Material elétrico",
+      percentual: "Fornecedor de materiais para construção civil",
+      idOrigem: 1,
+    );
+
+    origemRecursoController.delete(
+      idOrigem: 1,
+    );
+
+    origemRecursoController.list();
+
+    origemRecursoController.search(
+        operator: "like", value: "'%Ex%'", paramter: "nomeCliente");
+   -->
+
 
 
 
