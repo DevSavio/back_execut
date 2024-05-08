@@ -88,12 +88,12 @@ create table material_de_obra(
 	FOREIGN KEY (idTipo) REFERENCES tipo_de_obra(idTipo),
 	idOrigem int not null,
 	FOREIGN KEY (idOrigem) REFERENCES origem_recurso(idOrigem),
-  idFornecedor int not null,
-  FOREIGN KEY (idFornecedor) REFERENCES fornecedor(idFornecedor)
+	idFornecedor int not null,
+	FOREIGN KEY (idFornecedor) REFERENCES fornecedor(idFornecedor)
 );
 create table mao_de_obra(
 	idMao int auto_increment primary key,
-  descricao varchar(40) not null,
+  	descricao varchar(40) not null,
 	idTipo int not null,
 	FOREIGN KEY (idTipo) REFERENCES tipo_mao_de_obra(idTipo),
 	idPrestador int not null,
@@ -115,8 +115,8 @@ create table obra(
 	FOREIGN KEY (idPagamento) REFERENCES pagamento(idPagamento),
 	idTempo int not null,
 	FOREIGN KEY (idTempo) REFERENCES tempo_de_obra(idTempo),
-  idPrestador int not null,
-  FOREIGN KEY (idPrestador) REFERENCES prestador(idPrestador)
+	idPrestador int not null,
+	FOREIGN KEY (idPrestador) REFERENCES prestador(idPrestador)
 );
 create table prestadorObra(
 	idPrestadorObra int auto_increment primary key,
