@@ -249,6 +249,44 @@ FuncaoPrestadorController funcaoPrestadorController = FuncaoPrestadorController(
       operator: "like", value: "'%Ex%'", paramter: "tipoPagamento");
  -->
 
+ <!--
+ 
+ FornecedorController fornecedorController = FornecedorController();
+
+    fornecedorController.create(
+      complemento: "Quadra 13 Lote 20 Casa 01 Setor: Mansões Paraíso",
+      logradouro: "Rua J70, s/n",
+      nomeUsuario: "Antônio Almeida",
+      razaoSocial: "Execut Construções e Reformas",
+      telefone: "62996551100",
+      idTipo: 1,
+    );
+
+    fornecedorController.readByID(
+      idFornecedor: 1,
+    );
+
+    fornecedorController.update(
+      complemento: "Quadra 13 Lote 20 Casa 01 Setor: Mansões Paraíso",
+      logradouro: "Rua J70, s/n",
+      razaoSocial: "Execut Construções e Reformas",
+      telefone: "62996551100",
+      idTipo: 1,
+      idFornecedor: 1
+    );
+
+    fornecedorController.delete(
+      idFornecedor: 1,
+    );
+
+    fornecedorController.list();
+
+    fornecedorController.search(
+        operator: "like", value: "'%Ex%'", paramter: "nomeCliente");
+
+ 
+ -->
+
 
 
 
