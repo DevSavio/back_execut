@@ -53,7 +53,6 @@ create table funcao_prestador(
   nomeFuncao varchar(40) not null,
   descricaoFuncao varchar(60) not null
 );
-
 create table fornecedor(
     idFornecedor int auto_increment primary key,
     razaoSocial varchar(100) not null,
@@ -71,7 +70,8 @@ create table prestador(
 	telefone varchar(12),
 	idFuncao int not null,
 	FOREIGN KEY (idFuncao) REFERENCES funcao_prestador(idFuncao)
-);    
+);
+
 create table custo_prestador(
 	idCusto int auto_increment primary key,
   valor double not null,
@@ -145,11 +145,11 @@ INSERT INTO pagamento (tipoPagamento, moeda)
 VALUES ('À vista', 'PIX');
 INSERT INTO funcao_prestador (nomeFuncao, descricaoFuncao)
 VALUES ('Encanador', 'Profissional responsável por instalações hidráulicas');
-
 INSERT INTO fornecedor (razaoSocial, logradouro, complemento, telefone, idTipo)
 VALUES ('ConstruTudo Ltda', 'Avenida Central, 456', 'Loja 10', '1133344556', 1);
 INSERT INTO prestador (nomePrestador, tipoPrestador, cpfCnpj, telefone, idFuncao)
 VALUES ('Maria Pereira', 'Autônomo', '98765432100', '23456789012345', '11999887766', 1);
+
 INSERT INTO custo_prestador (valor, idPrestador, idFuncao)
 VALUES (200.0, 1, 1);
 INSERT INTO material_de_obra (nomeMaterial, descricaoMaterial, valor, idTipo, idOrigem, idFornecedor)
