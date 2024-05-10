@@ -2,7 +2,7 @@ create database execut;
 use execut;
 
 create table usuario(
-	idUsuario int auto_increment primary key,
+  idUsuario int auto_increment primary key,
   nomeUsuario varchar(100) not null,
   razaoSocial varchar(50) not null,
   logradouro varchar(50) not null,
@@ -11,7 +11,7 @@ create table usuario(
   telefone varchar(12) not null
 ); 
 create table cliente(
-	idCliente int auto_increment primary key,
+  idCliente int auto_increment primary key,
   nomeCliente varchar(100) not null,
   razaoSocial varchar(50) not null,
   logradouro varchar(50) not null,
@@ -20,39 +20,40 @@ create table cliente(
   telefone varchar(12) not null
 );  
 create table tipo_mao_de_obra(
-	idTipo int auto_increment primary key,
+  idTipo int auto_increment primary key,
   nomeTipo varchar(20) not null,
   descricao varchar(50) not null
 );  
 create table tempo_de_obra(
-	idTempo int auto_increment primary key,
+  idTempo int auto_increment primary key,
   nomeTempo varchar(20) not null
 );
 create table tipo_de_fornecedor(
-	idTipo int auto_increment primary key,
+  idTipo int auto_increment primary key,
   nomeTipo varchar(50) not null,
   descricao varchar(80) not null
 );
 create table tipo_de_obra(
-	idTipo int auto_increment primary key,
+  idTipo int auto_increment primary key,
   nomeTipo varchar(50) not null,
   descricaoTipo varchar(80) not null
 );    
 create table origem_recurso(
-	idOrigem int auto_increment primary key,
+  idOrigem int auto_increment primary key,
   tipoOrigem varchar(50) not null,
   percentual float
 );    
 create table pagamento(
-	idPagamento int auto_increment primary key,
+  idPagamento int auto_increment primary key,
   tipoPagamento varchar(50) not null,
   moeda varchar(80)
 );
 create table funcao_prestador(
-    idFuncao int auto_increment primary key,
-    nomeFuncao varchar(40) not null,
-    descricaoFuncao varchar(60) not null
+  idFuncao int auto_increment primary key,
+  nomeFuncao varchar(40) not null,
+  descricaoFuncao varchar(60) not null
 );
+
 create table fornecedor(
     idFornecedor int auto_increment primary key,
     razaoSocial varchar(100) not null,
@@ -144,8 +145,6 @@ INSERT INTO pagamento (tipoPagamento, moeda)
 VALUES ('À vista', 'PIX');
 INSERT INTO funcao_prestador (nomeFuncao, descricaoFuncao)
 VALUES ('Encanador', 'Profissional responsável por instalações hidráulicas');
-
-
 
 INSERT INTO fornecedor (razaoSocial, logradouro, complemento, telefone, idTipo)
 VALUES ('ConstruTudo Ltda', 'Avenida Central, 456', 'Loja 10', '1133344556', 1);
