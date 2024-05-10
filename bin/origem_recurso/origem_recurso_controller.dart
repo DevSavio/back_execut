@@ -5,7 +5,7 @@ import '../base/database.dart';
 class OrigemRecursoController {
   Future<void> create({
     required String tipoOrigem,
-    required String percentual,
+    required double percentual,
   }) async {
     String sql =
         "INSERT INTO origem_recurso (tipoOrigem, percentual)"
@@ -20,7 +20,7 @@ class OrigemRecursoController {
 
   Future<void> update({
     required String tipoOrigem,
-    required String percentual,
+    required double percentual,
     required int idOrigem,
   }) async {
     String sql =
