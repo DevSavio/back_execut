@@ -14,7 +14,7 @@ rodando pela primeira vez:
 
 /*  fazer o mesmo para as outras tabelas simples - de 16 a 50 , colocar no execute->main para testar e depois colocar no final deste arquivo
 
-cliente / usuario / tipoMaoDeObra /tempoDeObra / tipoDeFornecedor / origemRecurso / pagamento / funcaoPrestador / 
+cliente / usuario / tipoMaoDeObra /tempoDeObra / tipoDeFornecedor / origemRecurso / pagamento / funcaoPrestador / fornecedor
 
   <!-- // ClienteController clienteController = ClienteController();
 
@@ -267,10 +267,10 @@ FuncaoPrestadorController funcaoPrestadorController = FuncaoPrestadorController(
     );
 
     fornecedorController.update(
-      complemento: "Quadra 13 Lote 20 Casa 01 Setor: Mansões Paraíso",
-      logradouro: "Rua J70, s/n",
-      razaoSocial: "Execut Construções e Reformas",
-      telefone: "62996551100",
+      complemento: "Loja 10",
+      logradouro: "Avenida Central, 456",
+      razaoSocial: "ConstruTudo Ltda",
+      telefone: "1133344556",
       idTipo: 1,
       idFornecedor: 1
     );
@@ -283,7 +283,41 @@ FuncaoPrestadorController funcaoPrestadorController = FuncaoPrestadorController(
 
     fornecedorController.search(
         operator: "like", value: "'%Ex%'", paramter: "nomeCliente");
+ -->
 
+ <!--
+ 
+  PrestadorController prestadorController = PrestadorController();
+
+    prestadorController.create(
+      nomePrestador: "Maria Pereira",
+      tipoPrestador: "Autônomo",
+      cpfCnpj: "23456789012345",
+      telefone: "11999887766",
+      idFuncao: 1,
+    );
+
+    prestadorController.readByID(
+      idPrestador: 1,
+    );
+
+    prestadorController.update(
+      nomePrestador: "Maria João",
+      tipoPrestador: "Autônomo",
+      cpfCnpj: "98765432100",
+      telefone: "23456789012345",
+      idFuncao: 1,
+      idPrestador: 1
+    );
+
+    prestadorController.delete(
+      idPrestador: 1,
+    );
+
+    prestadorController.list();
+
+    prestadorController.search(
+        operator: "like", value: "'%Ex%'", paramter: "nomePrestador");
  
  -->
 
