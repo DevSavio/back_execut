@@ -13,6 +13,7 @@ import 'package:shelf/shelf_io.dart' as io;
 // import 'pagamento/pagamento_controller.dart';
 // import 'funcao_prestador/funcao_prestador_controller.dart';
 // import 'fornecedor/fornecedor_controller.dart';
+// import 'prestador/prestador_controller.dart';
 
 
 void main() async {
@@ -25,8 +26,9 @@ void main() async {
   //pagamento
   //funcaoPrestador
   //fornecedor
+  //prestador
 
-    
+ 
 }
 
 shelf.Response _echoRequest(shelf.Request request) {
