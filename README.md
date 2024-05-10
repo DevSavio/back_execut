@@ -14,79 +14,82 @@ rodando pela primeira vez:
 
 /*  fazer o mesmo para as outras tabelas simples - de 16 a 50 , colocar no execute->main para testar e depois colocar no final deste arquivo
 
-cliente / usuario / tipoMaoDeObra /tempoDeObra / tipoDeFornecedor / origemRecurso / pagamento / funcaoPrestador / fornecedor / prestador
+cliente / usuario / tipoMaoDeObra /tempoDeObra / tipoDeFornecedor / origemRecurso / pagamento / funcaoPrestador / fornecedor / prestador / custo_prestador
 
-  <!-- // ClienteController clienteController = ClienteController();
+  <!-- 
+  ClienteController clienteController = ClienteController();
 
-    // clienteController.create(
-    //   complemento: "'Apto 45'",
-    //   cpfCnpj: "12345678901234",
-    //   logradouro: "'Rua das Flores, 123'",
-    //   nomeCliente: "'João Silva'",
-    //   razaoSocial: "'JS Serviços'",
-    //   telefone: "11987654321",
-    // );
+  clienteController.create(
+    complemento: "'Apto 45'",
+    cpfCnpj: "12345678901234",
+    logradouro: "'Rua das Flores, 123'",
+    nomeCliente: "'João Silva'",
+    razaoSocial: "'JS Serviços'",
+    telefone: "11987654321",
+  );
 
-    // clienteController.readByID(
-    //   idCliente: 9,
-    // );
+  clienteController.readByID(
+    idCliente: 9,
+  );
 
-    // clienteController.update(
-    //   complemento: "'Apto 1010'",
-    //   cpfCnpj: "12345678901234",
-    //   logradouro: "'Rua das Flores, 123'",
-    //   nomeCliente: "'João Silva'",
-    //   razaoSocial: "'JS Serviços'",
-    //   telefone: "11987654321",
-    //   idCliente: 8,
-    // );
+  clienteController.update(
+    complemento: "'Apto 1010'",
+    cpfCnpj: "12345678901234",
+    logradouro: "'Rua das Flores, 123'",
+    nomeCliente: "'João Silva'",
+    razaoSocial: "'JS Serviços'",
+    telefone: "11987654321",
+    idCliente: 8,
+  );
 
-    // clienteController.delete(
-    //   idCliente: 8,
-    // );
+  clienteController.delete(
+    idCliente: 8,
+  );
 
-    // clienteController.list();
+  clienteController.list();
 
-    // clienteController.search(
-    //     operator: "like", value: "'%Jo%'", paramter: "nomeCliente"); -->
+  clienteController.search(
+      operator: "like", value: "'%Jo%'", paramter: "nomeCliente"); 
+-->
 
 <!--
-    UsuarioController usuarioController = UsuarioController();
+  UsuarioController usuarioController = UsuarioController();
 
-    usuarioController.create(
-      complemento: "Quadra 13 Lote 20 Casa 01 Setor: Mansões Paraíso",
-      cpfCnpj: "23132089000145",
-      logradouro: "Rua J70, s/n",
-      nomeUsuario: "Antônio Almeida",
-      razaoSocial: "Execut Construções e Reformas",
-      telefone: "62996551100",
-    );
+  usuarioController.create(
+    complemento: "Quadra 13 Lote 20 Casa 01 Setor: Mansões Paraíso",
+    cpfCnpj: "23132089000145",
+    logradouro: "Rua J70, s/n",
+    nomeUsuario: "Antônio Almeida",
+    razaoSocial: "Execut Construções e Reformas",
+    telefone: "62996551100",
+  );
 
-    usuarioController.readByID(
-      idUsuario: 1,
-    );
+  usuarioController.readByID(
+    idUsuario: 1,
+  );
 
-    usuarioController.update(
-      complemento: "Quadra 13 Lote 20 Casa 01 Setor: Mansões Paraíso",
-      cpfCnpj: "23132089000145",
-      logradouro: "Rua J70, s/n",
-      nomeUsuario: "Antônio Almeida de Souza",
-      razaoSocial: "Execut Construções e Reformas",
-      telefone: "62996551100",
-      idUsuario: 1,
-    );
+  usuarioController.update(
+    complemento: "Quadra 13 Lote 20 Casa 01 Setor: Mansões Paraíso",
+    cpfCnpj: "23132089000145",
+    logradouro: "Rua J70, s/n",
+    nomeUsuario: "Antônio Almeida de Souza",
+    razaoSocial: "Execut Construções e Reformas",
+    telefone: "62996551100",
+    idUsuario: 1,
+  );
 
-    usuarioController.delete(
-      idUsuario: 1,
-    );
+  usuarioController.delete(
+    idUsuario: 1,
+  );
 
-    usuarioController.list();
+  usuarioController.list();
 
-    usuarioController.search(
-        operator: "like", value: "'%Ex%'", paramter: "nomeCliente"); -->
+  usuarioController.search(
+      operator: "like", value: "'%Ex%'", paramter: "nomeCliente"); 
+-->
 
 <!-- 
-TipoMaoDeObraController tipoMaoDeObraController = TipoMaoDeObraController();
+  TipoMaoDeObraController tipoMaoDeObraController = TipoMaoDeObraController();
 
     tipoMaoDeObraController.create(
        nomeTipo: "Eletricista",
@@ -110,7 +113,8 @@ TipoMaoDeObraController tipoMaoDeObraController = TipoMaoDeObraController();
     tipoMaoDeObraController.list();
 
     tipoMaoDeObraController.search(
-        operator: "like", value: "'%Ex%'", paramter: "nomeCliente"); -->
+        operator: "like", value: "'%Ex%'", paramter: "nomeCliente"); 
+-->
 
 <!--
     TempoDeObraController tempoDeObraController = TempoDeObraController();
@@ -250,7 +254,6 @@ FuncaoPrestadorController funcaoPrestadorController = FuncaoPrestadorController(
  -->
 
  <!--
- 
  FornecedorController fornecedorController = FornecedorController();
 
     fornecedorController.create(
@@ -286,7 +289,6 @@ FuncaoPrestadorController funcaoPrestadorController = FuncaoPrestadorController(
  -->
 
  <!--
- 
   PrestadorController prestadorController = PrestadorController();
 
     prestadorController.create(
@@ -318,7 +320,37 @@ FuncaoPrestadorController funcaoPrestadorController = FuncaoPrestadorController(
 
     prestadorController.search(
         operator: "like", value: "'%Ex%'", paramter: "nomePrestador");
- 
+ -->
+
+
+ <!--
+  CustoPrestadorController custoPrestadorController = CustoPrestadorController();
+
+    custoPrestadorController.create(
+      valor: 200.00,
+      idPrestador: 1,
+      idFuncao: 1,
+    );
+
+    custoPrestadorController.readByID(
+      idCustoPrestador: 1,
+    );
+
+    custoPrestadorController.update(
+      valor: 250.00,
+      idPrestador: 1,
+      idFuncao: 1,
+      idCustoPrestador: 1
+    );
+
+    custoPrestadorController.delete(
+      idCustoPrestador: 1,
+    );
+
+    custoPrestadorController.list();
+
+    custoPrestadorController.search(
+        operator: "like", value: "'%Ex%'", paramter: "idPrestador");
  -->
 
 
