@@ -1,7 +1,8 @@
-// import 'package:execut/execut.dart' as execut;
-// import 'dart:io';
-import 'package:shelf/shelf.dart' as shelf;
+import 'package:shelf_router/shelf_router.dart';
+import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
+
+import 'cliente/cliente_service.dart';
 
 // import 'cliente/cliente_controller.dart';
 // import 'obra/obra_controller.dart';
@@ -16,8 +17,6 @@ import 'package:shelf/shelf_io.dart' as io;
 // import 'prestador/prestador_controller.dart';
 // import 'custo_prestador/custo_prestador_controller.dart';
 
-void main() async {
-
   //usuario
   //tipoMaoDeObra
   //tempoDeObra
@@ -30,18 +29,28 @@ void main() async {
   //custo_prestador
 
 
-}
+void main() async {
+  var app = Router();
 
-shelf.Response _echoRequest(shelf.Request request) {
-  return shelf.Response.ok(
-      'Request recebida: ${request.method} ${request.url}');
-}
+  app.get('/hello', (Request request) {
+    return Response.ok('hello-world');
+  });
 
-Future<void> initShelf() async {
-  var handler = const shelf.Pipeline()
-      .addMiddleware(shelf.logRequests())
-      .addHandler(_echoRequest);
-  var server = await io.serve(handler, 'localhost', 8080);
+  app.get('/clientes', (Request request) {
+    // return Response.ok('hello');
 
-  print('Servidor iniciado em ${server.address}:${server.port}');
+    ClienteService clienteService = ClienteService();
+    clienteService.listarClientes();
+  });
+
+  app.get('/clientes/<id>', (Request request, int idCliente) {
+    // return Response.ok('hello');
+
+    ClienteService clienteService = ClienteService();
+    clienteService.buscarCliente(idCliente);
+
+    return Response.ok('hello');
+  });
+
+  var server = await io.serve(app, 'localhost', 8080);
 }
