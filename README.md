@@ -14,7 +14,7 @@ rodando pela primeira vez:
 
 /*  fazer o mesmo para as outras tabelas simples - de 16 a 50 , colocar no execute->main para testar e depois colocar no final deste arquivo
 
-cliente / usuario / tipoMaoDeObra /tempoDeObra / tipoDeFornecedor / origemRecurso / pagamento / funcaoPrestador / fornecedor
+cliente / usuario / tipoMaoDeObra /tempoDeObra / tipoDeFornecedor / origemRecurso / pagamento / funcaoPrestador / fornecedor / prestador
 
   <!-- // ClienteController clienteController = ClienteController();
 
