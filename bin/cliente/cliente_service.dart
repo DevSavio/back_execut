@@ -1,3 +1,4 @@
+import '../models/cliente_models.dart';
 import 'cliente_controller.dart';
 
 class ClienteService {
@@ -44,9 +45,12 @@ class ClienteService {
     return true;
   }
 
-  bool listarClientes() {
-    clienteController.list();
-    return true;
+  Future<List<ClienteModel>> listarClientes() async {
+    try {
+      return await clienteController.list();
+    } catch (e) {
+      rethrow;
+    }
   }
 
   bool buscarClientePorNome() {
