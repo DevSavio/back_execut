@@ -1,10 +1,10 @@
-import 'package:shelf_router/shelf_router.dart';
-import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 
 import 'package:shelf_plus/shelf_plus.dart';
 
 import 'cliente/cliente_service.dart';
+import 'models/cliente_models.dart';
+import 'usuario/usuario_controller.dart';
 
 // import 'cliente/cliente_controller.dart';
 // import 'obra/obra_controller.dart';
@@ -39,11 +39,24 @@ void main() async {
     return Response.ok('hello-world');
   });
 
-  app.get('/clientes', (Request request) {
-    // return Response.ok('hello');
+  app.get('/clientes', (Request request) async {
+   try {
+      // return Response.ok('hello');
 
     ClienteService clienteService = ClienteService();
-    clienteService.listarClientes();
+    List<ClienteModel> resultado = await clienteService.listarClientes();
+    return {
+      "sucesso": true,
+      "resultado": resultado,
+    };
+   } catch (e) {
+     return Response.internalServerError(
+      body: {
+        "erro": "Deu erro no cliente",
+        "mensagem": e,        
+      }
+    );
+   }
   });
 
   app.get('/clientes/<id>', (Request request, int idCliente) {
