@@ -4,7 +4,7 @@ import 'cliente_controller.dart';
 class ClienteService {
   ClienteController clienteController = ClienteController();
 
-  ClienteService() {}
+  // ClienteService() {}
 
   bool criarClient() {
     clienteController.create(
@@ -18,11 +18,14 @@ class ClienteService {
     return true;
   }
 
-  bool buscarCliente(int idCliente) {
-    clienteController.readByID(
-      idCliente: idCliente,
-    );
-    return true;
+  Future<ClienteModel?> buscarCliente(int idCliente) async {
+    try {
+      return clienteController.readByID(
+        idCliente: idCliente,
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   bool atualizarCliente() {
