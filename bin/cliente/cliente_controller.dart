@@ -1,6 +1,7 @@
 import 'package:mysql_client/mysql_client.dart';
 
 import '../base/database.dart';
+import '../models/cliente_models.dart';
 
 class ClienteController {
   Future<void> create({
@@ -75,8 +76,9 @@ class ClienteController {
     }
   }
 
-  Future<void> list() async {
-    String sql = "select *  from cliente";
+  Future<List<ClienteModel>> list() async {
+    try {
+      String sql = "select *  from cliente";
     ControllerConnection c = ControllerConnection();
     IResultSet? r = await c.read(
       sql,
@@ -84,14 +86,29 @@ class ClienteController {
 
     if (r == null) {
       print('Erro ao buscar o cliente');
+      throw('Erro ao listar clientes: ResultSet is null');
     } else {
       if (r.rows.isEmpty) {
         print('Cliente não encontrado');
+        return List<ClienteModel>.empty();
       } else {
+        List<ClienteModel> lista = [];
         for (var row in r.rows) {
-          print('Cliente encontrado: ${row.assoc()}');
+          print('Cliente encontrado: ${row.typedAssoc()}');
+          ClienteModel c = ClienteModel(
+            idCliente: int.parse(row.assoc()['idCliente']!), 
+            nomeCliente: row.assoc()['nomeCliente']!, 
+            razaoSocial: row.assoc()['razaoSocial']!, 
+            logradouro: row.assoc()['logradouro']??"", 
+            cpfCnpj: row.assoc()['cpfCnpj']!);
+          lista.add(c);
         }
+        return lista;
       }
+    }
+    
+    } catch (e) {
+      throw('Erro ao listar clientes: $e');
     }
   }
 
