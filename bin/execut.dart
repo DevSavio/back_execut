@@ -2,6 +2,8 @@ import 'package:shelf_router/shelf_router.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 
+import 'package:shelf_plus/shelf_plus.dart';
+
 import 'cliente/cliente_service.dart';
 
 // import 'cliente/cliente_controller.dart';
@@ -30,9 +32,10 @@ import 'cliente/cliente_service.dart';
 
 
 void main() async {
-  var app = Router();
+  var app = Router().plus;
 
   app.get('/hello', (Request request) {
+    print(request.url);
     return Response.ok('hello-world');
   });
 
