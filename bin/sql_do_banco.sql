@@ -71,9 +71,8 @@ create table prestador(
 	idFuncao int not null,
 	FOREIGN KEY (idFuncao) REFERENCES funcao_prestador(idFuncao)
 );
-
 create table custo_prestador(
-	idCusto int auto_increment primary key,
+  idCusto int auto_increment primary key,
   valor double not null,
   idPrestador int not null,
   FOREIGN KEY (idPrestador) REFERENCES prestador(idPrestador),
