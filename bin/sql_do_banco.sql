@@ -73,7 +73,7 @@ create table prestador(
 );
 create table custo_prestador(
   idCusto int auto_increment primary key,
-  valor double not null,
+  valor float not null,
   idPrestador int not null,
   FOREIGN KEY (idPrestador) REFERENCES prestador(idPrestador),
   idFuncao int not null,
@@ -83,7 +83,7 @@ create table material_de_obra(
 	idMaterial int auto_increment primary key,
 	nomeMaterial varchar(50) not null,
 	descricaoMaterial varchar(80),
-	valor double not null,
+	valor float not null,
 	idTipo int not null,
 	FOREIGN KEY (idTipo) REFERENCES tipo_de_obra(idTipo),
 	idOrigem int not null,
@@ -103,7 +103,7 @@ create table mao_de_obra(
 );
 create table obra(
 	idObra int auto_increment primary key,
-	valorFinal decimal not null,
+	valorFinal float not null,
 	responsavelObra varchar(30) not null,
 	dataInicio date not null,
 	dataFim date not null,
