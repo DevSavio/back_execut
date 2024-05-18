@@ -1,5 +1,8 @@
-import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'tipo_de_obra_models.g.dart';
+
+@JsonSerializable()
 class TipoDeObraModel {
   int idTipo;
   String nomeTipo;
@@ -11,33 +14,8 @@ class TipoDeObraModel {
     required this.descricaoTipo,
   });
 
-  // Método toMap
-  Map<String, dynamic> toMap() {
-    return {
-      'idTipo': idTipo,
-      'nomeTipo': nomeTipo,
-      'descricaoTipo': descricaoTipo,
-    };
-  }
+  Map<String, dynamic> toJson() => _$TipoDeObraModelToJson(this);
 
-  // Método fromMap
-  static TipoDeObraModel fromMap(Map<dynamic, dynamic> map) {
-    return TipoDeObraModel(
-      idTipo: map['idTipo'],
-      nomeTipo: map['nomeTipo'],
-      descricaoTipo: map['descricaoTipo'],
-    );
-  }
-
-  // Método toJson
-  String toJson() => json.encode(toMap());
-
-  // Método fromJson
-  static TipoDeObraModel fromJson(dynamic source) => fromMap(json.decode(source));
-
-  // Método toString
-  @override
-  String toString() {
-    return 'TipoDeObraModel(idTipo: $idTipo, nomeTipo: $nomeTipo, descricaoTipo: $descricaoTipo)';
-  }
+  static TipoDeObraModel fromJson(Map<String, dynamic> json) =>
+      _$TipoDeObraModelFromJson(json);
 }

@@ -46,11 +46,11 @@ class ClienteService {
 
   bool atualizarCliente() {
     clienteController.update(
-      complemento: "'Apto 1010'",
+      complemento: "Apto 1010",
       cpfCnpj: "12345678901234",
-      logradouro: "'Rua das Flores, 123'",
-      nomeCliente: "'João Silva'",
-      razaoSocial: "'JS Serviços'",
+      logradouro: "Rua das Flores, 123",
+      nomeCliente: "João Silva",
+      razaoSocial: "JS Serviços",
       telefone: "11987654321",
       idCliente: 8,
     );

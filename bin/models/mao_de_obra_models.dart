@@ -1,5 +1,8 @@
-import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'mao_de_obra_models.g.dart';
+
+@JsonSerializable()
 class MaoDeObraModel {
   int idMao;
   String descricao;
@@ -25,27 +28,9 @@ class MaoDeObraModel {
       'idFuncao': idFuncao,
     };
   }
+Map<String, dynamic> toJson() => _$MaoDeObraModelToJson(this);
 
-  // Método fromMap
-  static MaoDeObraModel fromMap(Map<dynamic, dynamic> map) {
-    return MaoDeObraModel(
-      idMao: map['idMao'],
-      descricao: map['descricao'],
-      idTipo: map['idTipo'],
-      idPrestador: map['idPrestador'],
-      idFuncao: map['idFuncao'],
-    );
-  }
-
-  // Método toJson
-  String toJson() => json.encode(toMap());
-
-  // Método fromJson
-  static MaoDeObraModel fromJson(dynamic source) => fromMap(json.decode(source));
-
-  // Método toString
-  @override
-  String toString() {
-    return 'MaoDeObraModel(idMao: $idMao, descricao: $descricao, idTipo: $idTipo, idPrestador: $idPrestador, idFuncao: $idFuncao)';
-  }
+  static MaoDeObraModel fromJson(Map<String, dynamic> json) =>
+      _$MaoDeObraModelFromJson(json);
+  
 }

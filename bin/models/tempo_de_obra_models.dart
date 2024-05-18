@@ -1,5 +1,8 @@
-import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'tempo_de_obra_models.g.dart';
+
+@JsonSerializable()
 class TempoDeObraModel {
   int idTempo;
   String nomeTempo;
@@ -9,31 +12,9 @@ class TempoDeObraModel {
     required this.nomeTempo,
   });
 
-  // Método toMap
-  Map<String, dynamic> toMap() {
-    return {
-      'idTempo': idTempo,
-      'nomeTempo': nomeTempo,
-    };
-  }
+  Map<String, dynamic> toJson() => _$TempoDeObraModelToJson(this);
 
-  // Método fromMap
-  static TempoDeObraModel fromMap(Map<dynamic, dynamic> map) {
-    return TempoDeObraModel(
-      idTempo: map['idTempo'],
-      nomeTempo: map['nomeTempo'],
-    );
-  }
+  static TempoDeObraModel fromJson(Map<String, dynamic> json) =>
+      _$TempoDeObraModelFromJson(json);
 
-  // Método toJson
-  String toJson() => json.encode(toMap());
-
-  // Método fromJson
-  static TempoDeObraModel fromJson(dynamic source) => fromMap(json.decode(source));
-
-  // Método toString
-  @override
-  String toString() {
-    return 'TempoDeObraModel(idTempo: $idTempo, nomeTempo: $nomeTempo)';
-  }
 }

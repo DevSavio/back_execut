@@ -1,5 +1,8 @@
-import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'fornecedor_models.g.dart';
+
+@JsonSerializable()
 class FornecedorModel {
   int idFornecedor;
   String razaoSocial;
@@ -29,27 +32,8 @@ class FornecedorModel {
     };
   }
 
-  // Método fromMap
-  static FornecedorModel fromMap(Map<dynamic, dynamic> map) {
-    return FornecedorModel(
-      idFornecedor: map['idFornecedor'],
-      razaoSocial: map['razaoSocial'],
-      logradouro: map['logradouro'],
-      complemento: map['complemento'],
-      idTipo: map['idTipo'],
-      telefone: map['telefone'],
-    );
-  }
+  Map<String, dynamic> toJson() => _$FornecedorModelToJson(this);
 
-  // Método toJson
-  String toJson() => json.encode(toMap());
-
-  // Método fromJson
-  static FornecedorModel fromJson(dynamic source) => fromMap(json.decode(source));
-
-  // Método toString
-  @override
-  String toString() {
-    return 'FornecedorModel(idFornecedor: $idFornecedor, razaoSocial: $razaoSocial, logradouro: $logradouro, complemento: $complemento, idTipo: $idTipo, telefone: $telefone)';
-  }
+  static FornecedorModel fromJson(Map<String, dynamic> json) =>
+      _$FornecedorModelFromJson(json);
 }

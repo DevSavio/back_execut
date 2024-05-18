@@ -1,5 +1,8 @@
-import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'material_de_obra_models.g.dart';
+
+@JsonSerializable()
 class MaterialDeObraModel {
   int idMaterial;
   String nomeMaterial;
@@ -32,28 +35,8 @@ class MaterialDeObraModel {
     };
   }
 
-  // Método fromMap
-  static MaterialDeObraModel fromMap(Map<dynamic, dynamic> map) {
-    return MaterialDeObraModel(
-      idMaterial: map['idMaterial'],
-      nomeMaterial: map['nomeMaterial'],
-      descricaoMaterial: map['descricaoMaterial'],
-      valor: map['valor'],
-      idTipo: map['idTipo'],
-      idOrigem: map['idOrigem'],
-      idFornecedor: map['idFornecedor'],
-    );
-  }
+  Map<String, dynamic> toJson() => _$MaterialDeObraModelToJson(this);
 
-  // Método toJson
-  String toJson() => json.encode(toMap());
-
-  // Método fromJson
-  static MaterialDeObraModel fromJson(dynamic source) => fromMap(json.decode(source));
-
-  // Método toString
-  @override
-  String toString() {
-    return 'MaterialDeObraModel(idMaterial: $idMaterial, nomeMaterial: $nomeMaterial, descricaoMaterial: $descricaoMaterial, valor: $valor, idTipo: $idTipo, idOrigem: $idOrigem, idFornecedor: $idFornecedor)';
-  }
+  static MaterialDeObraModel fromJson(Map<String, dynamic> json) =>
+      _$MaterialDeObraModelFromJson(json);
 }
