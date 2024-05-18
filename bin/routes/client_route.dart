@@ -16,7 +16,7 @@ class ClientRoute {
     });
 
     /// Get specific cliente by id
-    router.get('/cliente/<id>', (Request request, String id) {
+    router.get('/cliente2/<id>', (Request request, String id) {
       final data = clienteService.buscarCliente(int.parse(id));
       return data;
     });
@@ -77,6 +77,28 @@ class ClientRoute {
           idCliente: int.parse(
             request.params['id']!,
           ),
+        );
+
+        if (clientAtualizado != null) {
+          return {
+            'ok': 'true',
+            'clienteAlterado': clientAtualizado,
+          };
+        }
+      } catch (e) {
+        return Response.internalServerError(body: 'Erro ao criar cliente');
+      }
+    });
+
+    /// buscar clientes por id
+    router.get('/cliente/buscar_por_campo', (Request request) async {
+      try {
+        dynamic body = await request.body.asJson;
+
+        var clientAtualizado = await clienteService.buscarClientePorNome(
+          operator: body['operator'],
+          paramter: body['paramter'],
+          value: body['value'],
         );
 
         if (clientAtualizado != null) {

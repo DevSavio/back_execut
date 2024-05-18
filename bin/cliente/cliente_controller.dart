@@ -51,6 +51,7 @@ class ClienteController {
           ", complemento = '$complemento', cpfCnpj = '$cpfCnpj', telefone = '$telefone'"
           " where idCliente = $idCliente;";
       ControllerConnection c = ControllerConnection();
+
       await c.update(
         sql,
       );
@@ -160,24 +161,41 @@ class ClienteController {
     }
   }
 
-  Future<void> search(
+  Future<List<ClienteModel>> search(
       {String paramter = '', String value = '', String operator = ''}) async {
-    String sql = "select *  from cliente where $paramter $operator $value";
-    ControllerConnection c = ControllerConnection();
-    IResultSet? r = await c.read(
-      sql,
-    );
+    try {
+      String sql = "select * from cliente where $paramter $operator $value";
+      ControllerConnection c = ControllerConnection();
+      IResultSet? r = await c.read(
+        sql,
+      );
 
-    if (r == null) {
-      print('Erro ao buscar o cliente');
-    } else {
-      if (r.rows.isEmpty) {
-        print('Cliente não encontrado');
+      if (r == null) {
+        print('Erro ao buscar o cliente');
+        return List<ClienteModel>.empty();
       } else {
-        for (var row in r.rows) {
-          print('Cliente encontrado: ${row.assoc()}');
+        if (r.rows.isEmpty) {
+          print('Cliente não encontrado');
+          return List<ClienteModel>.empty();
+        } else {
+          List<ClienteModel> lista = [];
+          for (var row in r.rows) {
+            print('Cliente encontrado: ${row.typedAssoc()}');
+            ClienteModel c = ClienteModel(
+              idCliente: int.parse(row.assoc()['idCliente']!),
+              nomeCliente: row.assoc()['nomeCliente']!,
+              razaoSocial: row.assoc()['razaoSocial']!,
+              logradouro: row.assoc()['logradouro'] ?? "",
+              cpfCnpj: row.assoc()['cpfCnpj']!,
+              telefone: row.assoc()['telefone']!,
+            );
+            lista.add(c);
+          }
+          return lista;
         }
       }
+    } catch (e) {
+      rethrow;
     }
   }
 }

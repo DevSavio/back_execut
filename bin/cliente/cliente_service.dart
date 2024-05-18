@@ -90,9 +90,12 @@ class ClienteService {
     }
   }
 
-  bool buscarClientePorNome() {
-    clienteController.search(
-        operator: "like", value: "'%Jo%'", paramter: "nomeCliente");
-    return true;
+  dynamic buscarClientePorNome({
+    required String operator,
+    required String value,
+    required String paramter,
+  }) {
+    return clienteController.search(
+        operator: operator, value: value, paramter: paramter);
   }
 }
