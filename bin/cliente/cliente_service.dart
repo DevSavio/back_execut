@@ -44,22 +44,39 @@ class ClienteService {
     }
   }
 
-  bool atualizarCliente() {
-    clienteController.update(
-      complemento: "Apto 1010",
-      cpfCnpj: "12345678901234",
-      logradouro: "Rua das Flores, 123",
-      nomeCliente: "João Silva",
-      razaoSocial: "JS Serviços",
-      telefone: "11987654321",
-      idCliente: 8,
-    );
-    return true;
+  Future<bool> atualizarCliente(
+      {required ClienteModel clienteModel, required int idCliente}) async {
+    try {
+      var reult = await clienteController.update(
+        complemento: clienteModel.complemento ?? "",
+        cpfCnpj: clienteModel.cpfCnpj,
+        logradouro: clienteModel.logradouro,
+        nomeCliente: clienteModel.nomeCliente,
+        razaoSocial: clienteModel.razaoSocial,
+        telefone: clienteModel.telefone ?? "",
+        idCliente: idCliente,
+      );
+
+      if (reult) {
+        return false;
+      } else {
+        return true;
+      }
+    } catch (e) {
+      rethrow;
+    }
   }
 
-  int? deletarCliente(int novoClienteID) {
+  Future<int?> deletarCliente(int clienteID) async {
     try {
-      return 1;
+      int? id = await clienteController.delete(
+        idCliente: clienteID,
+      );
+      if (id != null) {
+        return id;
+      } else {
+        return null;
+      }
     } catch (e) {
       throw Exception("Erro ao excluir cliente ");
     }

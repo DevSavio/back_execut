@@ -16,7 +16,7 @@ class ClientRoute {
     });
 
     /// Get specific cliente by id
-    router.get('/clientes/<id>', (Request request, String id) {
+    router.get('/cliente/<id>', (Request request, String id) {
       final data = clienteService.buscarCliente(int.parse(id));
       return data;
     });
@@ -42,21 +42,49 @@ class ClientRoute {
       }
     });
 
-    /// delect  a new cliente
+    /// delete a new cliente
     router.delete('/cliente/<id>', (Request request, String id) async {
+      try {
+        var objetoRetorno = await clienteService
+            .deletarCliente(int.parse(request.params['id']!));
+        print(objetoRetorno);
+
+        if (objetoRetorno != null) {
+          return {
+            'ok': 'true',
+            'cliente_excluido ': objetoRetorno,
+          };
+        } else {
+          return {
+            'ok': 'false',
+            'cliente_excluido': "Cliente não encontrado",
+          };
+        }
+      } catch (e) {
+        return Response.internalServerError(body: 'Erro ao criar cliente');
+      }
+    });
+
+    /// update a clientes
+    router.post('/cliente/<id>', (Request request) async {
       try {
         dynamic body = await request.body.asJson;
 
-        var objetoRetorno =
-            await clienteService.deletarCliente(body.idCliente!.toInt());
+        ClienteModel novoCliente = ClienteModel.fromJson(body);
 
-        // if (objetoRetorno != null) {
-        //   return {
-        //     'ok': 'true',
-        //     'clienteAdicionado': clienteExcluido,
-        //   };
-        // }
-        return Response.ok({body: body});
+        var clientAtualizado = await clienteService.atualizarCliente(
+          clienteModel: novoCliente,
+          idCliente: int.parse(
+            request.params['id']!,
+          ),
+        );
+
+        if (clientAtualizado != null) {
+          return {
+            'ok': 'true',
+            'clienteAlterado': clientAtualizado,
+          };
+        }
       } catch (e) {
         return Response.internalServerError(body: 'Erro ao criar cliente');
       }

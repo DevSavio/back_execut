@@ -11,11 +11,7 @@ Handler init() {
   /// Serve index page of frontend
   app.get('/', () => File('frontend/page.html'));
 
-  ClientRoute clientRoute = ClientRoute(
-    router: app,
-  );
-
-  app = clientRoute.init();
+  app = ClientRoute(router: app).init();
 
   // /// Update an existing person by id
   // app.put('/person/<id>', (Request request, String id) async {

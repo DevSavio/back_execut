@@ -36,7 +36,7 @@ class ClienteController {
     }
   }
 
-  Future<void> update({
+  Future<bool> update({
     required String nomeCliente,
     required String razaoSocial,
     required String logradouro,
@@ -45,17 +45,24 @@ class ClienteController {
     required String telefone,
     required int idCliente,
   }) async {
-    String sql =
-        "Update cliente set nomeCliente = $nomeCliente, razaoSocial = $razaoSocial, logradouro = $logradouro, complemento = $complemento, cpfCnpj = $cpfCnpj, telefone = $telefone"
-        " where idCliente = $idCliente;";
-    ControllerConnection c = ControllerConnection();
-    await c.update(
-      sql,
-    );
-    print('Cliente Atualizado com sucesso');
+    try {
+      String sql = "Update cliente set nomeCliente = '$nomeCliente', "
+          " razaoSocial = '$razaoSocial', logradouro = '$logradouro' "
+          ", complemento = '$complemento', cpfCnpj = '$cpfCnpj', telefone = '$telefone'"
+          " where idCliente = $idCliente;";
+      ControllerConnection c = ControllerConnection();
+      await c.update(
+        sql,
+      );
+
+      print('Cliente Atualizado com sucesso');
+      return true;
+    } catch (e) {
+      rethrow;
+    }
   }
 
-  Future<int> delete({
+  Future<int?> delete({
     required int idCliente,
   }) async {
     try {
@@ -68,47 +75,51 @@ class ClienteController {
       if (i != null) {
         if (i.affectedRows >= BigInt.one) {
           print('Cliente deletado com sucesso');
-          return 1;
+          return idCliente;
         } else {
-          return 0;
+          return null;
         }
       } else {
-        return 0;
+        return null;
       }
     } catch (e) {
-      return 0;
+      return null;
     }
   }
 
   Future<ClienteModel?> readByID({
     required int idCliente,
   }) async {
-    String sql = "select *  from cliente  where idCliente = $idCliente;";
-    ControllerConnection c = ControllerConnection();
-    IResultSet? r = await c.read(
-      sql,
-    );
+    try {
+      String sql = "select *  from cliente  where idCliente = $idCliente;";
+      ControllerConnection c = ControllerConnection();
+      IResultSet? r = await c.read(
+        sql,
+      );
 
-    if (r == null) {
-      print('Erro ao buscar o cliente');
-      throw ('Erro ao listar clientes: ResultSet is null');
-    } else {
-      if (r.rows.isEmpty) {
-        print('Cliente não encontrado');
-        return null;
+      if (r == null) {
+        print('Erro ao buscar o cliente');
+        throw ('Erro ao listar clientes: ResultSet is null');
       } else {
-        Map<String, dynamic> map = r.rows.first.assoc();
-        ClienteModel c = ClienteModel(
-          idCliente: int.parse(map['idCliente']!),
-          nomeCliente: map['nomeCliente']!,
-          razaoSocial: map['razaoSocial']!,
-          logradouro: map['logradouro'] ?? "",
-          cpfCnpj: map['cpfCnpj']!,
-          telefone: map['telefone']!,
-        );
+        if (r.rows.isEmpty) {
+          print('Cliente não encontrado');
+          return null;
+        } else {
+          Map<String, dynamic> map = r.rows.first.assoc();
+          ClienteModel c = ClienteModel(
+            idCliente: int.parse(map['idCliente']!),
+            nomeCliente: map['nomeCliente']!,
+            razaoSocial: map['razaoSocial']!,
+            logradouro: map['logradouro'] ?? "",
+            cpfCnpj: map['cpfCnpj']!,
+            telefone: map['telefone']!,
+          );
 
-        return c;
+          return c;
+        }
       }
+    } catch (e) {
+      throw ('Erro ao listar clientes: $e');
     }
   }
 
