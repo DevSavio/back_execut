@@ -1,5 +1,8 @@
-import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'funcao_prestador_models.g.dart';
+
+@JsonSerializable()
 class FuncaoPrestadorModel {
   int idFuncao;
   String nomeFuncao;
@@ -20,24 +23,8 @@ class FuncaoPrestadorModel {
     };
   }
 
-  // Método fromMap
-  static FuncaoPrestadorModel fromMap(Map<dynamic, dynamic> map) {
-    return FuncaoPrestadorModel(
-      idFuncao: map['idFuncao'],
-      nomeFuncao: map['nomeFuncao'],
-      descricaoFuncao: map['descricaoFuncao'],
-    );
-  }
+  Map<String, dynamic> toJson() => _$FuncaoPrestadorModelToJson(this);
 
-  // Método toJson
-  String toJson() => json.encode(toMap());
-
-  // Método fromJson
-  static FuncaoPrestadorModel fromJson(dynamic source) => fromMap(json.decode(source));
-
-  // Método toString
-  @override
-  String toString() {
-    return 'FuncaoPrestadorModel(idFuncao: $idFuncao, nomeFuncao: $nomeFuncao, descricaoFuncao: $descricaoFuncao)';
-  }
+  static FuncaoPrestadorModel fromJson(Map<String, dynamic> json) =>
+      _$FuncaoPrestadorModelFromJson(json);
 }

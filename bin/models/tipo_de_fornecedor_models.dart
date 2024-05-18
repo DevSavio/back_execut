@@ -1,5 +1,8 @@
-import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'tipo_de_fornecedor_models.g.dart';
+
+@JsonSerializable()
 class TipoDeFornecedorModel {
   int idTipo;
   String nomeTipo;
@@ -11,33 +14,8 @@ class TipoDeFornecedorModel {
     required this.descricao,
   });
 
-  // Método toMap
-  Map<String, dynamic> toMap() {
-    return {
-      'idTipo': idTipo,
-      'nomeTipo': nomeTipo,
-      'descricao': descricao,
-    };
-  }
+  Map<String, dynamic> toJson() => _$TipoDeFornecedorModelToJson(this);
 
-  // Método fromMap
-  static TipoDeFornecedorModel fromMap(Map<dynamic, dynamic> map) {
-    return TipoDeFornecedorModel(
-      idTipo: map['idTipo'],
-      nomeTipo: map['nomeTipo'],
-      descricao: map['descricao'],
-    );
-  }
-
-  // Método toJson
-  String toJson() => json.encode(toMap());
-
-  // Método fromJson
-  static TipoDeFornecedorModel fromJson(dynamic source) => fromMap(json.decode(source));
-
-  // Método toString
-  @override
-  String toString() {
-    return 'TipoDeFornecedorModel(idTipo: $idTipo, nomeTipo: $nomeTipo, descricao: $descricao)';
-  }
+  static TipoDeFornecedorModel fromJson(Map<String, dynamic> json) =>
+      _$TipoDeFornecedorModelFromJson(json);
 }

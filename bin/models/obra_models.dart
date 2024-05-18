@@ -1,9 +1,11 @@
-import 'dart:convert';
-import 'dart:ffi';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'obra_models.g.dart';
+
+@JsonSerializable()
 class ObraModel {
   int idObra;
-  Float valorFinal;
+  double valorFinal;
   String responsavelObra;
   DateTime dataInicio;
   DateTime dataFim;
@@ -28,49 +30,8 @@ class ObraModel {
     required this.idPrestador,
   });
 
-  // Método toMap
-  Map<String, dynamic> toMap() {
-    return {
-      'idObra': idObra,
-      'valorFinal': valorFinal,
-      'responsavelObra': responsavelObra,
-      'dataInicio': dataInicio,
-      'dataFim': dataFim,
-      'logradouro': logradouro,
-      'complemento': complemento,
-      'idCliente': idCliente,
-      'idPagamento': idPagamento,
-      'idTempo': idTempo,
-      'idPrestador': idPrestador,
-    };
-  }
+  Map<String, dynamic> toJson() => _$ObraModelToJson(this);
 
-  // Método fromMap
-  static ObraModel fromMap(Map<dynamic, dynamic> map) {
-    return ObraModel(
-      idObra: map['idObra'],
-      valorFinal: map['valorFinal'],
-      responsavelObra: map['responsavelObra'],
-      dataInicio: map['dataInicio'],
-      dataFim: map['dataFim'],
-      logradouro: map['logradouro'],
-      complemento: map['complemento'],
-      idCliente: map['idCliente'],
-      idPagamento: map['idPagamento'],
-      idTempo: map['idTempo'],
-      idPrestador: map['idPrestador'],
-    );
-  }
-
-  // Método toJson
-  String toJson() => json.encode(toMap());
-
-  // Método fromJson
-  static ObraModel fromJson(dynamic source) => fromMap(json.decode(source));
-
-  // Método toString
-  @override
-  String toString() {
-    return 'ObraModel(idObra: $idObra, valorFinal: $valorFinal, responsavelObra: $responsavelObra, dataInicio: $dataInicio, dataFim: $dataFim, logradouro: $logradouro, complemento: $complemento, idCliente: $idCliente, idPagamento: $idPagamento, idTempo: $idTempo, idPrestador: $idPrestador)';
-  }
+  static ObraModel fromJson(Map<String, dynamic> json) =>
+      _$ObraModelFromJson(json);
 }

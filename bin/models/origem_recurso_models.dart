@@ -1,10 +1,12 @@
-import 'dart:convert';
-import 'dart:ffi';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'origem_recurso_models.g.dart';
+
+@JsonSerializable()
 class OrigemRecursoModel {
   int idOrigem;
   String tipoOrigem;
-  Float? percentual;
+  double? percentual;
 
   OrigemRecursoModel({
     required this.idOrigem,
@@ -12,33 +14,8 @@ class OrigemRecursoModel {
     this.percentual,
   });
 
-  // Método toMap
-  Map<String, dynamic> toMap() {
-    return {
-      'idOrigem': idOrigem,
-      'tipoOrigem': tipoOrigem,
-      'percentual': percentual,
-    };
-  }
+  Map<String, dynamic> toJson() => _$OrigemRecursoModelToJson(this);
 
-  // Método fromMap
-  static OrigemRecursoModel fromMap(Map<dynamic, dynamic> map) {
-    return OrigemRecursoModel(
-      idOrigem: map['idOrigem'],
-      tipoOrigem: map['tipoOrigem'],
-      percentual: map['percentual'],
-    );
-  }
-
-  // Método toJson
-  String toJson() => json.encode(toMap());
-
-  // Método fromJson
-  static OrigemRecursoModel fromJson(dynamic source) => fromMap(json.decode(source));
-
-  // Método toString
-  @override
-  String toString() {
-    return 'OrigemRecursoModel(idOrigem: $idOrigem, tipoOrigem: $tipoOrigem, percentual: $percentual)';
-  }
+  static OrigemRecursoModel fromJson(Map<String, dynamic> json) =>
+      _$OrigemRecursoModelFromJson(json);
 }

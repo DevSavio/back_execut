@@ -1,5 +1,8 @@
-import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'prestador_obra_models.g.dart';
+
+@JsonSerializable()
 class PrestadorObraModel {
   int idPrestadorObra;
   int idPrestador;
@@ -11,33 +14,8 @@ class PrestadorObraModel {
     required this.idObra,
   });
 
-  // Método toMap
-  Map<String, dynamic> toMap() {
-    return {
-      'idPrestadorObra': idPrestadorObra,
-      'idPrestador': idPrestador,
-      'idObra': idObra,
-    };
-  }
+  Map<String, dynamic> toJson() => _$PrestadorObraModelToJson(this);
 
-  // Método fromMap
-  static PrestadorObraModel fromMap(Map<dynamic, dynamic> map) {
-    return PrestadorObraModel(
-      idPrestadorObra: map['idPrestadorObra'],
-      idPrestador: map['idPrestador'],
-      idObra: map['idObra'],
-    );
-  }
-
-  // Método toJson
-  String toJson() => json.encode(toMap());
-
-  // Método fromJson
-  static PrestadorObraModel fromJson(dynamic source) => fromMap(json.decode(source));
-
-  // Método toString
-  @override
-  String toString() {
-    return 'PrestadorObraModel(idPrestadorObra: $idPrestadorObra, idPrestador: $idPrestador, idObra: $idObra)';
-  }
+  static PrestadorObraModel fromJson(Map<String, dynamic> json) =>
+      _$PrestadorObraModelFromJson(json);
 }
