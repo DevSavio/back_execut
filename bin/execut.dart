@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:shelf_plus/shelf_plus.dart';
-import 'cliente/cliente_service.dart';
+import 'routes/client_route.dart';
 
 void main() => shelfRun(init);
 
@@ -11,19 +11,11 @@ Handler init() {
   /// Serve index page of frontend
   app.get('/', () => File('frontend/page.html'));
 
-  /// List all cliente
-  app.get('/clientes', () {
-    ClienteService c = ClienteService();
-    final data = c.listarClientes();
-    return data;
-  });
+  ClientRoute clientRoute = ClientRoute(
+    router: app,
+  );
 
-  /// Get specific cliente by id
-  app.get('/clientes/<id>', (Request request, String id) {
-    ClienteService c = ClienteService();
-    final data = c.buscarCliente(int.parse(id));
-    return data;
-  });
+  clientRoute.init();
 
   // ///
   // app.get('/person/<id>', (Request request, String id) {
