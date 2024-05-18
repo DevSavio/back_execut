@@ -1,5 +1,8 @@
-import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'cliente_models.g.dart';
+
+@JsonSerializable()
 class ClienteModel {
   int idCliente;
   String nomeCliente;
@@ -19,41 +22,8 @@ class ClienteModel {
     required this.telefone,
   });
 
-  // Método toMap
-  Map<String, dynamic> toMap() {
-    return {
-      'idCliente': idCliente,
-      'nomeCliente': nomeCliente,
-      'razaoSocial': razaoSocial,
-      'logradouro': logradouro,
-      'complemento': complemento,
-      'cpfCnpj': cpfCnpj,
-      'telefone': telefone,
-    };
-  }
+  Map<String, dynamic> toJson() => _$ClienteModelToJson(this);
 
-  // Método fromMap
-  static ClienteModel fromMap(Map<dynamic, dynamic> map) {
-    return ClienteModel(
-      idCliente: map['idCliente'],
-      nomeCliente: map['nomeCliente'],
-      razaoSocial: map['razaoSocial'],
-      logradouro: map['logradouro'],
-      complemento: map['complemento'],
-      cpfCnpj: map['cpfCnpj'],
-      telefone: map['telefone'],
-    );
-  }
-
-  // Método toJson
-  String toJson() => json.encode(toMap());
-
-  // Método fromJson
-  static ClienteModel fromJson(dynamic source) => fromMap(json.decode(source));
-
-  // Método toString
-  @override
-  String toString() {
-    return 'ClienteModel(idCliente: $idCliente, nomeCliente: $nomeCliente, razaoSocial: $razaoSocial, logradouro: $logradouro, complemento: $complemento, cpfCnpj: $cpfCnpj, telefone: $telefone)';
-  }
+  static ClienteModel fromJson(Map<String, dynamic> json) =>
+      _$ClienteModelFromJson(json);
 }
