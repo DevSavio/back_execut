@@ -4,7 +4,7 @@ part 'cliente_models.g.dart';
 
 @JsonSerializable()
 class ClienteModel {
-  int idCliente;
+  int? idCliente;
   String nomeCliente;
   String razaoSocial;
   String logradouro;

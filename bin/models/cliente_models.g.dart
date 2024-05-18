@@ -7,7 +7,7 @@ part of 'cliente_models.dart';
 // **************************************************************************
 
 ClienteModel _$ClienteModelFromJson(Map<String, dynamic> json) => ClienteModel(
-      idCliente: (json['idCliente'] as num).toInt(),
+      idCliente: (json['idCliente'] as num?)?.toInt(),
       nomeCliente: json['nomeCliente'] as String,
       razaoSocial: json['razaoSocial'] as String,
       logradouro: json['logradouro'] as String,
