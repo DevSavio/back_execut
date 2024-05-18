@@ -50,27 +50,7 @@ class ClienteService {
 
   Future<List<ClienteModel>> listarClientes() async {
     try {
-      return [
-        ClienteModel(
-          idCliente: 1,
-          nomeCliente: "João Silva",
-          razaoSocial: "JS Serviços",
-          logradouro: "Rua das Flores, 123",
-          complemento: "Apto 45",
-          cpfCnpj: "12345678901234",
-          telefone: "11987654321",
-        ),
-        ClienteModel(
-          idCliente: 2,
-          nomeCliente: "Maria Souza",
-          razaoSocial: "MS Serviços",
-          logradouro: "Rua das Rosas, 456",
-          complemento: "Apto 101",
-          cpfCnpj: "12345678901234",
-          telefone: "11987654321",
-        ),
-      ];
-      // return await clienteController.list();
+      return await clienteController.list();
     } catch (e) {
       rethrow;
     }
