@@ -14,8 +14,8 @@ class PagamentoModel {
     required this.moeda,
   });
 
- Map<String, dynamic> toJson() => _$PagamentoModelToJson(this);
+  Map<String, dynamic> toJson() => _$PagamentoModelToJson(this);
 
   static PagamentoModel fromJson(Map<String, dynamic> json) =>
-      _PagamentoModelFromJson(json);
+      _$PagamentoModelFromJson(json);
 }

@@ -21,13 +21,7 @@ class ClientRoute {
       return data;
     });
 
-    /// Get specific cliente by id
-    router.get('/clientes2/<id>', (Request request, String id) {
-      final data = clienteService.buscarCliente(int.parse(id));
-      return data;
-    });
-
-    /// Add a new person
+    /// Add a new clientes
     router.post('/cliente', (Request request) async {
       try {
         dynamic body = await request.body.asJson;
@@ -43,6 +37,26 @@ class ClientRoute {
             'clienteAdicionado': clienteAdicionado,
           };
         }
+      } catch (e) {
+        return Response.internalServerError(body: 'Erro ao criar cliente');
+      }
+    });
+
+    /// delect  a new cliente
+    router.delete('/cliente/<id>', (Request request, String id) async {
+      try {
+        dynamic body = await request.body.asJson;
+
+        var objetoRetorno =
+            await clienteService.deletarCliente(body.idCliente!.toInt());
+
+        // if (objetoRetorno != null) {
+        //   return {
+        //     'ok': 'true',
+        //     'clienteAdicionado': clienteExcluido,
+        //   };
+        // }
+        return Response.ok({body: body});
       } catch (e) {
         return Response.internalServerError(body: 'Erro ao criar cliente');
       }

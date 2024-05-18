@@ -57,11 +57,12 @@ class ClienteService {
     return true;
   }
 
-  bool deletarCliente() {
-    clienteController.delete(
-      idCliente: 8,
-    );
-    return true;
+  int? deletarCliente(int novoClienteID) {
+    try {
+      return 1;
+    } catch (e) {
+      throw Exception("Erro ao excluir cliente ");
+    }
   }
 
   Future<List<ClienteModel>> listarClientes() async {

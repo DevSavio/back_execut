@@ -55,16 +55,29 @@ class ClienteController {
     print('Cliente Atualizado com sucesso');
   }
 
-  Future<void> delete({
+  Future<int> delete({
     required int idCliente,
   }) async {
-    String sql = "delete from cliente "
-        " where idCliente = $idCliente;";
-    ControllerConnection c = ControllerConnection();
-    await c.delete(
-      sql,
-    );
-    print('Cliente excluido com sucesso');
+    try {
+      String sql = "delete from cliente "
+          " where idCliente = $idCliente;";
+      ControllerConnection c = ControllerConnection();
+      IResultSet? i = await c.delete(
+        sql,
+      );
+      if (i != null) {
+        if (i.affectedRows >= BigInt.one) {
+          print('Cliente deletado com sucesso');
+          return 1;
+        } else {
+          return 0;
+        }
+      } else {
+        return 0;
+      }
+    } catch (e) {
+      return 0;
+    }
   }
 
   Future<ClienteModel?> readByID({

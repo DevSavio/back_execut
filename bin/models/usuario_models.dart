@@ -19,7 +19,7 @@ class UsuarioModel {
     required this.logradouro,
     this.complemento,
     required this.cpfCnpj,
-     required this.telefone,
+    required this.telefone,
   });
 
   Map<String, dynamic> toJson() => _$UsuarioModelToJson(this);
