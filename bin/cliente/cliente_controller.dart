@@ -4,7 +4,7 @@ import '../base/database.dart';
 import '../models/cliente_models.dart';
 
 class ClienteController {
-  Future<void> create({
+  Future<int?> create({
     required String nomeCliente,
     required String razaoSocial,
     required String logradouro,
@@ -12,15 +12,28 @@ class ClienteController {
     required String cpfCnpj,
     required String telefone,
   }) async {
-    String sql =
-        "INSERT INTO cliente (nomeCliente, razaoSocial, logradouro, complemento, cpfCnpj, telefone)"
-        " VALUES ($nomeCliente, $razaoSocial, $logradouro, $complemento, $cpfCnpj, $telefone);";
-    ControllerConnection c = ControllerConnection();
-    await c.create(
-      sql,
-    );
+    try {
+      String sql =
+          "INSERT INTO cliente (nomeCliente, razaoSocial, logradouro, complemento, cpfCnpj, telefone)"
+          " VALUES ('$nomeCliente', '$razaoSocial', '$logradouro', '$complemento', '$cpfCnpj', '$telefone');";
+      ControllerConnection c = ControllerConnection();
+      IResultSet? result = await c.create(
+        sql,
+      );
 
-    print('Cliente criado com sucesso!');
+      if (result != null) {
+        if (result.affectedRows >= BigInt.one) {
+          print('Cliente criado com sucesso!');
+          return result.lastInsertID.toInt();
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<void> update({
@@ -73,12 +86,13 @@ class ClienteController {
       } else {
         Map<String, dynamic> map = r.rows.first.assoc();
         ClienteModel c = ClienteModel(
-            idCliente: int.parse(map['idCliente']!),
-            nomeCliente: map['nomeCliente']!,
-            razaoSocial: map['razaoSocial']!,
-            logradouro: map['logradouro'] ?? "",
-            cpfCnpj: map['cpfCnpj']!,
-            telefone:map['telefone']!, );
+          idCliente: int.parse(map['idCliente']!),
+          nomeCliente: map['nomeCliente']!,
+          razaoSocial: map['razaoSocial']!,
+          logradouro: map['logradouro'] ?? "",
+          cpfCnpj: map['cpfCnpj']!,
+          telefone: map['telefone']!,
+        );
 
         return c;
       }
@@ -105,13 +119,13 @@ class ClienteController {
           for (var row in r.rows) {
             print('Cliente encontrado: ${row.typedAssoc()}');
             ClienteModel c = ClienteModel(
-                idCliente: int.parse(row.assoc()['idCliente']!),
-                nomeCliente: row.assoc()['nomeCliente']!,
-                razaoSocial: row.assoc()['razaoSocial']!,
-                logradouro: row.assoc()['logradouro'] ?? "",
-                cpfCnpj: row.assoc()['cpfCnpj']!,
-                telefone: row.assoc()['telefone']!,
-                );
+              idCliente: int.parse(row.assoc()['idCliente']!),
+              nomeCliente: row.assoc()['nomeCliente']!,
+              razaoSocial: row.assoc()['razaoSocial']!,
+              logradouro: row.assoc()['logradouro'] ?? "",
+              cpfCnpj: row.assoc()['cpfCnpj']!,
+              telefone: row.assoc()['telefone']!,
+            );
             lista.add(c);
           }
           return lista;

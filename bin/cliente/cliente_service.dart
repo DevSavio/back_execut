@@ -1,3 +1,7 @@
+import 'dart:ffi';
+
+import 'package:mysql_client/mysql_client.dart';
+
 import '../models/cliente_models.dart';
 import 'cliente_controller.dart';
 
@@ -6,16 +10,28 @@ class ClienteService {
 
   // ClienteService() {}
 
-  bool criarClient() {
-    clienteController.create(
-      complemento: "'Apto 45'",
-      cpfCnpj: "12345678901234",
-      logradouro: "'Rua das Flores, 123'",
-      nomeCliente: "'João Silva'",
-      razaoSocial: "'JS Serviços'",
-      telefone: "11987654321",
-    );
-    return true;
+  Future<ClienteModel?> criarClient(
+      {required ClienteModel clienteModel}) async {
+    try {
+      int? insertedID = await clienteController.create(
+        complemento: clienteModel.complemento ?? "",
+        cpfCnpj: clienteModel.cpfCnpj,
+        logradouro: clienteModel.logradouro,
+        nomeCliente: clienteModel.nomeCliente,
+        razaoSocial: clienteModel.razaoSocial,
+        telefone: clienteModel.telefone ?? "",
+      );
+
+      if (insertedID != null) {
+        ClienteModel? clienteModel =
+            await clienteController.readByID(idCliente: insertedID);
+        return clienteModel;
+      } else {
+        throw Exception("Erro ao criar cliente ");
+      }
+    } catch (e) {
+      throw Exception("Erro ao criar cliente ");
+    }
   }
 
   Future<ClienteModel?> buscarCliente(int idCliente) async {
