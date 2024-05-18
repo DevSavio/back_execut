@@ -90,7 +90,7 @@ class ClientRoute {
       }
     });
 
-    /// buscar clientes por id
+    /// buscar clientes por qualquer campo
     router.get('/cliente/buscar_por_campo', (Request request) async {
       try {
         dynamic body = await request.body.asJson;
