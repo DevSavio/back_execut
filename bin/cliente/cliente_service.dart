@@ -8,8 +8,6 @@ import 'cliente_controller.dart';
 class ClienteService {
   ClienteController clienteController = ClienteController();
 
-  // ClienteService() {}
-
   Future<ClienteModel?> criarClient(
       {required ClienteModel clienteModel}) async {
     try {
