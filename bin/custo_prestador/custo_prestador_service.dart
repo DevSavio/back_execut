@@ -5,66 +5,87 @@ class CustoPrestadorService {
   CustoPrestadorController custoPrestadorController =
       CustoPrestadorController();
 
-  bool criarCustoPrestador() {
-    custoPrestadorController.create(
-      valor: 200.00,
-      idFuncao: 1,
-      idPrestador: 1,
-    );
-    return true;
+  Future<CustoPrestadorModel?> criarCustoPrestador(
+      {required CustoPrestadorModel custoPrestadorModel}) async {
+    try {
+      int? insertedID = await custoPrestadorController.create(
+        valor: custoPrestadorModel.valor,
+        idPrestador: custoPrestadorModel.idPrestador,
+        idFuncao: custoPrestadorModel.idFuncao,
+      );
+
+      if (insertedID != null) {
+        CustoPrestadorModel? custoPrestadorModel =
+            await custoPrestadorController.readByID(idCusto: insertedID);
+        return custoPrestadorModel;
+      } else {
+        throw Exception("Erro ao criar cliente ");
+      }
+    } catch (e) {
+      throw Exception("Erro ao criar cliente ");
+    }
   }
 
   Future<CustoPrestadorModel?> buscarCustoPrestador(int idCusto) async {
-    // try {
-    //   return custoPrestadorController.readByID(
-    //     idCusto: idCusto,
-    //   );
-    // } catch (e) {
-    //   rethrow;
-    // }
+    try {
+      return custoPrestadorController.readByID(
+        idCusto: idCusto,
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
-  // // Future<CustoPrestadorModel> atualizarCustoPrestador
-  // bool atualizarCustoPrestador() {
-  //   custoPrestadorController.update(
-  //       valor: 250.00,
-  //       idFuncao: 1,
-  //       idPrestador: 1,
-  //       idCusto: 1,
-  //   );
-  //   return true;
-  // }
-  //   try {
-  //     custoPrestadorController.update(
-  //       valor: 250.00,
-  //       idFuncao: 1,
-  //       idPrestador: 1,
-  //       idCusto: 1,
-  //     );
-  //   } catch (e) {
-  //     rethrow;
-  //   }
-  // }
+  Future<bool> atualizarCustoPrestador(
+    {required CustoPrestadorModel custoPrestadorModel, required int idCusto}) async {
+    try {
+      var result = await custoPrestadorController.update(
+        valor: custoPrestadorModel.valor,
+        idFuncao: custoPrestadorModel.idFuncao,
+        idPrestador: custoPrestadorModel.idPrestador,
+        idCusto: custoPrestadorModel.idCusto,
+    );
 
-  // bool deletarCliente() {
-  //   custoPrestadorController.delete(
-  //     idCusto: 1,
-  //   );
-  //   return true;
-  // }
+    if (result) {
+      return false;
+    } else {
+       return true;
+    }
+   
+    } catch (e) {
+      rethrow;
+    }
+  }
+   
+  Future<int?> deletarCustoPrestador(int custoID) async {
+    try {
+      int? id = await custoPrestadorController.delete(
+        idCusto: custoID,
+      );
+      if (id != null) {
+        return id;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      throw Exception("Erro ao excluir custo prestador");
+    }
+  }
 
-  // Future<List<CustoPrestadorModel>> listarClientes() async {
-  //   try {
-  //     return await custoPrestadorController.list();
-  //   } catch (e) {
-  //     rethrow;
-  //   }
-  // }
+  Future<List<CustoPrestadorModel>> listarCustoPrestador() async {
+    try {
+      return await custoPrestadorController.list();
+    } catch (e) {
+      rethrow;
+    }
+  }
 
-// Future<List<CustoPrestadorModel>> buscarCustoPrestadorPorNome
-  bool buscarCustoPrestadorPorNome() {
-    custoPrestadorController.search(
-        operator: "like", value: "'%Jo%'", paramter: "nomeCliente");
-    return true;
+  dynamic buscarCustoPrestadorPorNome({
+    required String operator,
+    required String value,
+    required String paramter,
+  }) {
+    return custoPrestadorController.search(
+        operator: operator, value: value, paramter: paramter);
   }
 }
