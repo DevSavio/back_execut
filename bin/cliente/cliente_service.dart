@@ -1,7 +1,3 @@
-import 'dart:ffi';
-
-import 'package:mysql_client/mysql_client.dart';
-
 import '../models/cliente_models.dart';
 import 'cliente_controller.dart';
 
