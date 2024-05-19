@@ -35,7 +35,7 @@ class FornecedorController {
     }
   }
 
-  Future<void> update({
+  Future<bool> update({
     required String razaoSocial,
     required String logradouro,
     String? complemento,
@@ -47,11 +47,12 @@ class FornecedorController {
       String sql =
         "Update fornecedor set razaoSocial = $razaoSocial, logradouro = $logradouro, complemento = $complemento, telefone = $telefone, idTipo= $idTipo"
         " where idFornecedor = $idFornecedor;";
-    ControllerConnection c = ControllerConnection();
-    await c.update(
-      sql,
-    );
-    print('Fornecedor Atualizado com sucesso');
+      ControllerConnection c = ControllerConnection();
+      await c.update(
+        sql,
+      );
+      print('Fornecedor Atualizado com sucesso');
+      return true;
     } catch (e) {
       rethrow;
     }
