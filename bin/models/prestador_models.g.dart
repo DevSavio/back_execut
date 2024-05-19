@@ -10,8 +10,8 @@ PrestadorModel _$PrestadorModelFromJson(Map<String, dynamic> json) =>
     PrestadorModel(
       idPrestador: (json['idPrestador'] as num).toInt(),
       nomePrestador: json['nomePrestador'] as String,
-      tipoPrestador: json['tipoPrestador'] as String,
-      cpfCnpj: json['cpfCnpj'] as String,
+      tipoPrestador: json['tipoPrestador'] as String?,
+      cpfCnpj: json['cpfCnpj'] as String?,
       telefone: json['telefone'] as String?,
       idFuncao: (json['idFuncao'] as num).toInt(),
     );

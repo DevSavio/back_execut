@@ -6,17 +6,17 @@ part 'prestador_models.g.dart';
 class PrestadorModel {
   int idPrestador;
   String nomePrestador;
-  String tipoPrestador;
-  String cpfCnpj;
+  String? tipoPrestador;
+  String? cpfCnpj;
   String? telefone;
   int idFuncao;
 
   PrestadorModel({
     required this.idPrestador,
     required this.nomePrestador,
-    required this.tipoPrestador,
-    required this.cpfCnpj,
-    required this.telefone,
+    this.tipoPrestador,
+    this.cpfCnpj,
+    this.telefone,
     required this.idFuncao,
   });
 
