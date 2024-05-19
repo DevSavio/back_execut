@@ -1,35 +1,50 @@
 import 'package:mysql_client/mysql_client.dart';
 
 import '../base/database.dart';
+import '../models/fornecedor_models.dart';
 
 class FornecedorController {
-  Future<void> create({
-    required String nomeUsuario,
+  Future<int?> create({
     required String razaoSocial,
     required String logradouro,
     required String complemento,
     required String telefone,
     required int idTipo,
   }) async {
-    String sql =
+    try {
+      String sql =
         "INSERT INTO fornecedor (razaoSocial, logradouro, complemento, telefone, idTipo)"
         " VALUES ($razaoSocial, $logradouro, $complemento, $telefone, $idTipo)";
     ControllerConnection c = ControllerConnection();
-    await c.create(
-      sql,
-    );
-    print('Fornecedor criado com sucesso!');
+    IResultSet? result = await c.create(
+        sql,
+      );
+    
+    if (result != null) {
+        if (result.affectedRows >= BigInt.one) {
+          print('Fornecedor criado com sucesso!');
+          return result.lastInsertID.toInt();
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<void> update({
     required String razaoSocial,
     required String logradouro,
-    required String complemento,
+    String? complemento,
     required String telefone,
     required int idTipo,
     required int idFornecedor,
   }) async {
-    String sql =
+    try {
+      String sql =
         "Update fornecedor set razaoSocial = $razaoSocial, logradouro = $logradouro, complemento = $complemento, telefone = $telefone, idTipo= $idTipo"
         " where idFornecedor = $idFornecedor;";
     ControllerConnection c = ControllerConnection();
@@ -37,24 +52,42 @@ class FornecedorController {
       sql,
     );
     print('Fornecedor Atualizado com sucesso');
+    } catch (e) {
+      rethrow;
+    }
   }
 
-  Future<void> delete({
+  Future<int?> delete({
     required int idFornecedor,
   }) async {
-    String sql = "delete from fornecedor "
+    try {
+      String sql = "delete from fornecedor "
         " where idFornecedor = $idFornecedor;";
     ControllerConnection c = ControllerConnection();
-    await c.delete(
-      sql,
-    );
-    print('Fornecedor excluído com sucesso');
+    IResultSet? i = await c.delete(
+        sql,
+      );
+    if (i != null) {
+        if (i.affectedRows >= BigInt.one) {
+           print('Fornecedor excluído com sucesso');
+          return idFornecedor;
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+   
+    } catch (e) {
+      return null;
+    }
   }
 
-  Future<void> readByID({
+  Future<FornecedorModel?> readByID({
     required int idFornecedor,
   }) async {
-    String sql = "select *  from usuario  where idFornecedor = $idFornecedor;";
+    try {
+      String sql = "select *  from fornecedor  where idFornecedor = $idFornecedor;";
     ControllerConnection c = ControllerConnection();
     IResultSet? r = await c.read(
       sql,
@@ -62,55 +95,102 @@ class FornecedorController {
 
     if (r == null) {
       print('Erro ao buscar o fornecedor');
+      throw ('Erro ao listar fornecedor: ResultSet is null');
     } else {
       if (r.rows.isEmpty) {
         print('Fornecedor não encontrado');
+        return null;
       } else {
-        for (var row in r.rows) {
-          print('Fornecedor encontrado: ${row.assoc()}');
+        Map<String, dynamic> map = r.rows.first.assoc();
+          FornecedorModel c = FornecedorModel(
+            idFornecedor: int.parse(map['idCliente']!),
+            razaoSocial: map['razaoSocial']!,
+            logradouro: map['logradouro']!,
+            complemento: map['complemento'] ?? "",
+            idTipo: map['idTipo']!,
+            telefone: map['telefone']!,
+          );
+
+          return c;
         }
       }
+    } catch (e) {
+      throw ('Erro ao listar fornecedor: $e');
     }
   }
 
-  Future<void> list() async {
-    String sql = "select *  from fornecedor";
-    ControllerConnection c = ControllerConnection();
-    IResultSet? r = await c.read(
-      sql,
-    );
+  Future<List<FornecedorModel>> list() async {
+    try {
+      String sql = "select *  from fornecedor";
+      ControllerConnection c = ControllerConnection();
+      IResultSet? r = await c.read(
+        sql,
+      );
 
-    if (r == null) {
-      print('Erro ao buscar o fornecedor');
-    } else {
-      if (r.rows.isEmpty) {
-        print('Fornecedor não encontrado');
+      if (r == null) {
+        print('Erro ao buscar o fornecedor');
+        throw ('Erro ao listar fornecedores: ResultSet is null');
       } else {
-        for (var row in r.rows) {
-          print('Fornecedor encontrado: ${row.assoc()}');
+        if (r.rows.isEmpty) {
+          print('Fornecedor não encontrado');
+          return List<FornecedorModel>.empty();
+        } else {
+          List<FornecedorModel> lista = [];
+          for (var row in r.rows) {
+            print('Fornecedor encontrado: ${row.typedAssoc()}');
+            FornecedorModel c = FornecedorModel(
+              idFornecedor:  int.parse(row.assoc()['idFornecedor']!),
+              razaoSocial: row.assoc()['razaoSocial']!,
+              logradouro: row.assoc()['logradouro']!,
+              complemento: row.assoc()['complemento'] ?? "",
+              idTipo: int.parse(row.assoc()['idTipo']!),
+              telefone: row.assoc()['telefone']!,
+            );
+            lista.add(c);
+          }
+          return lista;
         }
       }
+    } catch (e) {
+      throw ('Erro ao listar clientes: $e');
     }
   }
 
-  Future<void> search(
+  Future<List<FornecedorModel>> search(
       {String paramter = '', String value = '', String operator = ''}) async {
-    String sql = "select *  from fornecedor where $paramter $operator $value";
-    ControllerConnection c = ControllerConnection();
-    IResultSet? r = await c.read(
-      sql,
-    );
+    try {
+      String sql = "select *  from fornecedor where $paramter $operator $value";
+      ControllerConnection c = ControllerConnection();
+      IResultSet? r = await c.read(
+        sql,
+      );
 
-    if (r == null) {
-      print('Erro ao buscar o fornecedor');
-    } else {
-      if (r.rows.isEmpty) {
-        print('Fornecedor não encontrado');
+      if (r == null) {
+        print('Erro ao buscar o fornecedor');
+        return List<FornecedorModel>.empty();
       } else {
-        for (var row in r.rows) {
-          print('Fornecedor encontrado: ${row.assoc()}');
+        if (r.rows.isEmpty) {
+          print('Fornecedor não encontrado');
+          return List<FornecedorModel>.empty();
+        } else {
+          List<FornecedorModel> lista = [];
+          for (var row in r.rows) {
+            print('Fornecedor encontrado: ${row.typedAssoc()}');
+            FornecedorModel c = FornecedorModel(
+              idFornecedor:  int.parse(row.assoc()['idFornecedor']!),
+              razaoSocial: row.assoc()['razaoSocial']!,
+              logradouro: row.assoc()['logradouro']!,
+              complemento: row.assoc()['complemento'] ?? "",
+              idTipo: int.parse(row.assoc()['idTipo']!),
+              telefone: row.assoc()['telefone']!,
+            );
+            lista.add(c);
+          }
+          return lista;
         }
       }
+    } catch (e) {
+      rethrow;
     }
   }
 }
