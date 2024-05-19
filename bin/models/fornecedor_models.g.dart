@@ -12,7 +12,7 @@ FornecedorModel _$FornecedorModelFromJson(Map<String, dynamic> json) =>
       razaoSocial: json['razaoSocial'] as String,
       logradouro: json['logradouro'] as String,
       idTipo: (json['idTipo'] as num).toInt(),
-      telefone: json['telefone'] as String?,
+      telefone: json['telefone'] as String,
       complemento: json['complemento'] as String?,
     );
 

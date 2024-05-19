@@ -9,7 +9,7 @@ class FornecedorModel {
   String logradouro;
   String? complemento;
   int idTipo;
-  String? telefone;
+  String telefone;
 
   FornecedorModel({
     required this.idFornecedor,
