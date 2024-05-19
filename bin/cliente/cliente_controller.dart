@@ -40,7 +40,7 @@ class ClienteController {
     required String nomeCliente,
     required String razaoSocial,
     required String logradouro,
-    required String complemento,
+    String? complemento,
     required String cpfCnpj,
     required String telefone,
     required int idCliente,
