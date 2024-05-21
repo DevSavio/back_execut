@@ -53,6 +53,8 @@ create table funcao_prestador(
   nomeFuncao varchar(40) not null,
   descricaoFuncao varchar(60) not null
 );
+
+
 create table fornecedor(
     idFornecedor int auto_increment primary key,
     razaoSocial varchar(100) not null,
@@ -71,6 +73,8 @@ create table prestador(
 	idFuncao int not null,
 	FOREIGN KEY (idFuncao) REFERENCES funcao_prestador(idFuncao)
 );
+
+
 create table custo_prestador(
   idCusto int auto_increment primary key,
   valor float not null,
@@ -78,7 +82,16 @@ create table custo_prestador(
   FOREIGN KEY (idPrestador) REFERENCES prestador(idPrestador),
   idFuncao int not null,
   FOREIGN KEY (idFuncao) REFERENCES funcao_prestador(idFuncao)
-);    
+);
+create table prestadorObra(
+	idPrestadorObra int auto_increment primary key,
+	idPrestador int not null,
+	FOREIGN KEY (idPrestador) REFERENCES prestador(idPrestador),
+	idObra int not null,
+	FOREIGN KEY (idObra) REFERENCES obra(idObra)
+); 
+
+
 create table material_de_obra(
 	idMaterial int auto_increment primary key,
 	nomeMaterial varchar(50) not null,
@@ -93,7 +106,7 @@ create table material_de_obra(
 );
 create table mao_de_obra(
 	idMao int auto_increment primary key,
-  	descricao varchar(40) not null,
+  descricao varchar(40) not null,
 	idTipo int not null,
 	FOREIGN KEY (idTipo) REFERENCES tipo_mao_de_obra(idTipo),
 	idPrestador int not null,
@@ -101,6 +114,9 @@ create table mao_de_obra(
 	idFuncao int not null,
 	FOREIGN KEY (idFuncao) REFERENCES funcao_prestador(idFuncao)
 );
+
+
+
 create table obra(
 	idObra int auto_increment primary key,
 	valorFinal float not null,
@@ -118,13 +134,7 @@ create table obra(
 	idPrestador int not null,
 	FOREIGN KEY (idPrestador) REFERENCES prestador(idPrestador)
 );
-create table prestadorObra(
-	idPrestadorObra int auto_increment primary key,
-	idPrestador int not null,
-	FOREIGN KEY (idPrestador) REFERENCES prestador(idPrestador),
-	idObra int not null,
-	FOREIGN KEY (idObra) REFERENCES obra(idObra)
-);
+
 
 INSERT INTO usuario (nomeUsuario, razaoSocial, logradouro, complemento, cpfCnpj, telefone)
 VALUES ('Antônio Almeida', 'Execut Construções e Reformas', 'Rua J70, s/n', 'Quadra 13 Lote 20 Casa 01 Setor: Mansões Paraíso', '23132089000145', '62996551100');

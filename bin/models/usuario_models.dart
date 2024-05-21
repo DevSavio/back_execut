@@ -10,7 +10,7 @@ class UsuarioModel {
   String logradouro;
   String? complemento;
   String cpfCnpj;
-  String? telefone;
+  String telefone;
 
   UsuarioModel({
     required this.idUsuario,
