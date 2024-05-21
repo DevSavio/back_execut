@@ -13,7 +13,7 @@ UsuarioModel _$UsuarioModelFromJson(Map<String, dynamic> json) => UsuarioModel(
       logradouro: json['logradouro'] as String,
       complemento: json['complemento'] as String?,
       cpfCnpj: json['cpfCnpj'] as String,
-      telefone: json['telefone'] as String?,
+      telefone: json['telefone'] as String,
     );
 
 Map<String, dynamic> _$UsuarioModelToJson(UsuarioModel instance) =>
