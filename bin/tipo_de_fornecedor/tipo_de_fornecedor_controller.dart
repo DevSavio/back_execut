@@ -1,29 +1,44 @@
 import 'package:mysql_client/mysql_client.dart';
 
 import '../base/database.dart';
+import '../models/tipo_de_fornecedor_models.dart';
 
 class TipoDeFornecedorController {
-  Future<void> create({
+  Future<int?> create({
     required String nomeTipo,
     required String descricao,
   }) async {
-    String sql =
+    try {
+      String sql =
         "INSERT INTO tipo_de_fornecedor (nomeTipo, descricao)"
         " VALUES ($nomeTipo, $descricao);";
-    ControllerConnection c = ControllerConnection();
-    await c.create(
-      sql,
-    );
+      ControllerConnection c = ControllerConnection();
+      IResultSet? result = await c.create(
+        sql,
+      );
 
-    print('Tipo de fornecedor criado com sucesso!');
+      if (result != null) {
+          if (result.affectedRows >= BigInt.one) {
+            print('Tipo de fornecedor criado com sucesso!');
+            return result.lastInsertID.toInt();
+          } else {
+            return null;
+          }
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
   }
 
-  Future<void> update({
+  Future<bool> update({
     required String nomeTipo,
     required String descricao,
     required int idTipo,
   }) async {
-    String sql =
+    try {
+      String sql =
         "Update tipo_de_fornecedor set nomeTipo = $nomeTipo, descricao = $descricao"
         " where idTipo = $idTipo;";
     ControllerConnection c = ControllerConnection();
@@ -31,80 +46,133 @@ class TipoDeFornecedorController {
       sql,
     );
     print('Tipo de fornecedor Atualizado com sucesso');
+    return true;
+    } catch (e) {
+      rethrow;
+    }
   }
 
-  Future<void> delete({
+  Future<int?> delete({
     required int idTipo,
   }) async {
-    String sql = "delete from tipo_de_fornecedor "
+    try {
+      String sql = "delete from tipo_de_fornecedor "
         " where idTipo = $idTipo;";
     ControllerConnection c = ControllerConnection();
-    await c.delete(
+    IResultSet? i = await c.delete(
       sql,
     );
-    print('Tipo de fornecedor excluído com sucesso');
+    
+    if (i != null) {
+        if (i.affectedRows >= BigInt.one) {
+          print('Tipo de fornecedor excluído com sucesso');
+          return idTipo;
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
   }
 
-  Future<void> readByID({
+  Future<TipoDeFornecedorModel?> readByID({
     required int idTipo,
   }) async {
-    String sql = "select *  from tipo_de_fornecedor  where idTipo = $idTipo;";
+    String sql = "select * from tipo_de_fornecedor  where idTipo = $idTipo;";
     ControllerConnection c = ControllerConnection();
     IResultSet? r = await c.read(
       sql,
     );
 
     if (r == null) {
-      print('Erro ao buscar o tipo de fornecedor');
-    } else {
-      if (r.rows.isEmpty) {
-        print('Tipo de fornecedor não encontrado');
+        print('Erro ao buscar o cliente');
+        throw ('Erro ao listar clientes: ResultSet is null');
       } else {
-        for (var row in r.rows) {
-          print('Tipo de fornecedor encontrado: ${row.assoc()}');
+        if (r.rows.isEmpty) {
+          print('Cliente não encontrado');
+          return null;
+        } else {
+          Map<String, dynamic> map = r.rows.first.assoc();
+          TipoDeFornecedorModel c = TipoDeFornecedorModel(
+            idTipo: int.parse(map['idTipo']!),
+            nomeTipo: map['nomeTipo']!,
+            descricao: map['descricao']!
+          );
+
+          return c;
         }
       }
-    }
   }
 
-  Future<void> list() async {
-    String sql = "select *  from tipo_de_fornecedor";
+  Future<List<TipoDeFornecedorModel>> list() async {
+    try {
+      String sql = "select * from tipo_de_fornecedor";
     ControllerConnection c = ControllerConnection();
     IResultSet? r = await c.read(
       sql,
     );
 
-    if (r == null) {
-      print('Erro ao buscar o tipo de fornecedor');
-    } else {
-      if (r.rows.isEmpty) {
-        print('Tipo de fornecedor não encontrado');
+          if (r == null) {
+        print('Erro ao buscar o cliente');
+        throw ('Erro ao listar clientes: ResultSet is null');
       } else {
-        for (var row in r.rows) {
-          print('Tipo de fornecedor encontrado: ${row.assoc()}');
+        if (r.rows.isEmpty) {
+          print('Cliente não encontrado');
+          return List<TipoDeFornecedorModel>.empty();
+        } else {
+          List<TipoDeFornecedorModel> lista = [];
+          for (var row in r.rows) {
+            print('Cliente encontrado: ${row.typedAssoc()}');
+            TipoDeFornecedorModel c = TipoDeFornecedorModel(
+              idTipo: int.parse(row.assoc()['idTipo']!),
+              nomeTipo: row.assoc()['nomeTipo']!,
+              descricao: row.assoc()['descricao']!,
+            );
+            lista.add(c);
+          }
+          return lista;
         }
-      }
+      } 
+    } catch (e) {
+      throw('Erro ao listar Tipo de Fornecedor: $e');
     }
   }
 
-  Future<void> search(
+  Future<List<TipoDeFornecedorModel>> search(
       {String paramter = '', String value = '', String operator = ''}) async {
-    String sql = "select *  from tipo_de_fornecedor where $paramter $operator $value";
+    try {
+      String sql = "select *  from tipo_de_fornecedor where $paramter $operator $value";
     ControllerConnection c = ControllerConnection();
     IResultSet? r = await c.read(
       sql,
     );
 
     if (r == null) {
-      print('Erro ao buscar o tipo de fornecedor');
-    } else {
-      if (r.rows.isEmpty) {
-        print('Tipo de fornecedor não encontrado');
+        print('Erro ao buscar o cliente');
+        return List<TipoDeFornecedorModel>.empty();
       } else {
-        for (var row in r.rows) {
-          print('Tipo de fornecedor encontrado: ${row.assoc()}');
+        if (r.rows.isEmpty) {
+          print('Cliente não encontrado');
+          return List<TipoDeFornecedorModel>.empty();
+        } else {
+          List<TipoDeFornecedorModel> lista = [];
+          for (var row in r.rows) {
+            print('Cliente encontrado: ${row.typedAssoc()}');
+            TipoDeFornecedorModel c = TipoDeFornecedorModel(
+              idTipo: int.parse(row.assoc()['idTipo']!),
+              nomeTipo: row.assoc()['nomeTipo']!,
+              descricao: row.assoc()['descricao']!,
+            );
+            lista.add(c);
+          }
+          return lista;
         }
       }
+    } catch (e) {
+      rethrow;
     }
   }
 }
