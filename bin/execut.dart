@@ -2,7 +2,15 @@ import 'dart:io';
 
 import 'package:shelf_plus/shelf_plus.dart';
 import 'routes/client_route.dart';
+import 'routes/custo_prestador_route.dart';
 import 'routes/fornecedor_route.dart';
+import 'routes/origem_recurso_route.dart';
+import 'routes/pagamento_route.dart';
+import 'routes/prestador_route.dart';
+import 'routes/tempo_de_obra_route.dart';
+import 'routes/tipo_de_fornecedor_route.dart';
+import 'routes/tipo_mao_de_obra_route.dart';
+import 'routes/usuario_route.dart';
 
 void main() => shelfRun(init);
 
@@ -13,9 +21,21 @@ Handler init() {
   app.get('/', () => File('frontend/page.html'));
 
   app = ClientRoute(router: app).init();
-
   app = FornecedorRoute(router: app).init();
-
+  app = CustoPrestadorRoute(router: app).init();
+  app = OrigemRecursoRoute(router: app).init();
+  app = PagamentoRoute(router: app).init();
+  app = PrestadorRoute(router: app).init();
+  app = TempoDeObraRoute(router: app).init();
+  app = TipoDeFornecedorRoute(router: app).init();
+  app = TipoMaoDeObraRoute(router: app).init();
+  app = UsuarioRoute(router: app).init();
+  app = FornecedorRoute(router: app).init();
+  app = FornecedorRoute(router: app).init();
+  app = FornecedorRoute(router: app).init();
+  app = FornecedorRoute(router: app).init();
+  app = FornecedorRoute(router: app).init();
+  
   // /// Update an existing person by id
   // app.put('/person/<id>', (Request request, String id) async {
   //   final data = <Person>[
