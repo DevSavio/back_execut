@@ -1,115 +1,191 @@
 import 'package:mysql_client/mysql_client.dart';
 
 import '../base/database.dart';
+import '../models/mao_de_obra_models.dart';
 
 class MaoDeObraController {
-  Future<void> create({
-    required String nomeMaterial,
-    required String descricao,
+  Future<int?> create({
+    String? descricao,
     required int idTipo,
     required int idFuncao,
     required int idPrestador,
   }) async {
-    String sql =
+    try {
+      String sql =
         "INSERT INTO mao_de_obra (descricao, idTipo, idFuncao, idPrestador)"
         " VALUES ($descricao, $idTipo, $idFuncao, $idPrestador);";
     ControllerConnection c = ControllerConnection();
-    await c.create(
+    IResultSet? result = await c.create(
       sql,
     );
-    print('Material de Obra criado com sucesso!');
+    
+    if (result != null) {
+        if (result.affectedRows >= BigInt.one) {
+          print('Mão de Obra criado com sucesso!');
+          return result.lastInsertID.toInt();
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
   }
 
-  Future<void> update({
-    required String nomeMaterial,
-    required String descricao,
+  Future<bool> update({
+    String? descricao,
     required int idTipo,
     required int idFuncao,
     required int idPrestador,
     required int idMao,
   }) async {
-    String sql =
-        "Update mao_de_obra set nomeMaterial = $nomeMaterial, descricao = $descricao, idTipo = $idTipo, idTipo = $idTipo, idPrestador = $idPrestador, idFuncao = $idFuncao"
+    try {
+      String sql =
+        "Update mao_de_obra set descricao = $descricao, idTipo = $idTipo, idTipo = $idTipo, idPrestador = $idPrestador, idFuncao = $idFuncao"
         " where idMao = $idMao;";
     ControllerConnection c = ControllerConnection(); 
     await c.update(
       sql,
     );
-    print('Origem recurso Atualizado com sucesso');
+    print('Mão de Obra Atualizado com sucesso');
+    return true;
+    } catch (e) {
+      rethrow;
+    }
   }
 
-  Future<void> delete({
-    required int idMaterial,
+  Future<int?> delete({
+    required int idMao,
   }) async {
-    String sql = "delete from material_de_obra "
-        " where idMaterial = $idMaterial;";
+    try {
+      String sql = "delete from mao_de_obra "
+        " where idMao = $idMao;";
     ControllerConnection c = ControllerConnection();
-    await c.delete(
+    IResultSet? i = await c.delete(
       sql,
     );
-    print('Origem recurso excluído com sucesso');
+    
+    if (i != null) {
+        if (i.affectedRows >= BigInt.one) {
+          print('Mão de Obra excluído com sucesso');
+          return idMao;
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
   }
 
-  Future<void> readByID({
-    required int idMaterial,
+  Future<MaoDeObraModel?> readByID({
+    required int idMao
   }) async {
-    String sql = "select *  from mao_de_obra  where idMaterial = $idMaterial;";
+      try {
+        String sql = "select * from mao_de_obra  where idMao = $idMao;";
+        ControllerConnection c = ControllerConnection();
+        IResultSet? r = await c.read(
+          sql,
+        );
+
+        if (r == null) {
+          print('Erro ao buscar Mão de Obra');
+          throw ('Erro ao listar Mão de Obra: ResultSet is null');
+        } else {
+          if (r.rows.isEmpty) {
+            print('Mão de Obra não encontrado');
+            return null;
+          } else {
+            Map<String, dynamic> map = r.rows.first.assoc();
+              MaoDeObraModel c = MaoDeObraModel(
+                idMao: int.parse(map['idMao']!),
+                descricao: map['descricao'] ?? "",
+                idFuncao: int.parse(map['idFuncao']!),
+                idPrestador: int.parse(map['idPrestador']),
+                idTipo: int.parse(map['idTipo']!),
+              );
+              return c;
+          }
+        }
+      } catch (e) {
+        throw('Erro ao listar mão de obra: $e');
+      }
+    }
+  
+  Future<List<MaoDeObraModel>> list() async {
+    try {
+      String sql = "select * from mao_de_obra";
     ControllerConnection c = ControllerConnection();
     IResultSet? r = await c.read(
       sql,
     );
 
     if (r == null) {
-      print('Erro ao buscar Material de Obra');
+      print('Erro ao buscar o Mão de Obra');
+      throw('Erro ao listar mão de obra: ResultSet is null');
     } else {
       if (r.rows.isEmpty) {
-        print('Material de Obra não encontrado');
+        print('Mão de Obra não encontrado');
+        return List<MaoDeObraModel>.empty();
       } else {
-        for (var row in r.rows) {
-          print('Material de Obra encontrado: ${row.assoc()}');
-        }
+        List<MaoDeObraModel> lista = [];
+          for (var row in r.rows) {
+            print('Mão de Obra encontrado: ${row.typedAssoc()}');
+            MaoDeObraModel c = MaoDeObraModel(
+              idMao: int.parse(row.assoc()['idMao']!),
+              descricao: row.assoc()['descricao']!,
+              idPrestador: int.parse(row.assoc()['idPrestador']!),
+              idFuncao: int.parse(row.assoc()['idFuncao']!),
+              idTipo: int.parse(row.assoc()['idTipo']!),
+            );
+            lista.add(c);
+          }
+          return lista;
       }
+    }
+    } catch (e) {
+      throw('Erro ao listar mão de obra: $e');
     }
   }
 
-  Future<void> list() async {
-    String sql = "select *  from mao_de_obra";
-    ControllerConnection c = ControllerConnection();
-    IResultSet? r = await c.read(
-      sql,
-    );
-
-    if (r == null) {
-      print('Erro ao buscar o Material de Obra');
-    } else {
-      if (r.rows.isEmpty) {
-        print('Material de Obra não encontrado');
-      } else {
-        for (var row in r.rows) {
-          print('Material de Obra encontrado: ${row.assoc()}');
-        }
-      }
-    }
-  }
-
-  Future<void> search(
+  Future<List<MaoDeObraModel>> search(
       {String paramter = '', String value = '', String operator = ''}) async {
-    String sql = "select *  from mao_de_obra where $paramter $operator $value";
+    try {
+      String sql = "select * from mao_de_obra where $paramter $operator $value";
     ControllerConnection c = ControllerConnection();
     IResultSet? r = await c.read(
       sql,
     );
 
     if (r == null) {
-      print('Erro ao buscar o origem recurso');
+      print('Erro ao buscar Mão de Obra');
+      return List<MaoDeObraModel>.empty();
     } else {
       if (r.rows.isEmpty) {
-        print('Origem recurso não encontrado');
+        print('Mão de Obra não encontrado');
+        return List<MaoDeObraModel>.empty();
       } else {
-        for (var row in r.rows) {
-          print('Origem recurso encontrado: ${row.assoc()}');
-        }
+        List<MaoDeObraModel> lista = [];
+          for (var row in r.rows) {
+            print('Mão de Obra encontrado: ${row.typedAssoc()}');
+            MaoDeObraModel c = MaoDeObraModel(
+              idMao: int.parse(row.assoc()['idMao']!),
+              descricao: row.assoc()['descricao']!,
+              idPrestador: int.parse(row.assoc()['idPrestador']!),
+              idFuncao: int.parse(row.assoc()['idFuncao']!),
+              idTipo: int.parse(row.assoc()['idTipo']!),
+            );
+            lista.add(c);
+          }
+          return lista;
       }
+    }
+    } catch (e) {
+      rethrow;
     }
   }
 }
