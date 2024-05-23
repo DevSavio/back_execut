@@ -53,8 +53,6 @@ create table funcao_prestador(
   nomeFuncao varchar(40) not null,
   descricaoFuncao varchar(60) not null
 );
-
-
 create table fornecedor(
     idFornecedor int auto_increment primary key,
     razaoSocial varchar(100) not null,
@@ -73,8 +71,6 @@ create table prestador(
 	idFuncao int not null,
 	FOREIGN KEY (idFuncao) REFERENCES funcao_prestador(idFuncao)
 );
-
-
 create table custo_prestador(
   idCusto int auto_increment primary key,
   valor float not null,
@@ -90,13 +86,11 @@ create table prestadorObra(
 	idObra int not null,
 	FOREIGN KEY (idObra) REFERENCES obra(idObra)
 ); 
-
-
 create table material_de_obra(
 	idMaterial int auto_increment primary key,
 	nomeMaterial varchar(50) not null,
 	descricaoMaterial varchar(80),
-	valor float not null,
+	valor DEC(10,2) not null,
 	idTipo int not null,
 	FOREIGN KEY (idTipo) REFERENCES tipo_de_obra(idTipo),
 	idOrigem int not null,
@@ -114,9 +108,6 @@ create table mao_de_obra(
 	idFuncao int not null,
 	FOREIGN KEY (idFuncao) REFERENCES funcao_prestador(idFuncao)
 );
-
-
-
 create table obra(
 	idObra int auto_increment primary key,
 	valorFinal float not null,
@@ -134,7 +125,6 @@ create table obra(
 	idPrestador int not null,
 	FOREIGN KEY (idPrestador) REFERENCES prestador(idPrestador)
 );
-
 
 INSERT INTO usuario (nomeUsuario, razaoSocial, logradouro, complemento, cpfCnpj, telefone)
 VALUES ('Antônio Almeida', 'Execut Construções e Reformas', 'Rua J70, s/n', 'Quadra 13 Lote 20 Casa 01 Setor: Mansões Paraíso', '23132089000145', '62996551100');
@@ -158,7 +148,6 @@ INSERT INTO fornecedor (razaoSocial, logradouro, complemento, telefone, idTipo)
 VALUES ('ConstruTudo Ltda', 'Avenida Central, 456', 'Loja 10', '1133344556', 1);
 INSERT INTO prestador (nomePrestador, tipoPrestador, cpfCnpj, telefone, idFuncao)
 VALUES ('Maria Pereira', 'Autônomo', '98765432100', '23456789012345', '11999887766', 1);
-
 INSERT INTO custo_prestador (valor, idPrestador, idFuncao)
 VALUES (200.0, 1, 1);
 INSERT INTO material_de_obra (nomeMaterial, descricaoMaterial, valor, idTipo, idOrigem, idFornecedor)
