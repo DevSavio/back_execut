@@ -8,7 +8,7 @@ class MaterialDeObraService {
       {required MaterialDeObraModel materialDeObraModel}) async {
     try {
       int? insertedID = await materialDeObraController.create(
-        descricaoMaterial: materialDeObraModel.descricaoMaterial ?? "",
+        descricaoMaterial: materialDeObraModel.descricaoMaterial,
         idTipo: materialDeObraModel.idTipo,
         idOrigem: materialDeObraModel.idOrigem,
         idFornecedor: materialDeObraModel.idFornecedor,
