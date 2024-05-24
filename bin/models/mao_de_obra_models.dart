@@ -4,14 +4,14 @@ part 'mao_de_obra_models.g.dart';
 
 @JsonSerializable()
 class MaoDeObraModel {
-  int idMao;
+  int? idMao;
   String descricao;
   int idTipo;
   int idPrestador;
   int idFuncao;
 
   MaoDeObraModel({
-    required this.idMao,
+    this.idMao,
     required this.descricao,
     required this.idTipo,
     required this.idPrestador,
