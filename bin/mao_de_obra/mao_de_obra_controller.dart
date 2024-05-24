@@ -13,7 +13,7 @@ class MaoDeObraController {
     try {
       String sql =
         "INSERT INTO mao_de_obra (descricao, idTipo, idFuncao, idPrestador)"
-        " VALUES ($descricao, $idTipo, $idFuncao, $idPrestador);";
+        " VALUES ('$descricao', $idTipo, $idFuncao, $idPrestador);";
     ControllerConnection c = ControllerConnection();
     IResultSet? result = await c.create(
       sql,
