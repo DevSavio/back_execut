@@ -8,21 +8,21 @@ class ControllerConnection {
 
   Future<void> initConexao() async {
     try {
-      // conn = await MySQLConnection.createConnection(
-      //   host: '192.168.1.15',
-      //   port: 3306,
-      //   userName: 'root',
-      //   databaseName: 'execut',
-      //   password: '0403',
-      // );
-
       conn = await MySQLConnection.createConnection(
-        host: '78.142.242.131',
-        port: 32774,
+        host: 'localhost',
+        port: 3306,
         userName: 'root',
         databaseName: 'execut',
-        password: 'root',
+        password: '0403',
       );
+
+      // conn = await MySQLConnection.createConnection(
+      //   host: 'localhost',
+      //   port: 32774,
+      //   userName: 'root',
+      //   databaseName: 'execut',
+      //   password: 'root',
+      // );
 
       await conn.connect();
     } catch (e) {
