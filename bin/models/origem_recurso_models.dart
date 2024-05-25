@@ -6,12 +6,12 @@ part 'origem_recurso_models.g.dart';
 class OrigemRecursoModel {
   int idOrigem;
   String tipoOrigem;
-  double? percentual;
+  double percentual;
 
   OrigemRecursoModel({
     required this.idOrigem,
     required this.tipoOrigem,
-    this.percentual,
+    required this.percentual,
   });
 
   Map<String, dynamic> toJson() => _$OrigemRecursoModelToJson(this);

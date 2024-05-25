@@ -10,7 +10,7 @@ class ObraModel {
   DateTime dataInicio;
   DateTime dataFim;
   String logradouro;
-  String? complemento;
+  String complemento;
   int idCliente;
   int idPagamento;
   int idTempo;
@@ -23,7 +23,7 @@ class ObraModel {
     required this.dataInicio,
     required this.dataFim,
     required this.logradouro,
-    this.complemento,
+    required this.complemento,
     required this.idCliente,
     required this.idPagamento,
     required this.idTempo,
