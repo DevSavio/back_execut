@@ -9,7 +9,7 @@ class ObraController {
     required DateTime dataInicio,
     required DateTime dataFim,
     required String logradouro,
-    String? complemento,
+    required String complemento,
     required int idCliente,
     required int idPagamento,
     required int idTempo,
@@ -18,7 +18,7 @@ class ObraController {
     try {
       String sql =
         "INSERT INTO obra (responsavelObra, dataInicio, dataFim, logradouro,complemento, idCliente, idPagamento, idTempo, idPrestador)"
-        " VALUES ($responsavelObra, $dataInicio, $dataFim, $logradouro, $complemento, $idCliente, $idPagamento, $idTempo,  $idPrestador)";
+        " VALUES ('$responsavelObra', $dataInicio, $dataFim, '$logradouro', '$complemento', $idCliente, $idPagamento, $idTempo,  $idPrestador)";
     ControllerConnection c = ControllerConnection();
     IResultSet? result = await c.create(
       sql,
@@ -45,7 +45,7 @@ class ObraController {
     required DateTime dataInicio,
     required DateTime dataFim,
     required String logradouro,
-    String? complemento,
+    required String complemento,
     required int idCliente,
     required int idPagamento,
     required int idTempo,
@@ -54,7 +54,7 @@ class ObraController {
   }) async {
     try {
       String sql =
-        "Update obra set responsavelObra = $responsavelObra, dataInicio = $dataInicio, dataFim = $dataFim, logradouro = $logradouro, idPrestador= $idPrestador"
+        "Update obra set responsavelObra = '$responsavelObra', dataInicio = $dataInicio, dataFim = $dataFim, logradouro = '$logradouro', idPrestador= $idPrestador, valorFinal = $valorFinal, complemento = '$complemento', idCliente = $idCliente, idPagamento = $idPagamento, idTempo = $idTempo, idPrestador = $idPrestador, idObra = $idObra"
         " where idObra = $idObra;";
     ControllerConnection c = ControllerConnection();
     await c.update(
@@ -123,6 +123,7 @@ class ObraController {
             idPagamento: int.parse(map['idPagamento']!),
             idTempo: int.parse(map['idTempo']!),
             idPrestador: int.parse(map['idPrestador']!),
+            complemento: map['complemento']!
           );
 
           return c;
@@ -163,6 +164,7 @@ class ObraController {
               idPrestador: int.parse(row.assoc()['idPrestador']!),
               idTempo: int.parse(row.assoc()['idTempo']!),
               idObra: int.parse(row.assoc()['idObra']!),
+              complemento: row.assoc()['complemento']!
             );
             lista.add(c);
           }
@@ -205,6 +207,7 @@ class ObraController {
               idPrestador: int.parse(row.assoc()['idPrestador']!),
               idTempo: int.parse(row.assoc()['idTempo']!),
               idObra: int.parse(row.assoc()['idObra']!),
+              complemento: row.assoc()['complemento']!,
             );
             lista.add(c);
           }

@@ -11,7 +11,7 @@ class FuncaoPrestadorController {
     try {
       String sql =
         "INSERT INTO funcao_prestador (nomeFuncao, descricaoFuncao)"
-        " VALUES ($nomeFuncao, $descricaoFuncao);";
+        " VALUES ('$nomeFuncao', '$descricaoFuncao');";
     ControllerConnection c = ControllerConnection();
     IResultSet? result = await c.create(
       sql,
@@ -39,7 +39,7 @@ class FuncaoPrestadorController {
   }) async {
     try {
       String sql =
-        "Update funcao_prestador set nomeFuncao = $nomeFuncao, descricaoFuncao = $descricaoFuncao"
+        "Update funcao_prestador set nomeFuncao = '$nomeFuncao', descricaoFuncao = '$descricaoFuncao'"
         " where idFuncao = $idFuncao;";
     ControllerConnection c = ControllerConnection();
     await c.update(

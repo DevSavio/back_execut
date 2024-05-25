@@ -10,7 +10,7 @@ class TempoDeObraController {
     try {
       String sql =
         "INSERT INTO tempo_de_obra (nomeTempo)"
-        " VALUES ($nomeTempo);";
+        " VALUES ('$nomeTempo');";
     ControllerConnection c = ControllerConnection();
     IResultSet? result = await c.create(
       sql,
@@ -37,7 +37,7 @@ class TempoDeObraController {
   }) async {
     try {
       String sql =
-        "Update tempo_de_obra set nomeTempo = $nomeTempo"
+        "Update tempo_de_obra set nomeTempo = '$nomeTempo'"
         " where idTempo = $idTempo;";
       ControllerConnection c = ControllerConnection();
       await c.update(
@@ -80,7 +80,7 @@ class TempoDeObraController {
     required int idTempo,
   }) async {
       try {
-        String sql = "select *  from tempo_de_obra  where idTempo = $idTempo;";
+        String sql = "select * from tempo_de_obra  where idTempo = $idTempo;";
         ControllerConnection c = ControllerConnection();
         IResultSet? r = await c.read(
           sql,

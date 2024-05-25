@@ -11,7 +11,7 @@ class PagamentoController {
     try {
       String sql =
         "INSERT INTO pagamento (tipoPagamento, moeda)"
-        " VALUES ($tipoPagamento, $moeda);";
+        " VALUES ('$tipoPagamento', '$moeda');";
     ControllerConnection c = ControllerConnection();
     IResultSet? result = await c.create(
       sql,
@@ -39,7 +39,7 @@ class PagamentoController {
   }) async {
     try {
       String sql =
-        "Update pagamento set tipoPagamento = $tipoPagamento, moeda = $moeda"
+        "Update pagamento set tipoPagamento = '$tipoPagamento', moeda = '$moeda'"
         " where idPagamento = $idPagamento;";
     ControllerConnection c = ControllerConnection();
     await c.update(

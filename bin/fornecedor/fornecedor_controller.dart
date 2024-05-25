@@ -14,7 +14,7 @@ class FornecedorController {
     try {
       String sql =
         "INSERT INTO fornecedor (razaoSocial, logradouro, complemento, telefone, idTipo)"
-        " VALUES ($razaoSocial, $logradouro, $complemento, $telefone, $idTipo)";
+        " VALUES ('$razaoSocial', '$logradouro', '$complemento', '$telefone', $idTipo)";
     ControllerConnection c = ControllerConnection();
     IResultSet? result = await c.create(
         sql,
@@ -45,7 +45,7 @@ class FornecedorController {
   }) async {
     try {
       String sql =
-        "Update fornecedor set razaoSocial = $razaoSocial, logradouro = $logradouro, complemento = $complemento, telefone = $telefone, idTipo= $idTipo"
+        "Update fornecedor set razaoSocial = '$razaoSocial', logradouro = '$logradouro', complemento = '$complemento', telefone = '$telefone', idTipo= $idTipo"
         " where idFornecedor = $idFornecedor;";
       ControllerConnection c = ControllerConnection();
       await c.update(

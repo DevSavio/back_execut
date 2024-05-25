@@ -11,7 +11,7 @@ class TipoDeFornecedorController {
     try {
       String sql =
         "INSERT INTO tipo_de_fornecedor (nomeTipo, descricao)"
-        " VALUES ($nomeTipo, $descricao);";
+        " VALUES ('$nomeTipo', '$descricao');";
       ControllerConnection c = ControllerConnection();
       IResultSet? result = await c.create(
         sql,
@@ -39,7 +39,7 @@ class TipoDeFornecedorController {
   }) async {
     try {
       String sql =
-        "Update tipo_de_fornecedor set nomeTipo = $nomeTipo, descricao = $descricao"
+        "Update tipo_de_fornecedor set nomeTipo = '$nomeTipo', descricao = '$descricao'"
         " where idTipo = $idTipo;";
     ControllerConnection c = ControllerConnection();
     await c.update(
@@ -88,11 +88,11 @@ class TipoDeFornecedorController {
     );
 
     if (r == null) {
-        print('Erro ao buscar o cliente');
-        throw ('Erro ao listar clientes: ResultSet is null');
+        print('Erro ao buscar o Tipo de fornecedor');
+        throw ('Erro ao listar Tipo de fornecedores: ResultSet is null');
       } else {
         if (r.rows.isEmpty) {
-          print('Cliente não encontrado');
+          print('Tipo de fornecedor não encontrado');
           return null;
         } else {
           Map<String, dynamic> map = r.rows.first.assoc();
@@ -116,16 +116,16 @@ class TipoDeFornecedorController {
     );
 
           if (r == null) {
-        print('Erro ao buscar o cliente');
-        throw ('Erro ao listar clientes: ResultSet is null');
+        print('Erro ao buscar o Tipo de fornecedor');
+        throw ('Erro ao listar Tipo de fornecedores: ResultSet is null');
       } else {
         if (r.rows.isEmpty) {
-          print('Cliente não encontrado');
+          print('Tipo de fornecedor não encontrado');
           return List<TipoDeFornecedorModel>.empty();
         } else {
           List<TipoDeFornecedorModel> lista = [];
           for (var row in r.rows) {
-            print('Cliente encontrado: ${row.typedAssoc()}');
+            print('Tipo de fornecedor encontrado: ${row.typedAssoc()}');
             TipoDeFornecedorModel c = TipoDeFornecedorModel(
               idTipo: int.parse(row.assoc()['idTipo']!),
               nomeTipo: row.assoc()['nomeTipo']!,
@@ -151,16 +151,16 @@ class TipoDeFornecedorController {
     );
 
     if (r == null) {
-        print('Erro ao buscar o cliente');
+        print('Erro ao buscar o Tipo de fornecedor');
         return List<TipoDeFornecedorModel>.empty();
       } else {
         if (r.rows.isEmpty) {
-          print('Cliente não encontrado');
+          print('Tipo de fornecedor não encontrado');
           return List<TipoDeFornecedorModel>.empty();
         } else {
           List<TipoDeFornecedorModel> lista = [];
           for (var row in r.rows) {
-            print('Cliente encontrado: ${row.typedAssoc()}');
+            print('Tipo de fornecedor encontrado: ${row.typedAssoc()}');
             TipoDeFornecedorModel c = TipoDeFornecedorModel(
               idTipo: int.parse(row.assoc()['idTipo']!),
               nomeTipo: row.assoc()['nomeTipo']!,

@@ -15,7 +15,7 @@ class MaterialDeObraController {
     try {
       String sql =
         "INSERT INTO material_de_obra (nomeMaterial, descricaoMaterial, valor, idTipo, idOrigem, idFornecedor)"
-        " VALUES ($nomeMaterial, $descricaoMaterial, $valor, $idTipo, $idOrigem, $idFornecedor);";
+        " VALUES ('$nomeMaterial', '$descricaoMaterial', $valor, $idTipo, $idOrigem, $idFornecedor);";
     ControllerConnection c = ControllerConnection();
     IResultSet? result = await c.create(
       sql,
@@ -47,7 +47,7 @@ class MaterialDeObraController {
   }) async {
    try {
       String sql =
-        "Update material_de_obra set nomeMaterial = $nomeMaterial, descricaoMaterial = $descricaoMaterial, valor = $valor, idTipo = $idTipo, idOrigem = $idOrigem, idFornecedor = $idFornecedor"
+        "Update material_de_obra set nomeMaterial = '$nomeMaterial', descricaoMaterial = '$descricaoMaterial', valor = $valor, idTipo = $idTipo, idOrigem = $idOrigem, idFornecedor = $idFornecedor"
         " where idMaterial = $idMaterial;";
     ControllerConnection c = ControllerConnection(); 
     await c.update(

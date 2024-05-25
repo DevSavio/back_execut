@@ -43,7 +43,7 @@ class MaoDeObraController {
   }) async {
     try {
       String sql =
-        "Update mao_de_obra set descricao = $descricao, idTipo = $idTipo, idTipo = $idTipo, idPrestador = $idPrestador, idFuncao = $idFuncao"
+        "Update mao_de_obra set descricao = '$descricao', idTipo = $idTipo, idTipo = $idTipo, idPrestador = $idPrestador, idFuncao = $idFuncao"
         " where idMao = $idMao;";
     ControllerConnection c = ControllerConnection(); 
     await c.update(
@@ -103,7 +103,7 @@ class MaoDeObraController {
             Map<String, dynamic> map = r.rows.first.assoc();
               MaoDeObraModel c = MaoDeObraModel(
                 idMao: int.parse(map['idMao']!),
-                descricao: map['descricao'] ?? "",
+                descricao: map['descricao'],
                 idFuncao: int.parse(map['idFuncao']!),
                 idPrestador: int.parse(map['idPrestador']),
                 idTipo: int.parse(map['idTipo']!),

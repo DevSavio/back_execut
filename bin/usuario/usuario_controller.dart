@@ -15,7 +15,7 @@ class UsuarioController {
     try {
       String sql =
         "INSERT INTO usuario (nomeCliente, razaoSocial, logradouro, complemento, cpfCnpj, telefone)"
-        " VALUES ($nomeUsuario, $razaoSocial, $logradouro, $complemento, $cpfCnpj, $telefone);";
+        " VALUES ('$nomeUsuario', '$razaoSocial', '$logradouro', '$complemento', '$cpfCnpj', '$telefone');";
     ControllerConnection c = ControllerConnection();
     IResultSet? result = await c.create(
       sql,
@@ -47,7 +47,7 @@ class UsuarioController {
   }) async {
     try {
       String sql =
-        "Update usuario set nomeUsuario = $nomeUsuario, razaoSocial = $razaoSocial, logradouro = $logradouro, complemento = $complemento, cpfCnpj = $cpfCnpj, telefone = $telefone"
+        "Update usuario set nomeUsuario = '$nomeUsuario', razaoSocial = '$razaoSocial', logradouro = '$logradouro', complemento = '$complemento', cpfCnpj = '$cpfCnpj', telefone = '$telefone'"
         " where idUsuario = $idUsuario;";
     ControllerConnection c = ControllerConnection();
     await c.update(
@@ -106,7 +106,7 @@ class UsuarioController {
       } else {
         Map<String, dynamic> map = r.rows.first.assoc();
           UsuarioModel c = UsuarioModel(
-            idUsuario: int.parse(map['s']!),
+            idUsuario: int.parse(map['idUsuario']!),
             nomeUsuario: map['nomeUsuario']!,
             razaoSocial: map['razaoSocial']!,
             logradouro: map['logradouro'],

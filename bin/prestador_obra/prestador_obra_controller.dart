@@ -19,7 +19,7 @@ class PrestadorObraController {
     
     if (result != null) {
         if (result.affectedRows >= BigInt.one) {
-          print('Prestador obra criado com sucesso!');
+          print('Prestador na obra criado com sucesso!');
           return result.lastInsertID.toInt();
         } else {
           return null;
@@ -45,7 +45,7 @@ class PrestadorObraController {
     await c.update(
       sql,
     );
-    print('Prestador obra Atualizado com sucesso');
+    print('Prestador da obra Atualizado com sucesso');
     return true;
     } catch (e) {
       rethrow;
@@ -65,7 +65,7 @@ class PrestadorObraController {
     
     if (i != null) {
         if (i.affectedRows >= BigInt.one) {
-          print('Prestador obra excluído com sucesso');
+          print('Prestador da obra excluído com sucesso');
           return idPrestadorObra;
         } else {
           return null;
@@ -93,7 +93,7 @@ class PrestadorObraController {
         throw ('Erro ao listar prestadores da obra: ResultSet is null');
       } else {
         if (r.rows.isEmpty) {
-          print('Prestador não encontrado nesta obra');
+          print('Prestador na obra não encontrado nesta obra');
           return null;
         } else {
           Map<String, dynamic> map = r.rows.first.assoc();
@@ -113,7 +113,7 @@ class PrestadorObraController {
 
   Future<List<PrestadorObraModel>> list() async {
     try {
-      String sql = "select *  from prestadorObra";
+      String sql = "select * from prestadorObra";
     ControllerConnection c = ControllerConnection();
     IResultSet? r = await c.read(
       sql,
@@ -125,7 +125,7 @@ class PrestadorObraController {
     } else {
       List<PrestadorObraModel> lista = [];
           for (var row in r.rows) {
-            print('Cliente encontrado: ${row.typedAssoc()}');
+            print('prestador obra encontrado: ${row.typedAssoc()}');
             PrestadorObraModel c = PrestadorObraModel(
               idPrestadorObra: int.parse(row.assoc()['idPrestadorObra']!),
               idObra: int.parse(row.assoc()['idObra']!),
@@ -143,23 +143,23 @@ class PrestadorObraController {
   Future<List<PrestadorObraModel>> search(
       {String paramter = '', String value = '', String operator = ''}) async {
     try {
-      String sql = "select *  from prestadorObra where $paramter $operator $value";
+      String sql = "select * from prestadorObra where $paramter $operator $value";
     ControllerConnection c = ControllerConnection();
     IResultSet? r = await c.read(
       sql,
     );
 
     if (r == null) {
-        print('Erro ao buscar o cliente');
+        print('Erro ao buscar o prestador obra');
         return List<PrestadorObraModel>.empty();
       } else {
         if (r.rows.isEmpty) {
-          print('Cliente não encontrado');
+          print('prestador obra não encontrado');
           return List<PrestadorObraModel>.empty();
         } else {
           List<PrestadorObraModel> lista = [];
           for (var row in r.rows) {
-            print('Cliente encontrado: ${row.typedAssoc()}');
+            print('prestador obra encontrado: ${row.typedAssoc()}');
             PrestadorObraModel c = PrestadorObraModel(
               idPrestadorObra: int.parse(row.assoc()['idPrestadorObra']!),
               idPrestador: int.parse(row.assoc()['idPrestador']!),

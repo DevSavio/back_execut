@@ -11,7 +11,7 @@ class TipoDeObraController {
     try {
       String sql =
         "INSERT INTO tipo_de_obra (nomeTipo, descricao)"
-        " VALUES ($nomeTipo, $descricaoTipo);";
+        " VALUES ('$nomeTipo', '$descricaoTipo');";
     ControllerConnection c = ControllerConnection();
     IResultSet? result = await c.create(
       sql,

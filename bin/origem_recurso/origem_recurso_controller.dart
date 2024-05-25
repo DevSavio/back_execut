@@ -6,12 +6,12 @@ import '../models/origem_recurso_models.dart';
 class OrigemRecursoController {
   Future<int?> create({
     required String tipoOrigem,
-    double? percentual,
+    required double percentual,
   }) async {
     try {
       String sql =
         "INSERT INTO origem_recurso (tipoOrigem, percentual)"
-        " VALUES ($tipoOrigem, $percentual);";
+        " VALUES ('$tipoOrigem', $percentual);";
     ControllerConnection c = ControllerConnection();
     IResultSet? result = await c.create(
       sql,
@@ -35,12 +35,12 @@ class OrigemRecursoController {
 
   Future<bool> update({
     required String tipoOrigem,
-    double? percentual,
+    required double? percentual,
     required int idOrigem,
   }) async {
     try {
       String sql =
-        "Update origem_recurso set tipoOrigem = $tipoOrigem, percentual = $percentual"
+        "Update origem_recurso set tipoOrigem = '$tipoOrigem', percentual = $percentual"
         " where idOrigem = $idOrigem;";
     ControllerConnection c = ControllerConnection();
     await c.update(
@@ -102,7 +102,7 @@ class OrigemRecursoController {
           OrigemRecursoModel c = OrigemRecursoModel(
             idOrigem: int.parse(map['idOrigem']!),
             tipoOrigem: map['tipoOrigem']!,
-            percentual: double.parse(map['razaoSocial']),
+            percentual: double.parse(map['razaoSocial']!),
           );
 
           return c;
@@ -168,8 +168,8 @@ class OrigemRecursoController {
             print('Origem Recurso encontrado: ${row.typedAssoc()}');
             OrigemRecursoModel c = OrigemRecursoModel(
               idOrigem: int.parse(row.assoc()['idOrigem']!),
-                tipoOrigem: row.assoc()['tipoOrigem']!,
-                percentual: double.parse(row.assoc()['percentual']!),
+              tipoOrigem: row.assoc()['tipoOrigem']!,
+              percentual: double.parse(row.assoc()['percentual']!),
             );
             lista.add(c);
           }
