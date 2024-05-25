@@ -8,7 +8,7 @@ part of 'mao_de_obra_models.dart';
 
 MaoDeObraModel _$MaoDeObraModelFromJson(Map<String, dynamic> json) =>
     MaoDeObraModel(
-      idMao: (json['idMao'] as num).toInt(),
+      idMao: (json['idMao'] as num?)?.toInt(),
       descricao: json['descricao'] as String,
       idTipo: (json['idTipo'] as num).toInt(),
       idPrestador: (json['idPrestador'] as num).toInt(),
