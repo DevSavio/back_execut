@@ -1,32 +1,32 @@
-import '../models/tipo_mao_de_obra_models.dart';
+import '../models/tipo_de_obra_models.dart';
 import 'tipo_mao_de_obra_controller.dart';
 
-class TipoMaoDeObraService {
-  TipoMaoDeObraController tipoMaoDeObraController = TipoMaoDeObraController();
+class TipoDeObraService {
+  TipoDeObraController tipoDeObraController = TipoDeObraController();
 
-  Future<TipoMaoDeObraModel?> criarTipoMaoDeObra(
-      {required TipoMaoDeObraModel tipoMaoDeObraModel}) async {
+  Future<TipoDeObraModel?> criarTipoDeObra(
+      {required TipoDeObraModel tipoDeObraModel}) async {
     try {
-      int? insertedID = await tipoMaoDeObraController.create(
-        nomeTipo: tipoMaoDeObraModel.nomeTipo,
-        descricao: tipoMaoDeObraModel.descricao,
+      int? insertedID = await tipoDeObraController.create(
+        nomeTipo: tipoDeObraModel.nomeTipo,
+        descricaoTipo: tipoDeObraModel.descricaoTipo,
       );
 
       if (insertedID != null) {
-        TipoMaoDeObraModel? tipoMaoDeObraModel =
-            await tipoMaoDeObraController.readByID(idTipo: insertedID);
-        return tipoMaoDeObraModel;
+        TipoDeObraModel? tipoDeObraModel =
+            await tipoDeObraController.readByID(idTipo: insertedID);
+        return tipoDeObraModel;
       } else {
-        throw Exception("Erro ao criar tipoMaoDeObra ");
+        throw Exception("Erro ao criar tipoDeObra ");
       }
     } catch (e) {
-      throw Exception("Erro ao criar tipoMaoDeObra ");
+      throw Exception("Erro ao criar tipoDeObra ");
     }
   }
 
-  Future<TipoMaoDeObraModel?> buscarTipoMaoDeObra(int idTipo) async {
+  Future<TipoDeObraModel?> buscarTipoDeObra(int idTipo) async {
     try {
-      return tipoMaoDeObraController.readByID(
+      return tipoDeObraController.readByID(
         idTipo: idTipo,
       );
     } catch (e) {
@@ -34,13 +34,13 @@ class TipoMaoDeObraService {
     }
   }
 
-  Future<bool> atualizarTipoMaoDeObra(
-      {required TipoMaoDeObraModel tipoMaoDeObraModel, required int idTipo}) async {
+  Future<bool> atualizarTipoDeObra(
+      {required TipoDeObraModel tipoDeObraModel, required int idTipo}) async {
     try {
-      var reult = await tipoMaoDeObraController.update(
-        idTipo: tipoMaoDeObraModel.idTipo,
-        nomeTipo: tipoMaoDeObraModel.nomeTipo,
-        descricao: tipoMaoDeObraModel.descricao,
+      var reult = await tipoDeObraController.update(
+        idTipo: tipoDeObraModel.idTipo,
+        nomeTipo: tipoDeObraModel.nomeTipo,
+        descricaoTipo: tipoDeObraModel.descricaoTipo,
       );
 
       if (reult) {
@@ -53,9 +53,9 @@ class TipoMaoDeObraService {
     }
   }
 
-  Future<int?> deletarTipoMaoDeObra(int tipoID) async {
+  Future<int?> deletarTipoDeObra(int tipoID) async {
     try {
-      int? id = await tipoMaoDeObraController.delete(
+      int? id = await tipoDeObraController.delete(
         idTipo: tipoID,
       );
       if (id != null) {
@@ -64,24 +64,24 @@ class TipoMaoDeObraService {
         return null;
       }
     } catch (e) {
-      throw Exception("Erro ao excluir tipoMaoDeObra ");
+      throw Exception("Erro ao excluir tipoDeObra ");
     }
   }
 
-  Future<List<TipoMaoDeObraModel>> listarTipoMaoDeObras() async {
+  Future<List<TipoDeObraModel>> listarTipoDeObras() async {
     try {
-      return await tipoMaoDeObraController.list();
+      return await tipoDeObraController.list();
     } catch (e) {
       rethrow;
     }
   }
 
-  dynamic buscarTipoMaoDeObraPorNome({
+  dynamic buscarTipoDeObraPorNome({
     required String operator,
     required String value,
     required String paramter,
   }) {
-    return tipoMaoDeObraController.search(
+    return tipoDeObraController.search(
         operator: operator, value: value, paramter: paramter);
   }
 }
