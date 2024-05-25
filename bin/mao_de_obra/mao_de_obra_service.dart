@@ -44,7 +44,7 @@ class MaoDeObraService {
         idFuncao: maoDeObraModel.idFuncao,
         idPrestador: maoDeObraModel.idPrestador,
         idTipo: maoDeObraModel.idTipo,
-        idMao: maoDeObraModel.idMao,
+        idMao: idMao,
       );
 
       if (reult) {
