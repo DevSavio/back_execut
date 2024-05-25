@@ -44,9 +44,9 @@ class OrigemRecursoService {
       );
 
       if (reult) {
-        return false;
-      } else {
         return true;
+      } else {
+        return false;
       }
     } catch (e) {
       rethrow;
