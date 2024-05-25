@@ -24,7 +24,7 @@ class MaoDeObraRoute {
     /// Add a new maoDeObras
     router.post('/maoDeObra', (Request request) async {
       try {
-        dynamic body = await request.body.asJson;
+       dynamic body = await request.body.asJson;
 
         MaoDeObraModel novoMaoDeObra = MaoDeObraModel.fromJson(body);
 
