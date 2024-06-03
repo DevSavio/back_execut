@@ -1,27 +1,27 @@
 # Projeto teste de conexão com o banco de dados e implementação do backend para o projeto da faculdade com a empresa EXECUT
 
 - Principais programas a ser utilizado neste projeto:
-   []Editor de código utilizado:
+   [x]Editor de código utilizado:
       https://code.visualstudio.com/download
-   []Banco de dados utilizado:
+   [x]Banco de dados utilizado:
       https://www.mysql.com/downloads/
-   []Teste das APIS
+   [x]Teste das APIS
       https://www.postman.com/downloads/
 
 - Links da linguagem utilizado no projeto:
-    []Linguagem Dart(documentação e instalação):
+    [x]Linguagem Dart(documentação e instalação):
      https://dart.dev/get-dart
 
 - Links das bibliotecas utilizadas no projeto:
-    []https://pub.dev/packages/mysql_client
-    []https://pub.dev/packages/shelf
-    []https://pub.dev/packages/shelf_plus
-    []https://pub.dev/packages/shelf_router
-    []https://pub.dev/packages/json_annotation
-    []https://pub.dev/packages/uuid
-    []https://pub.dev/packages/build_runner
-    []https://pub.dev/packages/json_serializable
-    []https://pub.dev/packages/flutter_cors
+    [x]https://pub.dev/packages/mysql_client
+    [x]https://pub.dev/packages/shelf
+    [x]https://pub.dev/packages/shelf_plus
+    [x]https://pub.dev/packages/shelf_router
+    [x]https://pub.dev/packages/json_annotation
+    [x]https://pub.dev/packages/uuid
+    [x]https://pub.dev/packages/build_runner
+    [x]https://pub.dev/packages/json_serializable
+    [x]https://pub.dev/packages/flutter_cors
     
 
 - rodando pela primeira vez: 
