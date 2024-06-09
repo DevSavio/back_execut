@@ -17,7 +17,7 @@ class PrestadorObraRoute {
     });
 
     /// Get specific prestadorObra by id
-    router.get('/prestadorObra2/<id>', (Request request, String id) {
+    router.get('/prestadorObra/<id>', (Request request, String id) {
       final data = prestadorObraService.buscarPrestadorObra(int.parse(id));
       return data;
     });

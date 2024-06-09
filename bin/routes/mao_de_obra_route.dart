@@ -16,7 +16,7 @@ class MaoDeObraRoute {
     });
 
     /// Get specific maoDeObra by id
-    router.get('/maoDeObra2/<id>', (Request request, String id) {
+    router.get('/maoDeObra/<id>', (Request request, String id) {
       final data = maoDeObraService.buscarMaoDeObra(int.parse(id));
       return data;
     });

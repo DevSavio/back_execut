@@ -16,7 +16,7 @@ class ObraRoute {
     });
 
     /// Get specific obra by id
-    router.get('/obra2/<id>', (Request request, String id) {
+    router.get('/obra/<id>', (Request request, String id) {
       final data = obraService.buscarObra(int.parse(id));
       return data;
     });

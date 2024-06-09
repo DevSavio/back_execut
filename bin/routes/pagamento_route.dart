@@ -16,7 +16,7 @@ class PagamentoRoute {
     });
 
     /// Get specific pagamento by id
-    router.get('/pagamento2/<id>', (Request request, String id) {
+    router.get('/pagamento/<id>', (Request request, String id) {
       final data = pagamentoService.buscarPagamento(int.parse(id));
       return data;
     });

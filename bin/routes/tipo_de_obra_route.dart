@@ -18,7 +18,7 @@ class TipoDeObraRoute {
     });
 
     /// Get specific tipoMaoDeObra by id
-    router.get('/tipoMaoDeObra2/<id>', (Request request, String id) {
+    router.get('/tipoMaoDeObra/<id>', (Request request, String id) {
       final data = tipoDeObraService.buscarTipoDeObra(int.parse(id));
       return data;
     });

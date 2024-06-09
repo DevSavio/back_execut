@@ -16,7 +16,7 @@ class MaterialDeObraRoute {
     });
 
     /// Get specific materialDeObra by id
-    router.get('/materialDeObra2/<id>', (Request request, String id) {
+    router.get('/materialDeObra/<id>', (Request request, String id) {
       final data = materialDeObraService.buscarMaterialDeObra(int.parse(id));
       return data;
     });

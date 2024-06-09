@@ -17,7 +17,7 @@ class OrigemRecursoRoute {
     });
 
     /// Get specific origemRecurso by id
-    router.get('/origemRecurso2/<id>', (Request request, String id) {
+    router.get('/origemRecurso/<id>', (Request request, String id) {
       final data = origemRecursoService.buscarOrigemRecurso(int.parse(id));
       return data;
     });
@@ -75,7 +75,7 @@ class OrigemRecursoRoute {
 
         var origemRecursoAtualizado = await origemRecursoService.atualizarOrigemRecurso(
           origemRecursoModel: novoOrigemRecurso,
-          idCliente: int.parse(
+          idOrigem: int.parse(
             request.params['id']!,
           ),
         );

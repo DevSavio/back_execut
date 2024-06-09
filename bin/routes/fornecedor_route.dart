@@ -16,7 +16,7 @@ class FornecedorRoute {
     });
 
     /// Get specific fornecedor by id
-    router.get('/fornecedor2/<id>', (Request request, String id) {
+    router.get('/fornecedor/<id>', (Request request, String id) {
       final data = fornecedorService.buscarFornecedor(int.parse(id));
       return data;
     });

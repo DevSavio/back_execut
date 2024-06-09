@@ -16,7 +16,7 @@ class FuncaoPrestadorRoute {
     });
 
     /// Get specific funcaoPrestador by id
-    router.get('/funcaoPrestador2/<id>', (Request request, String id) {
+    router.get('/funcaoPrestador/<id>', (Request request, String id) {
       final data = funcaoPrestadorService.buscarFuncaoPrestador(int.parse(id));
       return data;
     });
@@ -74,7 +74,7 @@ class FuncaoPrestadorRoute {
 
         var criarFuncaoPrestador = await funcaoPrestadorService.atualizarFuncaoPrestador(
           funcaoPrestadorModel: novoFuncaoPrestador,
-          idCliente: int.parse(
+          idFuncao: int.parse(
             request.params['id']!,
           ),
         );

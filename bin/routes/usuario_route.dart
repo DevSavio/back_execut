@@ -17,7 +17,7 @@ class UsuarioRoute {
     });
 
     /// Get specific usuario by id
-    router.get('/usuario2/<id>', (Request request, String id) {
+    router.get('/usuario/<id>', (Request request, String id) {
       final data = usuarioService.buscarUsuario(int.parse(id));
       return data;
     });

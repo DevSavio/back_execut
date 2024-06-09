@@ -16,7 +16,7 @@ class CustoPrestadorRoute {
     });
 
     /// Get specific custo_prestador by id
-    router.get('/custo_prestador2/<id>', (Request request, String id) {
+    router.get('/custo_prestador/<id>', (Request request, String id) {
       final data = custoPrestadorService.buscarCustoPrestador(int.parse(id));
       return data;
     });

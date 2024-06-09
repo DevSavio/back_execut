@@ -16,7 +16,7 @@ class TipoDeFornecedorRoute {
     });
 
     /// Get specific tipoDeFornecedor by id
-    router.get('/tipoDeFornecedor2/<id>', (Request request, String id) {
+    router.get('/tipoDeFornecedor/<id>', (Request request, String id) {
       final data = tipoDeFornecedorService.buscarTipoDeFornecedor(int.parse(id));
       return data;
     });

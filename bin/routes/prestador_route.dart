@@ -16,7 +16,7 @@ class PrestadorRoute {
     });
 
     /// Get specific prestador by id
-    router.get('/prestador2/<id>', (Request request, String id) {
+    router.get('/prestador/<id>', (Request request, String id) {
       final data = prestadorService.buscarPrestador(int.parse(id));
       return data;
     });
@@ -74,7 +74,7 @@ class PrestadorRoute {
 
         var prestadorAtualizado = await prestadorService.atualizarPrestador(
           prestadorModel: novoPrestador,
-          idCliente: int.parse(
+          idPrestador: int.parse(
             request.params['id']!,
           ),
         );
