@@ -6,15 +6,14 @@ import '../models/fornecedor_models.dart';
 class FornecedorController {
   Future<int?> create({
     required String razaoSocial,
-    required String logradouro,
-    required String complemento,
     required String telefone,
     required int idTipo,
+    required int idEndereco
   }) async {
     try {
       String sql =
-        "INSERT INTO fornecedor (razaoSocial, logradouro, complemento, telefone, idTipo)"
-        " VALUES ('$razaoSocial', '$logradouro', '$complemento', '$telefone', $idTipo)";
+        "INSERT INTO fornecedor (razaoSocial, telefone, idTipo, idEndereco)"
+        " VALUES ('$razaoSocial', '$telefone', $idTipo, $idEndereco)";
     ControllerConnection c = ControllerConnection();
     IResultSet? result = await c.create(
         sql,
@@ -37,15 +36,14 @@ class FornecedorController {
 
   Future<bool> update({
     required String razaoSocial,
-    required String logradouro,
-    String? complemento,
     required String telefone,
     required int idTipo,
     required int idFornecedor,
+    required int idEndereco
   }) async {
     try {
       String sql =
-        "Update fornecedor set razaoSocial = '$razaoSocial', logradouro = '$logradouro', complemento = '$complemento', telefone = '$telefone', idTipo= $idTipo"
+        "Update fornecedor set razaoSocial = '$razaoSocial', idEndereco = '$idEndereco', telefone = '$telefone', idTipo= $idTipo"
         " where idFornecedor = $idFornecedor;";
       ControllerConnection c = ControllerConnection();
       await c.update(
@@ -106,10 +104,9 @@ class FornecedorController {
           FornecedorModel c = FornecedorModel(
             idFornecedor: int.parse(map['idCliente']!),
             razaoSocial: map['razaoSocial']!,
-            logradouro: map['logradouro']!,
-            complemento: map['complemento'] ?? "",
             idTipo: map['idTipo']!,
             telefone: map['telefone']!,
+            idEndereco:  int.parse(map['idEndereco']!),
           );
 
           return c;
@@ -142,10 +139,9 @@ class FornecedorController {
             FornecedorModel c = FornecedorModel(
               idFornecedor:  int.parse(row.assoc()['idFornecedor']!),
               razaoSocial: row.assoc()['razaoSocial']!,
-              logradouro: row.assoc()['logradouro']!,
-              complemento: row.assoc()['complemento'] ?? "",
               idTipo: int.parse(row.assoc()['idTipo']!),
               telefone: row.assoc()['telefone']!,
+              idEndereco:  int.parse(row.assoc()['idEndereco']!),
             );
             lista.add(c);
           }
@@ -180,10 +176,9 @@ class FornecedorController {
             FornecedorModel c = FornecedorModel(
               idFornecedor:  int.parse(row.assoc()['idFornecedor']!),
               razaoSocial: row.assoc()['razaoSocial']!,
-              logradouro: row.assoc()['logradouro']!,
-              complemento: row.assoc()['complemento'] ?? "",
               idTipo: int.parse(row.assoc()['idTipo']!),
               telefone: row.assoc()['telefone']!,
+              idEndereco:  int.parse(row.assoc()['idEndereco']!),
             );
             lista.add(c);
           }

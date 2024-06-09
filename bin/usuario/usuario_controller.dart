@@ -7,15 +7,14 @@ class UsuarioController {
   Future<int?> create({
     required String nomeUsuario,
     required String razaoSocial,
-    required String logradouro,
-    String? complemento,
     required String cpfCnpj,
     required String telefone,
+    required int idEndereco
   }) async {
     try {
       String sql =
-        "INSERT INTO usuario (nomeCliente, razaoSocial, logradouro, complemento, cpfCnpj, telefone)"
-        " VALUES ('$nomeUsuario', '$razaoSocial', '$logradouro', '$complemento', '$cpfCnpj', '$telefone');";
+        "INSERT INTO usuario (nomeCliente, razaoSocial, idEndereco, cpfCnpj, telefone)"
+        " VALUES ('$nomeUsuario', '$razaoSocial', '$idEndereco', '$cpfCnpj', '$telefone');";
     ControllerConnection c = ControllerConnection();
     IResultSet? result = await c.create(
       sql,
@@ -39,15 +38,14 @@ class UsuarioController {
   Future<bool> update({
     required String nomeUsuario,
     required String razaoSocial,
-    required String logradouro,
-    String? complemento,
     required String cpfCnpj,
     required String telefone,
     required int idUsuario,
+    required int idEndereco
   }) async {
     try {
       String sql =
-        "Update usuario set nomeUsuario = '$nomeUsuario', razaoSocial = '$razaoSocial', logradouro = '$logradouro', complemento = '$complemento', cpfCnpj = '$cpfCnpj', telefone = '$telefone'"
+        "Update usuario set nomeUsuario = '$nomeUsuario', razaoSocial = '$razaoSocial', cpfCnpj = '$cpfCnpj', telefone = '$telefone', endereco = '$idEndereco'"
         " where idUsuario = $idUsuario;";
     ControllerConnection c = ControllerConnection();
     await c.update(
@@ -109,10 +107,9 @@ class UsuarioController {
             idUsuario: int.parse(map['idUsuario']!),
             nomeUsuario: map['nomeUsuario']!,
             razaoSocial: map['razaoSocial']!,
-            logradouro: map['logradouro'],
-            complemento: map['complemento'] ?? "",
             cpfCnpj: map['cpfCnpj']!,
             telefone: map['telefone']!,
+            idEndereco: int.parse(map['idEndereco']!),
           );
 
           return c;
@@ -125,7 +122,7 @@ class UsuarioController {
 
   Future<List<UsuarioModel>> list() async {
     try {
-      String sql = "select *  from usuario";
+      String sql = "select * from usuario";
       ControllerConnection c = ControllerConnection();
       IResultSet? r = await c.read(
         sql,
@@ -146,10 +143,9 @@ class UsuarioController {
                 idUsuario: int.parse(row.assoc()['idUsuario']!),
                 nomeUsuario: row.assoc()['nomeUsuario']!,
                 razaoSocial: row.assoc()['razaoSocial']!,
-                logradouro: row.assoc()['logradouro']!,
-                complemento: row.assoc()['complemento'] ?? "",
                 cpfCnpj: row.assoc()['cpfCnpj']!,
                 telefone: row.assoc()['telefone']!,
+                idEndereco: int.parse(row.assoc()['idEndereco']!),
               );
               lista.add(c);
             }
@@ -185,10 +181,9 @@ class UsuarioController {
               idUsuario: int.parse(row.assoc()['idUsuario']!),
               nomeUsuario: row.assoc()['nomeUsuario']!,
               razaoSocial: row.assoc()['razaoSocial']!,
-              logradouro: row.assoc()['logradouro']!,
-              complemento: row.assoc()['complemento'] ?? "",
               cpfCnpj: row.assoc()['cpfCnpj']!,
               telefone: row.assoc()['telefone']!,
+              idEndereco: int.parse(row.assoc()['idEndereco']!)
             );
             lista.add(c);
           }

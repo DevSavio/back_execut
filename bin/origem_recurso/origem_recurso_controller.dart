@@ -6,12 +6,12 @@ import '../models/origem_recurso_models.dart';
 class OrigemRecursoController {
   Future<int?> create({
     required String tipoOrigem,
-    required double percentual,
+    required double valor,
   }) async {
     try {
       String sql =
-        "INSERT INTO origem_recurso (tipoOrigem, percentual)"
-        " VALUES ('$tipoOrigem', $percentual);";
+        "INSERT INTO origem_recurso (tipoOrigem, valor)"
+        " VALUES ('$tipoOrigem', $valor);";
     ControllerConnection c = ControllerConnection();
     IResultSet? result = await c.create(
       sql,
@@ -35,12 +35,12 @@ class OrigemRecursoController {
 
   Future<bool> update({
     required String tipoOrigem,
-    required double? percentual,
+    required double? valor,
     required int idOrigem,
   }) async {
     try {
       String sql =
-        "Update origem_recurso set tipoOrigem = '$tipoOrigem', percentual = $percentual"
+        "Update origem_recurso set tipoOrigem = '$tipoOrigem', valor = $valor"
         " where idOrigem = $idOrigem;";
     ControllerConnection c = ControllerConnection();
     await c.update(
@@ -102,7 +102,7 @@ class OrigemRecursoController {
           OrigemRecursoModel c = OrigemRecursoModel(
             idOrigem: int.parse(map['idOrigem']!),
             tipoOrigem: map['tipoOrigem']!,
-            percentual: double.parse(map['razaoSocial']!),
+            valor: double.parse(map['valor']!),
           );
 
           return c;
@@ -135,7 +135,7 @@ class OrigemRecursoController {
               OrigemRecursoModel c = OrigemRecursoModel(
                 idOrigem: int.parse(row.assoc()['idOrigem']!),
                 tipoOrigem: row.assoc()['tipoOrigem']!,
-                percentual: double.parse(row.assoc()['percentual']!),
+                valor: double.parse(row.assoc()['valor']!),
               );
               lista.add(c);
             }
@@ -169,7 +169,7 @@ class OrigemRecursoController {
             OrigemRecursoModel c = OrigemRecursoModel(
               idOrigem: int.parse(row.assoc()['idOrigem']!),
               tipoOrigem: row.assoc()['tipoOrigem']!,
-              percentual: double.parse(row.assoc()['percentual']!),
+              valor: double.parse(row.assoc()['valor']!),
             );
             lista.add(c);
           }

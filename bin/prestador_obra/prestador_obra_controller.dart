@@ -7,11 +7,13 @@ class PrestadorObraController {
   Future<int?> create({
     required int idPrestador,
     required int idObra,
+    required DateTime dataInicio,
+    DateTime? dataFim
   }) async {
     try {
       String sql =
-        "INSERT INTO prestadorObra (idPrestador, idObra)"
-        " VALUES ($idPrestador, $idObra);";
+        "INSERT INTO prestadorObra (idPrestador, idObra, dataInicio, dataFim)"
+        " VALUES ($idPrestador, $idObra, $dataInicio, $dataFim);";
     ControllerConnection c = ControllerConnection();
     IResultSet? result = await c.create(
       sql,
@@ -36,6 +38,8 @@ class PrestadorObraController {
     required int idPrestador,
     required int idObra,
     required int idPrestadorObra,
+    required DateTime dataInicio,
+    DateTime? dataFim
   }) async {
     try {
       String sql =
@@ -100,7 +104,9 @@ class PrestadorObraController {
           PrestadorObraModel c = PrestadorObraModel(
             idPrestadorObra: int.parse(map['idPrestadorObra']!),
             idObra: int.parse(map['idObra']!),
-            idPrestador: int.parse(map['idPrestador']!)
+            idPrestador: int.parse(map['idPrestador']!),
+            dataInicio: DateTime.parse(map['dataInicio']!),
+            dataFim: DateTime.parse(map['dataFim']),
           );
 
           return c;
@@ -129,7 +135,9 @@ class PrestadorObraController {
             PrestadorObraModel c = PrestadorObraModel(
               idPrestadorObra: int.parse(row.assoc()['idPrestadorObra']!),
               idObra: int.parse(row.assoc()['idObra']!),
-              idPrestador: int.parse(row.assoc()['idPrrestador']!),
+              idPrestador: int.parse(row.assoc()['idPrestador']!),
+              dataInicio: DateTime.parse(row.assoc()['dataInicio']!),
+              dataFim: DateTime.parse(row.assoc()['dataFim']!)
             );
             lista.add(c);
           }
@@ -164,6 +172,8 @@ class PrestadorObraController {
               idPrestadorObra: int.parse(row.assoc()['idPrestadorObra']!),
               idPrestador: int.parse(row.assoc()['idPrestador']!),
               idObra: int.parse(row.assoc()['idObra']!),
+              dataInicio: DateTime.parse(row.assoc()['dataInicio']!),
+              dataFim: DateTime.parse(row.assoc()['dataFim']!),
             );
             lista.add(c);
           }

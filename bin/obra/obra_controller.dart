@@ -8,17 +8,16 @@ class ObraController {
     required String responsavelObra,
     required DateTime dataInicio,
     required DateTime dataFim,
-    required String logradouro,
-    required String complemento,
     required int idCliente,
     required int idPagamento,
     required int idTempo,
     required int idPrestador,
+    required int idEndereco
   }) async {
     try {
       String sql =
-        "INSERT INTO obra (responsavelObra, dataInicio, dataFim, logradouro,complemento, idCliente, idPagamento, idTempo, idPrestador)"
-        " VALUES ('$responsavelObra', $dataInicio, $dataFim, '$logradouro', '$complemento', $idCliente, $idPagamento, $idTempo,  $idPrestador)";
+        "INSERT INTO obra (responsavelObra, dataInicio, dataFim, idCliente, idPagamento, idTempo, idPrestador, idEndereco)"
+        " VALUES ('$responsavelObra', $dataInicio, $dataFim, $idCliente, $idPagamento, $idTempo,  $idPrestador, $idEndereco)";
     ControllerConnection c = ControllerConnection();
     IResultSet? result = await c.create(
       sql,
@@ -44,17 +43,16 @@ class ObraController {
     required String responsavelObra,
     required DateTime dataInicio,
     required DateTime dataFim,
-    required String logradouro,
-    required String complemento,
     required int idCliente,
     required int idPagamento,
     required int idTempo,
     required int idPrestador,
     required int idObra,
+    required int idEndereco
   }) async {
     try {
       String sql =
-        "Update obra set responsavelObra = '$responsavelObra', dataInicio = $dataInicio, dataFim = $dataFim, logradouro = '$logradouro', idPrestador= $idPrestador, valorFinal = $valorFinal, complemento = '$complemento', idCliente = $idCliente, idPagamento = $idPagamento, idTempo = $idTempo, idPrestador = $idPrestador, idObra = $idObra"
+        "Update obra set responsavelObra = '$responsavelObra', dataInicio = $dataInicio, dataFim = $dataFim, idPrestador= $idPrestador, valorFinal = $valorFinal, idCliente = $idCliente, idPagamento = $idPagamento, idTempo = $idTempo, idPrestador = $idPrestador, idObra = $idObra, idEndereco = $idEndereco"
         " where idObra = $idObra;";
     ControllerConnection c = ControllerConnection();
     await c.update(
@@ -119,11 +117,10 @@ class ObraController {
             dataFim: DateTime.parse(map['dataFim']!),
             dataInicio: DateTime.parse(map['dataInicio']!),
             idCliente: int.parse(map['idCliente']!),
-            logradouro: map['logradouro'] ?? "",
             idPagamento: int.parse(map['idPagamento']!),
             idTempo: int.parse(map['idTempo']!),
             idPrestador: int.parse(map['idPrestador']!),
-            complemento: map['complemento']!
+            idEndereco: int.parse(map['idEndereco']!),
           );
 
           return c;
@@ -160,11 +157,10 @@ class ObraController {
               idCliente: int.parse(row.assoc()['idCliente']!),
               idPagamento: int.parse(row.assoc()['idPagamento']!),
               valorFinal: double.parse(row.assoc()['valorFinal']!),
-              logradouro: row.assoc()['logradouro'] ?? "",
               idPrestador: int.parse(row.assoc()['idPrestador']!),
               idTempo: int.parse(row.assoc()['idTempo']!),
               idObra: int.parse(row.assoc()['idObra']!),
-              complemento: row.assoc()['complemento']!
+              idEndereco: int.parse(row.assoc()['idEndereco']!),
             );
             lista.add(c);
           }
@@ -203,11 +199,10 @@ class ObraController {
               idCliente: int.parse(row.assoc()['idCliente']!),
               idPagamento: int.parse(row.assoc()['idPagamento']!),
               valorFinal: double.parse(row.assoc()['valorFinal']!),
-              logradouro: row.assoc()['logradouro'] ?? "",
               idPrestador: int.parse(row.assoc()['idPrestador']!),
               idTempo: int.parse(row.assoc()['idTempo']!),
               idObra: int.parse(row.assoc()['idObra']!),
-              complemento: row.assoc()['complemento']!,
+              idEndereco: int.parse(row.assoc()['idEndereco']!),
             );
             lista.add(c);
           }
