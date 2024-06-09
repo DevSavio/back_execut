@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'endereco_models.dart';
+
 part 'obra_models.g.dart';
 
 @JsonSerializable()
@@ -13,10 +15,10 @@ class ObraModel {
   int idPagamento;
   int idTempo;
   int idPrestador;
-  int idEndereco;
+  EnderecoModel endereco;
 
   ObraModel({
-    required this.idObra,
+    this.idObra,
     required this.valorFinal,
     required this.responsavelObra,
     required this.dataInicio,
@@ -25,7 +27,7 @@ class ObraModel {
     required this.idPagamento,
     required this.idTempo,
     required this.idPrestador,
-    required this.idEndereco,
+    required this.endereco,
   });
 
   Map<String, dynamic> toJson() => _$ObraModelToJson(this);

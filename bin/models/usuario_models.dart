@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'endereco_models.dart';
+
 part 'usuario_models.g.dart';
 
 @JsonSerializable()
@@ -9,15 +11,15 @@ class UsuarioModel {
   String razaoSocial;
   String cpfCnpj;
   String telefone;
-  int idEndereco;
+  EnderecoModel endereco;
 
   UsuarioModel({
-    required this.idUsuario,
+    this.idUsuario,
     required this.nomeUsuario,
     required this.razaoSocial,
     required this.cpfCnpj,
     required this.telefone,
-    required this.idEndereco
+    required this.endereco
   });
 
   Map<String, dynamic> toJson() => _$UsuarioModelToJson(this);
