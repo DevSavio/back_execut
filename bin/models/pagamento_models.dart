@@ -4,7 +4,7 @@ part 'pagamento_models.g.dart';
 
 @JsonSerializable()
 class PagamentoModel {
-  int idPagamento;
+  int? idPagamento;
   String tipoPagamento;
   String moeda;
 

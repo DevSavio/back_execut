@@ -4,7 +4,7 @@ part 'funcao_prestador_models.g.dart';
 
 @JsonSerializable()
 class FuncaoPrestadorModel {
-  int idFuncao;
+  int? idFuncao;
   String nomeFuncao;
   String descricaoFuncao;
 

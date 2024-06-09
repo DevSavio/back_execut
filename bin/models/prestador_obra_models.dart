@@ -4,14 +4,18 @@ part 'prestador_obra_models.g.dart';
 
 @JsonSerializable()
 class PrestadorObraModel {
-  int idPrestadorObra;
+  int? idPrestadorObra;
   int idPrestador;
   int idObra;
+  DateTime dataInicio;
+  DateTime? dataFim;
 
   PrestadorObraModel({
     required this.idPrestadorObra,
     required this.idPrestador,
     required this.idObra,
+    required this.dataInicio,
+    this.dataFim,
   });
 
   Map<String, dynamic> toJson() => _$PrestadorObraModelToJson(this);

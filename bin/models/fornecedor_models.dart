@@ -6,18 +6,16 @@ part 'fornecedor_models.g.dart';
 class FornecedorModel {
   int idFornecedor;
   String razaoSocial;
-  String logradouro;
-  String? complemento;
   int idTipo;
   String telefone;
+  int idEndereco;
 
   FornecedorModel({
     required this.idFornecedor,
     required this.razaoSocial,
-    required this.logradouro,
     required this.idTipo,
     required this.telefone,
-    this.complemento,
+    required this.idEndereco,
   });
 
   // Método toMap
@@ -25,10 +23,9 @@ class FornecedorModel {
     return {
       'idFornecedor': idFornecedor,
       'razaoSocial': razaoSocial,
-      'logradouro': logradouro,
-      'complemento': complemento,
       'idTipo': idTipo,
       'telefone': telefone,
+      'idEndereco': idEndereco,
     };
   }
 

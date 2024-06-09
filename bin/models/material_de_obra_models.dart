@@ -4,7 +4,7 @@ part 'material_de_obra_models.g.dart';
 
 @JsonSerializable()
 class MaterialDeObraModel {
-  int idMaterial;
+  int? idMaterial;
   String nomeMaterial;
   String descricaoMaterial;
   double valor;

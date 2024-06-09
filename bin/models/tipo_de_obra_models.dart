@@ -4,7 +4,7 @@ part 'tipo_de_obra_models.g.dart';
 
 @JsonSerializable()
 class TipoDeObraModel {
-  int idTipo;
+  int? idTipo;
   String nomeTipo;
   String descricaoTipo;
 

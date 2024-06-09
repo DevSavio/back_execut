@@ -4,14 +4,14 @@ part 'origem_recurso_models.g.dart';
 
 @JsonSerializable()
 class OrigemRecursoModel {
-  int idOrigem;
+  int? idOrigem;
   String tipoOrigem;
-  double percentual;
+  double valor;
 
   OrigemRecursoModel({
     required this.idOrigem,
     required this.tipoOrigem,
-    required this.percentual,
+    required this.valor,
   });
 
   Map<String, dynamic> toJson() => _$OrigemRecursoModelToJson(this);
