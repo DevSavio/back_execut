@@ -1,6 +1,7 @@
 import 'package:mysql_client/mysql_client.dart';
 
 import '../base/database.dart';
+import '../models/endereco_models.dart';
 import '../models/usuario_models.dart';
 
 class UsuarioController {
@@ -109,7 +110,13 @@ class UsuarioController {
             razaoSocial: map['razaoSocial']!,
             cpfCnpj: map['cpfCnpj']!,
             telefone: map['telefone']!,
-            idEndereco: int.parse(map['idEndereco']!),
+            endereco: EnderecoModel(
+              logradouro: map['logradouro']!,
+              complemento: map['complemento']!,
+              cidade: map['cidade']!,
+              estado: map['estado']!,
+            ),
+            
           );
 
           return c;
@@ -145,7 +152,12 @@ class UsuarioController {
                 razaoSocial: row.assoc()['razaoSocial']!,
                 cpfCnpj: row.assoc()['cpfCnpj']!,
                 telefone: row.assoc()['telefone']!,
-                idEndereco: int.parse(row.assoc()['idEndereco']!),
+                endereco: EnderecoModel(
+                logradouro: row.assoc()['logradouro']!,
+                complemento: row.assoc()['complemento']!,
+                cidade: row.assoc()['cidade']!,
+                estado: row.assoc()['estado']!,
+              ),
               );
               lista.add(c);
             }
@@ -183,7 +195,12 @@ class UsuarioController {
               razaoSocial: row.assoc()['razaoSocial']!,
               cpfCnpj: row.assoc()['cpfCnpj']!,
               telefone: row.assoc()['telefone']!,
-              idEndereco: int.parse(row.assoc()['idEndereco']!)
+              endereco: EnderecoModel(
+                logradouro: row.assoc()['logradouro']!,
+                complemento: row.assoc()['complemento']!,
+                cidade: row.assoc()['cidade']!,
+                estado: row.assoc()['estado']!,
+              ),
             );
             lista.add(c);
           }

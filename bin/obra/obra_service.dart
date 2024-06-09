@@ -16,7 +16,7 @@ class ObraService {
         idPagamento: obraModel.idPagamento,
         idPrestador: obraModel.idPrestador,
         idTempo: obraModel.idTempo,
-        idEndereco: obraModel.idEndereco,
+        idEndereco: obraModel.endereco.idEndereco!,
       );
 
       if (insertedID != null) {
@@ -54,7 +54,7 @@ class ObraService {
         idPrestador: obraModel.idPrestador,
         idTempo: obraModel.idTempo,
         idObra: idObra,
-        idEndereco: obraModel.idEndereco
+        idEndereco: obraModel.endereco.idEndereco!
       );
 
       if (reult) {

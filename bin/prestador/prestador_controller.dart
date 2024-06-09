@@ -1,6 +1,7 @@
 import 'package:mysql_client/mysql_client.dart';
 
 import '../base/database.dart';
+import '../models/funcao_prestador_models.dart';
 import '../models/prestador_models.dart';
 
 class PrestadorController {
@@ -109,7 +110,11 @@ class PrestadorController {
               telefone: map['telefone'] ?? "",
               cpfCnpj: map['cpfCnpj'] ?? "",
               tipoPrestador: map['tipoPrestador'] ?? "",
-              idFuncao: int.parse(map['idFuncao']!),
+              funcao: FuncaoPrestadorModel(
+                nomeFuncao: map['nomeFuncao']!,
+                descricaoFuncao: map['descricaoFuncao']!,
+                idFuncao: map['idFuncao']!
+              ),
             );
 
             return c;
@@ -144,7 +149,11 @@ class PrestadorController {
               tipoPrestador: row.assoc()['tipoPrestador'] ?? "",
               cpfCnpj: row.assoc()['cpfCnpj'] ?? "",
               telefone: row.assoc()['telefone'] ?? "",
-              idFuncao: int.parse(row.assoc()['idFuncao']!),
+              funcao: FuncaoPrestadorModel(
+                nomeFuncao: row.assoc()['nomeFuncao']!,
+                descricaoFuncao: row.assoc()['descricaoFuncao']!,
+                idFuncao: int.parse(row.assoc()['idFuncao']!),
+              ),
             );
             lista.add(c);
           }
@@ -179,7 +188,11 @@ class PrestadorController {
               tipoPrestador: row.assoc()['tipoPrestador'] ?? "",
               cpfCnpj: row.assoc()['cpfCnpj'] ?? "",
               telefone: row.assoc()['telefone'] ?? "",
-              idFuncao: int.parse(row.assoc()['idFuncao']!),
+              funcao: FuncaoPrestadorModel(
+                nomeFuncao: row.assoc()['nomeFuncao']!,
+                descricaoFuncao: row.assoc()['descricaoFuncao']!,
+                idFuncao: int.parse(row.assoc()['idFuncao']!),
+              ),
             );
             lista.add(c);
           }

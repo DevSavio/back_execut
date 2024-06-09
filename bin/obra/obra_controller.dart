@@ -1,5 +1,6 @@
 import 'package:mysql_client/mysql_client.dart';
 import '../base/database.dart';
+import '../models/endereco_models.dart';
 import '../models/obra_models.dart';
 
 class ObraController {
@@ -120,7 +121,12 @@ class ObraController {
             idPagamento: int.parse(map['idPagamento']!),
             idTempo: int.parse(map['idTempo']!),
             idPrestador: int.parse(map['idPrestador']!),
-            idEndereco: int.parse(map['idEndereco']!),
+            endereco: EnderecoModel(
+              logradouro: map['logradouro']!,
+              complemento: map['complemento']!,
+              cidade: map['cidade']!,
+              estado: map['estado']!,
+            ),
           );
 
           return c;
@@ -160,7 +166,12 @@ class ObraController {
               idPrestador: int.parse(row.assoc()['idPrestador']!),
               idTempo: int.parse(row.assoc()['idTempo']!),
               idObra: int.parse(row.assoc()['idObra']!),
-              idEndereco: int.parse(row.assoc()['idEndereco']!),
+              endereco: EnderecoModel(
+                logradouro: row.assoc()['logradouro']!,
+                complemento: row.assoc()['complemento']!,
+                cidade: row.assoc()['cidade']!,
+                estado: row.assoc()['estado']!,
+              ),
             );
             lista.add(c);
           }
@@ -202,7 +213,12 @@ class ObraController {
               idPrestador: int.parse(row.assoc()['idPrestador']!),
               idTempo: int.parse(row.assoc()['idTempo']!),
               idObra: int.parse(row.assoc()['idObra']!),
-              idEndereco: int.parse(row.assoc()['idEndereco']!),
+              endereco: EnderecoModel(
+                logradouro: row.assoc()['logradouro']!,
+                complemento: row.assoc()['complemento']!,
+                cidade: row.assoc()['cidade']!,
+                estado: row.assoc()['estado']!,
+              ),
             );
             lista.add(c);
           }

@@ -12,7 +12,7 @@ class PrestadorService {
         cpfCnpj: prestadorModel.cpfCnpj ?? "",
         telefone: prestadorModel.telefone ?? "",
         nomePrestador: prestadorModel.nomePrestador,
-        idFuncao: prestadorModel.idFuncao,
+        idFuncao: prestadorModel.funcao.idFuncao!,
       );
 
       if (insertedID != null) {
@@ -45,7 +45,7 @@ class PrestadorService {
         cpfCnpj: prestadorModel.cpfCnpj ?? "",
         telefone: prestadorModel.telefone ?? "",
         nomePrestador: prestadorModel.nomePrestador,
-        idFuncao: prestadorModel.idFuncao,
+        idFuncao: prestadorModel.funcao.idFuncao!,
         idPrestador: idPrestador,
       );
 

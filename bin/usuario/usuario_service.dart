@@ -12,7 +12,7 @@ class UsuarioService {
         nomeUsuario: usuarioModel.nomeUsuario,
         razaoSocial: usuarioModel.razaoSocial,
         telefone: usuarioModel.telefone,
-        idEndereco: usuarioModel.idEndereco
+        idEndereco: usuarioModel.endereco.idEndereco!,
       );
 
       if (insertedID != null) {
@@ -46,7 +46,7 @@ class UsuarioService {
         razaoSocial: usuarioModel.razaoSocial,
         telefone: usuarioModel.telefone,
         idUsuario: idUsuario,
-        idEndereco: usuarioModel.idEndereco
+        idEndereco: usuarioModel.endereco.idEndereco!,
       );
 
       if (reult) {
