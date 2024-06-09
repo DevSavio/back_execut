@@ -2,18 +2,18 @@ import 'package:mysql_client/mysql_client.dart';
 
 import '../base/database.dart';
 import '../models/cliente_models.dart';
+import '../models/endereco_models.dart';
 
 class ClienteController {
-  Future<int?> create({
-    required String nomeCliente,
-    required String razaoSocial,
-    required String cpfCnpj,
-    required String telefone,
-    required int idEndereco
-  }) async {
+  Future<int?> create(
+      {required String nomeCliente,
+      required String razaoSocial,
+      required String cpfCnpj,
+      required String telefone,
+      required int idEndereco}) async {
     try {
       String sql =
-          "INSERT INTO cliente (nomeCliente, razaoSocial, logradouro, complemento, cpfCnpj, telefone, idEndereco)"
+          "INSERT INTO cliente (nomeCliente, razaoSocial, cpfCnpj, telefone, idEndereco)"
           " VALUES ('$nomeCliente', '$razaoSocial','$cpfCnpj', '$telefone', '$idEndereco');";
       ControllerConnection c = ControllerConnection();
       IResultSet? result = await c.create(
@@ -35,14 +35,13 @@ class ClienteController {
     }
   }
 
-  Future<bool> update({
-    required String nomeCliente,
-    required String razaoSocial,
-    required String cpfCnpj,
-    required String telefone,
-    required int idCliente,
-    required int idEndereco
-  }) async {
+  Future<bool> update(
+      {required String nomeCliente,
+      required String razaoSocial,
+      required String cpfCnpj,
+      required String telefone,
+      required int idCliente,
+      required int idEndereco}) async {
     try {
       String sql = "Update cliente set nomeCliente = '$nomeCliente', "
           " razaoSocial = '$razaoSocial', endereco = '$idEndereco', cpfCnpj = '$cpfCnpj', telefone = '$telefone'"
@@ -89,7 +88,8 @@ class ClienteController {
     required int idCliente,
   }) async {
     try {
-      String sql = "select *  from cliente  where idCliente = $idCliente;";
+      String sql =
+          "select c.idCliente, c.nomeCliente, c.razaoSocial , c.cpfCnpj, c.telefone , e.logradouro, e.complemento, e.cidade, e.estado from cliente  as c inner join endereco as e on  e.id =  c.idEndereco where idCliente = $idCliente;";
       ControllerConnection c = ControllerConnection();
       IResultSet? r = await c.read(
         sql,
@@ -108,9 +108,15 @@ class ClienteController {
             idCliente: int.parse(map['idCliente']!),
             nomeCliente: map['nomeCliente']!,
             razaoSocial: map['razaoSocial']!,
-            idEndereco:int.parse(map['idEndereco']!),
             cpfCnpj: map['cpfCnpj']!,
             telefone: map['telefone']!,
+            endereco: EnderecoModel(
+              idEndereco: int.parse(map['idEndereco']!),
+              logradouro: map['logradouro']!,
+              complemento: map['complemento']!,
+              cidade: map['cidade']!,
+              estado: map['estado']!,
+            ),
           );
 
           return c;
@@ -144,9 +150,15 @@ class ClienteController {
               idCliente: int.parse(row.assoc()['idCliente']!),
               nomeCliente: row.assoc()['nomeCliente']!,
               razaoSocial: row.assoc()['razaoSocial']!,
-              idEndereco: int.parse(row.assoc()['idEndereco']!),
               cpfCnpj: row.assoc()['cpfCnpj']!,
               telefone: row.assoc()['telefone']!,
+              endereco: EnderecoModel(
+                idEndereco: int.parse(row.assoc()['idEndereco']!),
+                logradouro: row.assoc()['logradouro']!,
+                complemento: row.assoc()['complemento']!,
+                cidade: row.assoc()['cidade']!,
+                estado: row.assoc()['estado']!,
+              ),
             );
             lista.add(c);
           }
@@ -182,9 +194,15 @@ class ClienteController {
               idCliente: int.parse(row.assoc()['idCliente']!),
               nomeCliente: row.assoc()['nomeCliente']!,
               razaoSocial: row.assoc()['razaoSocial']!,
-              idEndereco: int.parse(row.assoc()['idEndereco']!),
               cpfCnpj: row.assoc()['cpfCnpj']!,
               telefone: row.assoc()['telefone']!,
+              endereco: EnderecoModel(
+                idEndereco: int.parse(row.assoc()['idEndereco']!),
+                logradouro: row.assoc()['logradouro']!,
+                complemento: row.assoc()['complemento']!,
+                cidade: row.assoc()['cidade']!,
+                estado: row.assoc()['estado']!,
+              ),
             );
             lista.add(c);
           }

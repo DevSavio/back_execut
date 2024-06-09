@@ -9,10 +9,10 @@ class ClienteService {
     try {
       int? insertedID = await clienteController.create(
         cpfCnpj: clienteModel.cpfCnpj,
-        idEndereco: clienteModel.idEndereco,
         nomeCliente: clienteModel.nomeCliente,
         razaoSocial: clienteModel.razaoSocial,
         telefone: clienteModel.telefone ?? "",
+        idEndereco: clienteModel.endereco.idEndereco!,
       );
 
       if (insertedID != null) {
@@ -46,7 +46,7 @@ class ClienteService {
         razaoSocial: clienteModel.razaoSocial,
         telefone: clienteModel.telefone ?? "",
         idCliente: idCliente,
-        idEndereco: clienteModel.idEndereco
+        idEndereco: clienteModel.endereco.idEndereco!,
       );
 
       if (reult) {
