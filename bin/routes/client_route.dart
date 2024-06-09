@@ -16,7 +16,7 @@ class ClientRoute {
     });
 
     /// Get specific cliente by id
-    router.get('/cliente2/<id>', (Request request, String id) {
+    router.get('/cliente/<id>', (Request request, String id) {
       final data = clienteService.buscarCliente(int.parse(id));
       return data;
     });

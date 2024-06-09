@@ -8,9 +8,8 @@ class ClienteService {
       {required ClienteModel clienteModel}) async {
     try {
       int? insertedID = await clienteController.create(
-        complemento: clienteModel.complemento ?? "",
         cpfCnpj: clienteModel.cpfCnpj,
-        logradouro: clienteModel.logradouro,
+        idEndereco: clienteModel.idEndereco,
         nomeCliente: clienteModel.nomeCliente,
         razaoSocial: clienteModel.razaoSocial,
         telefone: clienteModel.telefone ?? "",
@@ -42,13 +41,12 @@ class ClienteService {
       {required ClienteModel clienteModel, required int idCliente}) async {
     try {
       var reult = await clienteController.update(
-        complemento: clienteModel.complemento ?? "",
         cpfCnpj: clienteModel.cpfCnpj,
-        logradouro: clienteModel.logradouro,
         nomeCliente: clienteModel.nomeCliente,
         razaoSocial: clienteModel.razaoSocial,
         telefone: clienteModel.telefone ?? "",
         idCliente: idCliente,
+        idEndereco: clienteModel.idEndereco
       );
 
       if (reult) {

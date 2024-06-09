@@ -7,15 +7,14 @@ class ClienteController {
   Future<int?> create({
     required String nomeCliente,
     required String razaoSocial,
-    required String logradouro,
-    required String complemento,
     required String cpfCnpj,
     required String telefone,
+    required int idEndereco
   }) async {
     try {
       String sql =
-          "INSERT INTO cliente (nomeCliente, razaoSocial, logradouro, complemento, cpfCnpj, telefone)"
-          " VALUES ('$nomeCliente', '$razaoSocial', '$logradouro', '$complemento', '$cpfCnpj', '$telefone');";
+          "INSERT INTO cliente (nomeCliente, razaoSocial, logradouro, complemento, cpfCnpj, telefone, idEndereco)"
+          " VALUES ('$nomeCliente', '$razaoSocial','$cpfCnpj', '$telefone', '$idEndereco');";
       ControllerConnection c = ControllerConnection();
       IResultSet? result = await c.create(
         sql,
@@ -39,16 +38,14 @@ class ClienteController {
   Future<bool> update({
     required String nomeCliente,
     required String razaoSocial,
-    required String logradouro,
-    String? complemento,
     required String cpfCnpj,
     required String telefone,
     required int idCliente,
+    required int idEndereco
   }) async {
     try {
       String sql = "Update cliente set nomeCliente = '$nomeCliente', "
-          " razaoSocial = '$razaoSocial', logradouro = '$logradouro' "
-          ", complemento = '$complemento', cpfCnpj = '$cpfCnpj', telefone = '$telefone'"
+          " razaoSocial = '$razaoSocial', endereco = '$idEndereco', cpfCnpj = '$cpfCnpj', telefone = '$telefone'"
           " where idCliente = $idCliente;";
       ControllerConnection c = ControllerConnection();
 
@@ -111,7 +108,7 @@ class ClienteController {
             idCliente: int.parse(map['idCliente']!),
             nomeCliente: map['nomeCliente']!,
             razaoSocial: map['razaoSocial']!,
-            logradouro: map['logradouro'] ?? "",
+            idEndereco:int.parse(map['idEndereco']!),
             cpfCnpj: map['cpfCnpj']!,
             telefone: map['telefone']!,
           );
@@ -147,7 +144,7 @@ class ClienteController {
               idCliente: int.parse(row.assoc()['idCliente']!),
               nomeCliente: row.assoc()['nomeCliente']!,
               razaoSocial: row.assoc()['razaoSocial']!,
-              logradouro: row.assoc()['logradouro'] ?? "",
+              idEndereco: int.parse(row.assoc()['idEndereco']!),
               cpfCnpj: row.assoc()['cpfCnpj']!,
               telefone: row.assoc()['telefone']!,
             );
@@ -185,7 +182,7 @@ class ClienteController {
               idCliente: int.parse(row.assoc()['idCliente']!),
               nomeCliente: row.assoc()['nomeCliente']!,
               razaoSocial: row.assoc()['razaoSocial']!,
-              logradouro: row.assoc()['logradouro'] ?? "",
+              idEndereco: int.parse(row.assoc()['idEndereco']!),
               cpfCnpj: row.assoc()['cpfCnpj']!,
               telefone: row.assoc()['telefone']!,
             );

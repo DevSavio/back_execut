@@ -7,19 +7,17 @@ class ClienteModel {
   int? idCliente;
   String nomeCliente;
   String razaoSocial;
-  String logradouro;
-  String? complemento;
   String cpfCnpj;
   String? telefone;
+  int idEndereco;
 
   ClienteModel({
     required this.idCliente,
     required this.nomeCliente,
     required this.razaoSocial,
-    required this.logradouro,
-    this.complemento,
     required this.cpfCnpj,
     required this.telefone,
+    required this.idEndereco
   });
 
   Map<String, dynamic> toJson() => _$ClienteModelToJson(this);
