@@ -1,19 +1,22 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'funcao_prestador_models.dart';
+import 'prestador_models.dart';
+
 part 'custo_prestador_models.g.dart';
 
 @JsonSerializable()
 class CustoPrestadorModel {
   int? idCusto;
   double valor;
-  int idPrestador;
-  int idFuncao;
+  PrestadorModel prestador;
+  FuncaoPrestadorModel funcao;
 
   CustoPrestadorModel({
-    required this.idCusto,
+    this.idCusto,
     required this.valor,
-    required this.idPrestador,
-    required this.idFuncao,
+    required this.prestador,
+    required this.funcao,
   });
 
   Map<String, dynamic> toJson() => _$CustoPrestadorModelToJson(this);

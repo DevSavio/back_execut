@@ -1,34 +1,27 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'endereco_models.dart';
+import 'tipo_de_fornecedor_models.dart';
+
 part 'fornecedor_models.g.dart';
 
 @JsonSerializable()
 class FornecedorModel {
-  int idFornecedor;
+  int? idFornecedor;
   String razaoSocial;
-  int idTipo;
+  TipoDeFornecedorModel tipo;
   String telefone;
-  int idEndereco;
+  EnderecoModel endereco;
 
   FornecedorModel({
-    required this.idFornecedor,
+    this.idFornecedor,
     required this.razaoSocial,
-    required this.idTipo,
+    required this.tipo,
     required this.telefone,
-    required this.idEndereco,
+    required this.endereco,
   });
 
-  // Método toMap
-  Map<String, dynamic> toMap() {
-    return {
-      'idFornecedor': idFornecedor,
-      'razaoSocial': razaoSocial,
-      'idTipo': idTipo,
-      'telefone': telefone,
-      'idEndereco': idEndereco,
-    };
-  }
-
+  
   Map<String, dynamic> toJson() => _$FornecedorModelToJson(this);
 
   static FornecedorModel fromJson(Map<String, dynamic> json) =>

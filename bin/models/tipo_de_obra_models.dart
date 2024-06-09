@@ -9,7 +9,7 @@ class TipoDeObraModel {
   String descricaoTipo;
 
   TipoDeObraModel({
-    required this.idTipo,
+    this.idTipo,
     required this.nomeTipo,
     required this.descricaoTipo,
   });

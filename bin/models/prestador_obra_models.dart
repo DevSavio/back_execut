@@ -11,7 +11,7 @@ class PrestadorObraModel {
   DateTime? dataFim;
 
   PrestadorObraModel({
-    required this.idPrestadorObra,
+    this.idPrestadorObra,
     required this.idPrestador,
     required this.idObra,
     required this.dataInicio,

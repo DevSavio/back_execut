@@ -13,7 +13,7 @@ class MaterialDeObraModel {
   int idFornecedor;
 
   MaterialDeObraModel({
-    required this.idMaterial,
+    this.idMaterial,
     required this.nomeMaterial,
     required this.descricaoMaterial,
     required this.valor,

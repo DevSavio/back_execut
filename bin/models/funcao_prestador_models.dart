@@ -9,7 +9,7 @@ class FuncaoPrestadorModel {
   String descricaoFuncao;
 
   FuncaoPrestadorModel({
-    required this.idFuncao,
+    this.idFuncao,
     required this.nomeFuncao,
     required this.descricaoFuncao,
   });

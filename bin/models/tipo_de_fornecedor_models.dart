@@ -9,7 +9,7 @@ class TipoDeFornecedorModel {
   String descricao;
 
   TipoDeFornecedorModel({
-    required this.idTipo,
+    this.idTipo,
     required this.nomeTipo,
     required this.descricao,
   });

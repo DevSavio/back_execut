@@ -9,7 +9,7 @@ class PagamentoModel {
   String moeda;
 
   PagamentoModel({
-    required this.idPagamento,
+    this.idPagamento,
     required this.tipoPagamento,
     required this.moeda,
   });

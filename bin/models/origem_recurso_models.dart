@@ -9,7 +9,7 @@ class OrigemRecursoModel {
   double valor;
 
   OrigemRecursoModel({
-    required this.idOrigem,
+    this.idOrigem,
     required this.tipoOrigem,
     required this.valor,
   });

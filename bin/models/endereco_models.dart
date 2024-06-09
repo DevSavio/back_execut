@@ -11,7 +11,7 @@ class EnderecoModel {
   String estado;
 
   EnderecoModel({
-    required this.idEndereco,
+    this.idEndereco,
     required this.logradouro,
     required this.complemento,
     required this.cidade,
