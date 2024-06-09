@@ -8,16 +8,15 @@ class ObraService {
       {required ObraModel obraModel}) async {
     try {
       int? insertedID = await obraController.create(
-        complemento: obraModel.complemento,
         dataFim: obraModel.dataFim,
         dataInicio: obraModel.dataInicio,
         responsavelObra: obraModel.responsavelObra,
-        logradouro: obraModel.logradouro,
         valorFinal: obraModel.valorFinal,
         idCliente: obraModel.idCliente,
         idPagamento: obraModel.idPagamento,
         idPrestador: obraModel.idPrestador,
         idTempo: obraModel.idTempo,
+        idEndereco: obraModel.idEndereco,
       );
 
       if (insertedID != null) {
@@ -46,17 +45,16 @@ class ObraService {
       {required ObraModel obraModel, required int idObra}) async {
     try {
       var reult = await obraController.update(
-       complemento: obraModel.complemento,
         dataFim: obraModel.dataFim,
         dataInicio: obraModel.dataInicio,
         responsavelObra: obraModel.responsavelObra,
-        logradouro: obraModel.logradouro,
         valorFinal: obraModel.valorFinal,
         idCliente: obraModel.idCliente,
         idPagamento: obraModel.idPagamento,
         idPrestador: obraModel.idPrestador,
         idTempo: obraModel.idTempo,
-        idObra: obraModel.idObra,
+        idObra: idObra,
+        idEndereco: obraModel.idEndereco
       );
 
       if (reult) {

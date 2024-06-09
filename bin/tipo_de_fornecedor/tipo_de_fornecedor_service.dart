@@ -40,7 +40,7 @@ class TipoDeFornecedorService {
       var reult = await tipoDeFornecedorController.update(
         nomeTipo: tipoDeFornecedorModel.nomeTipo,
         descricao: tipoDeFornecedorModel.descricao,
-        idTipo: tipoDeFornecedorModel.idTipo,
+        idTipo: idTipo,
       );
 
       if (reult) {

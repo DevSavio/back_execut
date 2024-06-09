@@ -38,7 +38,7 @@ class PrestadorService {
   }
 
   Future<bool> atualizarPrestador(
-      {required PrestadorModel prestadorModel, required int idCliente}) async {
+      {required PrestadorModel prestadorModel, required int idPrestador}) async {
     try {
       var reult = await prestadorController.update(
         tipoPrestador: prestadorModel.tipoPrestador ?? "",
@@ -46,7 +46,7 @@ class PrestadorService {
         telefone: prestadorModel.telefone ?? "",
         nomePrestador: prestadorModel.nomePrestador,
         idFuncao: prestadorModel.idFuncao,
-        idPrestador: prestadorModel.idPrestador,
+        idPrestador: idPrestador,
       );
 
       if (reult) {

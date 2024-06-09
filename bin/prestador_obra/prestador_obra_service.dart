@@ -10,6 +10,8 @@ class PrestadorObraService {
       int? insertedID = await prestadorObraController.create(
         idPrestador: prestadorObraModel.idPrestador,
         idObra: prestadorObraModel.idObra,
+        dataInicio: prestadorObraModel.dataInicio,
+        dataFim: prestadorObraModel.dataFim,
       );
 
       if (insertedID != null) {
@@ -40,7 +42,9 @@ class PrestadorObraService {
       var reult = await prestadorObraController.update(
         idPrestador: prestadorObraModel.idPrestador,
         idObra: prestadorObraModel.idObra,
-        idPrestadorObra: prestadorObraModel.idPrestadorObra,
+        idPrestadorObra: idPrestadorObra,
+        dataInicio: prestadorObraModel.dataInicio,
+        dataFim: prestadorObraModel.dataFim
       );
 
       if (reult) {

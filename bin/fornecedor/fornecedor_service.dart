@@ -8,11 +8,10 @@ class FornecedorService {
     {required FornecedorModel fornecedorModel}) async {
     try {
       int? insertedID = await fornecedorController.create(
-        complemento: fornecedorModel.complemento ?? "",
-        logradouro: fornecedorModel.logradouro,
         razaoSocial: fornecedorModel.razaoSocial,
         telefone: fornecedorModel.telefone,
         idTipo: fornecedorModel.idTipo,
+        idEndereco: fornecedorModel.idEndereco
       );
 
       if (insertedID != null) {
@@ -31,11 +30,10 @@ class FornecedorService {
     {required FornecedorModel fornecedorModel, required int idFornecedor}) async {
     try {
       var result = await fornecedorController.update(
-        complemento: fornecedorModel.complemento ?? "",
         razaoSocial: fornecedorModel.razaoSocial, 
-        logradouro: fornecedorModel.logradouro, 
         telefone: fornecedorModel.telefone, 
         idTipo: fornecedorModel.idTipo, 
+        idEndereco: fornecedorModel.idEndereco,
         idFornecedor: idFornecedor,
         );
 

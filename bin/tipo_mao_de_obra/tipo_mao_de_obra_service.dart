@@ -38,7 +38,7 @@ class TipoDeObraService {
       {required TipoDeObraModel tipoDeObraModel, required int idTipo}) async {
     try {
       var reult = await tipoDeObraController.update(
-        idTipo: tipoDeObraModel.idTipo,
+        idTipo: idTipo,
         nomeTipo: tipoDeObraModel.nomeTipo,
         descricaoTipo: tipoDeObraModel.descricaoTipo,
       );

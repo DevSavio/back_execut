@@ -8,12 +8,11 @@ class UsuarioService {
       {required UsuarioModel usuarioModel}) async {
     try {
       int? insertedID = await usuarioController.create(
-        complemento: usuarioModel.complemento ?? "",
         cpfCnpj: usuarioModel.cpfCnpj,
-        logradouro: usuarioModel.logradouro,
         nomeUsuario: usuarioModel.nomeUsuario,
         razaoSocial: usuarioModel.razaoSocial,
         telefone: usuarioModel.telefone,
+        idEndereco: usuarioModel.idEndereco
       );
 
       if (insertedID != null) {
@@ -42,13 +41,12 @@ class UsuarioService {
       {required UsuarioModel usuarioModel, required int idUsuario}) async {
     try {
       var reult = await usuarioController.update(
-        complemento: usuarioModel.complemento ?? "",
         cpfCnpj: usuarioModel.cpfCnpj,
-        logradouro: usuarioModel.logradouro,
         nomeUsuario: usuarioModel.nomeUsuario,
         razaoSocial: usuarioModel.razaoSocial,
         telefone: usuarioModel.telefone,
-        idUsuario: usuarioModel.idUsuario,
+        idUsuario: idUsuario,
+        idEndereco: usuarioModel.idEndereco
       );
 
       if (reult) {

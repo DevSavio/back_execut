@@ -43,7 +43,7 @@ class CustoPrestadorService {
         valor: custoPrestadorModel.valor,
         idFuncao: custoPrestadorModel.idFuncao,
         idPrestador: custoPrestadorModel.idPrestador,
-        idCusto: custoPrestadorModel.idCusto,
+        idCusto: idCusto,
     );
 
     if (result) {

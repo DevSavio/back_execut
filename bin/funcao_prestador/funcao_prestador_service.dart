@@ -35,12 +35,12 @@ class FuncaoPrestadorService {
   }
 
   Future<bool> atualizarFuncaoPrestador(
-      {required FuncaoPrestadorModel funcaoPrestadorModel, required int idCliente}) async {
+      {required FuncaoPrestadorModel funcaoPrestadorModel, required int idFuncao}) async {
     try {
       var reult = await funcaoPrestadorController.update(
         nomeFuncao: funcaoPrestadorModel.nomeFuncao,
         descricaoFuncao: funcaoPrestadorModel.descricaoFuncao,
-        idFuncao: funcaoPrestadorModel.idFuncao,
+        idFuncao: idFuncao,
       );
 
       if (reult) {

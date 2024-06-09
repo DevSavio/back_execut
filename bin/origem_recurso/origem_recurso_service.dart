@@ -9,7 +9,7 @@ class OrigemRecursoService {
     try {
       int? insertedID = await origemRecursoController.create(
         tipoOrigem: origemRecursoModel.tipoOrigem,
-        percentual: origemRecursoModel.percentual,
+        valor: origemRecursoModel.valor,
       );
 
       if (insertedID != null) {
@@ -35,12 +35,12 @@ class OrigemRecursoService {
   }
 
   Future<bool> atualizarOrigemRecurso(
-      {required OrigemRecursoModel origemRecursoModel, required int idCliente}) async {
+      {required OrigemRecursoModel origemRecursoModel, required int idOrigem}) async {
     try {
       var reult = await origemRecursoController.update(
-        idOrigem: origemRecursoModel.idOrigem,
+        idOrigem: idOrigem,
         tipoOrigem: origemRecursoModel.tipoOrigem,
-        percentual: origemRecursoModel.percentual,
+        valor: origemRecursoModel.valor,
       );
 
       if (reult) {
