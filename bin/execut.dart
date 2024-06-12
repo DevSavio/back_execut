@@ -14,6 +14,7 @@ import 'routes/prestador_obra_route.dart';
 import 'routes/prestador_route.dart';
 import 'routes/tipo_de_fornecedor_route.dart';
 import 'routes/tipo_de_obra_route.dart';
+import 'routes/tipo_mao_de_obra_route.dart';
 import 'routes/usuario_route.dart';
 import 'routes/material_de_obra_route.dart';
 
@@ -39,6 +40,7 @@ Handler init() {
   app = PrestadorRoute(router: app).init();
   app = TipoDeFornecedorRoute(router: app).init();
   app = TipoDeObraRoute(router: app).init();
+  app = TipoMaoDeObraRoute(router: app).init();
   app = UsuarioRoute(router: app).init();
   
   // /// Update an existing person by id
