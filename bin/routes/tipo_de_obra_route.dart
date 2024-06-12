@@ -2,7 +2,7 @@
 
 import 'package:shelf_plus/shelf_plus.dart';
 import "../models/tipo_de_obra_models.dart";
-import "../tipo_mao_de_obra/tipo_mao_de_obra_service.dart";
+import '../tipo_de_obra/tipo_de_obra_service.dart';
 
 class TipoDeObraRoute {
   RouterPlus router = RouterPlus();
@@ -18,13 +18,13 @@ class TipoDeObraRoute {
     });
 
     /// Get specific tipoMaoDeObra by id
-    router.get('/tipoMaoDeObra/<id>', (Request request, String id) {
+    router.get('/tipoDeObra/<id>', (Request request, String id) {
       final data = tipoDeObraService.buscarTipoDeObra(int.parse(id));
       return data;
     });
 
     /// Add a new tipoMaoDeObras
-    router.post('/tipoMaoDeObra', (Request request) async {
+    router.post('/tipoDeObra', (Request request) async {
       try {
         dynamic body = await request.body.asJson;
 
