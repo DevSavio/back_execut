@@ -1,6 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'cliente_models.dart';
 import 'endereco_models.dart';
+import 'pagamento_models.dart';
+import 'prestador_models.dart';
 
 part 'obra_models.g.dart';
 
@@ -11,10 +14,9 @@ class ObraModel {
   String responsavelObra;
   DateTime dataInicio;
   DateTime dataFim;
-  int idCliente;
-  int idPagamento;
-  int idTempo;
-  int idPrestador;
+  ClienteModel cliente;
+  PagamentoModel pagamento;
+  PrestadorModel prestador;
   EnderecoModel endereco;
 
   ObraModel({
@@ -23,10 +25,9 @@ class ObraModel {
     required this.responsavelObra,
     required this.dataInicio,
     required this.dataFim,
-    required this.idCliente,
-    required this.idPagamento,
-    required this.idTempo,
-    required this.idPrestador,
+    required this.cliente,
+    required this.pagamento,
+    required this.prestador,
     required this.endereco,
   });
 

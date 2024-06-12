@@ -1,33 +1,27 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'funcao_prestador_models.dart';
+import 'prestador_models.dart';
+import 'tipo_mao_de_obra_models.dart';
+
 part 'mao_de_obra_models.g.dart';
 
 @JsonSerializable()
 class MaoDeObraModel {
   int? idMao;
   String descricao;
-  int idTipo;
-  int idPrestador;
-  int idFuncao;
+  TipoMaoDeObraModel tipo;
+  PrestadorModel prestador;
+  FuncaoPrestadorModel funcao;
 
   MaoDeObraModel({
     this.idMao,
     required this.descricao,
-    required this.idTipo,
-    required this.idPrestador,
-    required this.idFuncao,
+    required this.tipo,
+    required this.prestador,
+    required this.funcao,
   });
 
-  // Método toMap
-  Map<String, dynamic> toMap() {
-    return {
-      'idMao': idMao,
-      'descricao': descricao,
-      'idTipo': idTipo,
-      'idPrestador': idPrestador,
-      'idFuncao': idFuncao,
-    };
-  }
 Map<String, dynamic> toJson() => _$MaoDeObraModelToJson(this);
 
   static MaoDeObraModel fromJson(Map<String, dynamic> json) =>

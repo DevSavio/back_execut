@@ -1,5 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'fornecedor_models.dart';
+import 'origem_recurso_models.dart';
+import 'tipo_de_obra_models.dart';
+
 part 'material_de_obra_models.g.dart';
 
 @JsonSerializable()
@@ -8,18 +12,18 @@ class MaterialDeObraModel {
   String nomeMaterial;
   String descricaoMaterial;
   double valor;
-  int idTipo;
-  int idOrigem;
-  int idFornecedor;
+  TipoDeObraModel tipo;
+  OrigemRecursoModel origem;
+  FornecedorModel fornecedor;
 
   MaterialDeObraModel({
     this.idMaterial,
     required this.nomeMaterial,
     required this.descricaoMaterial,
     required this.valor,
-    required this.idTipo,
-    required this.idOrigem,
-    required this.idFornecedor,
+    required this.tipo,
+    required this.origem,
+    required this.fornecedor,
   });
 
   // Método toMap
@@ -29,9 +33,9 @@ class MaterialDeObraModel {
       'nomeMaterial': nomeMaterial,
       'descricaoMaterial': descricaoMaterial,
       'valor': valor,
-      'idTipo': idTipo,
-      'idOrigem': idOrigem,
-      'idFornecedor': idFornecedor,
+      'tipo': tipo,
+      'origem': origem,
+      'fornecedor': fornecedor,
     };
   }
 
