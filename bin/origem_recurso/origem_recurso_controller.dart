@@ -35,7 +35,7 @@ class OrigemRecursoController {
 
   Future<bool> update({
     required String tipoOrigem,
-    required double? valor,
+    required double valor,
     required int idOrigem,
   }) async {
     try {

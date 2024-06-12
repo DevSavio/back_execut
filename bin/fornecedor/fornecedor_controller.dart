@@ -1,7 +1,9 @@
 import 'package:mysql_client/mysql_client.dart';
 
 import '../base/database.dart';
+import '../models/endereco_models.dart';
 import '../models/fornecedor_models.dart';
+import '../models/tipo_de_fornecedor_models.dart';
 
 class FornecedorController {
   Future<int?> create({
@@ -86,7 +88,7 @@ class FornecedorController {
     required int idFornecedor,
   }) async {
     try {
-      String sql = "select *  from fornecedor  where idFornecedor = $idFornecedor;";
+      String sql = "select f.idFornecedor, f.razaoSocial, f.telefone, tp.nomeTipo, tp.descricao, e.logradouro, e.complemento, e. cidade, e.estado  from fornecedor as f inner join endereco as e on f.idFornecedor = e.id inner join tipo_de_fornecedor as tp on f.idFornecedor = tp.idTipo where idFornecedor = $idFornecedor;";
     ControllerConnection c = ControllerConnection();
     IResultSet? r = await c.read(
       sql,
@@ -104,11 +106,19 @@ class FornecedorController {
           FornecedorModel c = FornecedorModel(
             idFornecedor: int.parse(map['idCliente']!),
             razaoSocial: map['razaoSocial']!,
-            idTipo: map['idTipo']!,
             telefone: map['telefone']!,
-            idEndereco:  int.parse(map['idEndereco']!),
+            tipo: TipoDeFornecedorModel(
+              nomeTipo: map['nomeTipo']!,
+              descricao: map['descricao']!,
+              idTipo: int.parse(map['idTipo']!),
+            ),
+            endereco: EnderecoModel(
+              logradouro: map['logradouro']!,
+              complemento: map['complemento']!,
+              cidade: map['cidade']!,
+              estado: map['estado']!,
+            ),
           );
-
           return c;
         }
       }
@@ -139,9 +149,19 @@ class FornecedorController {
             FornecedorModel c = FornecedorModel(
               idFornecedor:  int.parse(row.assoc()['idFornecedor']!),
               razaoSocial: row.assoc()['razaoSocial']!,
-              idTipo: int.parse(row.assoc()['idTipo']!),
               telefone: row.assoc()['telefone']!,
-              idEndereco:  int.parse(row.assoc()['idEndereco']!),
+              tipo: TipoDeFornecedorModel(
+                nomeTipo: row.assoc()['nomeTipo']!,
+                descricao: row.assoc()['descricao']!,
+                idTipo:  int.parse(row.assoc()['idTipo']!),
+              ),
+              endereco: EnderecoModel(
+                  idEndereco: int.parse(row.assoc()['idEndereco']!),
+                  logradouro: row.assoc()['logradouro']!,
+                  complemento: row.assoc()['complemento']!,
+                  cidade: row.assoc()['cidade']!,
+                  estado: row.assoc()['estado']!,
+                ),
             );
             lista.add(c);
           }
@@ -176,9 +196,19 @@ class FornecedorController {
             FornecedorModel c = FornecedorModel(
               idFornecedor:  int.parse(row.assoc()['idFornecedor']!),
               razaoSocial: row.assoc()['razaoSocial']!,
-              idTipo: int.parse(row.assoc()['idTipo']!),
               telefone: row.assoc()['telefone']!,
-              idEndereco:  int.parse(row.assoc()['idEndereco']!),
+              tipo: TipoDeFornecedorModel(
+                nomeTipo: row.assoc()['nomeTipo']!,
+                descricao: row.assoc()['descricao']!,
+                idTipo:  int.parse(row.assoc()['idTipo']!),
+              ),
+              endereco: EnderecoModel(
+                idEndereco:  int.parse(row.assoc()['idEndereco']!),
+                logradouro: row.assoc()['logradouro']!,
+                complemento: row.assoc()['complemento']!,
+                cidade: row.assoc()['cidade']!,
+                estado: row.assoc()['estado']!,
+              ),
             );
             lista.add(c);
           }

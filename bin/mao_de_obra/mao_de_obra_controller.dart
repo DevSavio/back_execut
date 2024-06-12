@@ -1,14 +1,17 @@
 import 'package:mysql_client/mysql_client.dart';
 
 import '../base/database.dart';
+import '../models/funcao_prestador_models.dart';
 import '../models/mao_de_obra_models.dart';
+import '../models/prestador_models.dart';
+import '../models/tipo_mao_de_obra_models.dart';
 
 class MaoDeObraController {
   Future<int?> create({
     String? descricao,
-    required int idTipo,
-    required int idFuncao,
-    required int idPrestador,
+    required int idTipo, //tipo_de_mão_obra
+    required int idFuncao, //funcao_prestador
+    required int idPrestador, //prestador
   }) async {
     try {
       String sql =
@@ -104,9 +107,20 @@ class MaoDeObraController {
               MaoDeObraModel c = MaoDeObraModel(
                 idMao: int.parse(map['idMao']!),
                 descricao: map['descricao'],
-                idFuncao: int.parse(map['idFuncao']!),
-                idPrestador: int.parse(map['idPrestador']),
-                idTipo: int.parse(map['idTipo']!),
+                funcao: FuncaoPrestadorModel(
+                  idFuncao: int.parse(map['idFuncao']),
+                  nomeFuncao: map['nomeFuncao'],
+                  descricaoFuncao: map['descricaoFuncao']
+                ),
+                prestador: PrestadorModel(
+                  idPrestador: int.parse(map['idPrestador']), 
+                  nomePrestador: map['nomePrestador'], 
+                  funcao: map['funcao']),
+                tipo: TipoMaoDeObraModel(
+                  idTipo: int.parse(map['idTipo']),
+                  descricao: map['descricao']!,
+                  nomeTipo: map['nomeTipo']!
+                ),
               );
               return c;
           }
@@ -138,9 +152,27 @@ class MaoDeObraController {
             MaoDeObraModel c = MaoDeObraModel(
               idMao: int.parse(row.assoc()['idMao']!),
               descricao: row.assoc()['descricao']!,
-              idPrestador: int.parse(row.assoc()['idPrestador']!),
-              idFuncao: int.parse(row.assoc()['idFuncao']!),
-              idTipo: int.parse(row.assoc()['idTipo']!),
+              funcao: FuncaoPrestadorModel(
+                idFuncao: int.parse(row.assoc()['idFuncao']!),
+                nomeFuncao: row.assoc()['nomeFuncao']!,
+                descricaoFuncao: row.assoc()['descricaoFuncao']!
+              ),
+              prestador: PrestadorModel(
+                idPrestador: int.parse(row.assoc()['idPrestador']!), 
+                nomePrestador: row.assoc()['nomePrestador']!,
+                tipoPrestador: row.assoc()['tipoPrestador']!,
+                cpfCnpj: row.assoc()['cpfCnpj'],
+                telefone: row.assoc()['telefone']!,
+                funcao: FuncaoPrestadorModel(
+                idFuncao: int.parse(row.assoc()['idFuncao']!),
+                nomeFuncao: row.assoc()['nomeFuncao']!,
+                descricaoFuncao: row.assoc()['descricaoFuncao']!),
+              ),
+              tipo: TipoMaoDeObraModel(
+                idTipo: int.parse(row.assoc()['idTipo']!),
+                descricao: row.assoc()['descricao']!,
+                nomeTipo: row.assoc()['nomeTipo']!
+              ),
             );
             lista.add(c);
           }
@@ -175,9 +207,27 @@ class MaoDeObraController {
             MaoDeObraModel c = MaoDeObraModel(
               idMao: int.parse(row.assoc()['idMao']!),
               descricao: row.assoc()['descricao']!,
-              idPrestador: int.parse(row.assoc()['idPrestador']!),
-              idFuncao: int.parse(row.assoc()['idFuncao']!),
-              idTipo: int.parse(row.assoc()['idTipo']!),
+              funcao: FuncaoPrestadorModel(
+                idFuncao: int.parse(row.assoc()['idFuncao']!),
+                nomeFuncao: row.assoc()['nomeFuncao']!,
+                descricaoFuncao: row.assoc()['descricaoFuncao']!
+              ),
+              prestador: PrestadorModel(
+                idPrestador: int.parse(row.assoc()['idPrestador']!), 
+                nomePrestador: row.assoc()['nomePrestador']!,
+                tipoPrestador: row.assoc()['tipoPrestador']!,
+                cpfCnpj: row.assoc()['cpfCnpj'],
+                telefone: row.assoc()['telefone']!,
+                funcao: FuncaoPrestadorModel(
+                idFuncao: int.parse(row.assoc()['idFuncao']!),
+                nomeFuncao: row.assoc()['nomeFuncao']!,
+                descricaoFuncao: row.assoc()['descricaoFuncao']!),
+              ),
+              tipo: TipoMaoDeObraModel(
+                idTipo: int.parse(row.assoc()['idTipo']!),
+                descricao: row.assoc()['descricao']!,
+                nomeTipo: row.assoc()['nomeTipo']!
+              ),
             );
             lista.add(c);
           }

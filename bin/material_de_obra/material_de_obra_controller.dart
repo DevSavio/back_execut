@@ -1,7 +1,12 @@
 import 'package:mysql_client/mysql_client.dart';
 
 import '../base/database.dart';
+import '../models/endereco_models.dart';
+import '../models/fornecedor_models.dart';
 import '../models/material_de_obra_models.dart';
+import '../models/origem_recurso_models.dart';
+import '../models/tipo_de_fornecedor_models.dart';
+import '../models/tipo_de_obra_models.dart';
 
 class MaterialDeObraController {
   Future<int?> create({
@@ -110,9 +115,33 @@ class MaterialDeObraController {
             descricaoMaterial: map['descricaoMaterial'] ?? "",
             nomeMaterial: map['nomeMaterial']!,
             valor: double.parse(map['valor']),
-            idTipo: int.parse(map['idTipo']!),
-            idOrigem: int.parse(map['idOrigem']!),
-            idFornecedor: int.parse(map['idFornecedor']!),
+            tipo: TipoDeObraModel(
+              nomeTipo: map['nomeTipo']!,
+              idTipo: int.parse(map['idTipo']!),
+              descricaoTipo: map['descricaoTipo']!
+            ),
+            origem: OrigemRecursoModel(
+              tipoOrigem: map['tipoOrigem']!,
+              valor: double.parse(map['valor']!),
+              idOrigem: int.parse(map['idOrigem']!),
+            ),
+            fornecedor: FornecedorModel(
+              razaoSocial: map['razaoSocial']!,
+              telefone: map['telefone']!,
+              idFornecedor: int.parse(map['idFornecedor']!),
+              tipo: TipoDeFornecedorModel(
+                nomeTipo: map['nomeTipo']!, 
+                descricao: map['descricao']!,
+                idTipo: int.parse(map['idTipo']!),
+                ),
+              endereco: EnderecoModel(
+                cidade: map['cidade']!, 
+                complemento: map['complemento']!, 
+                estado: map['estado']!, 
+                logradouro: map['logradouro']!, 
+                idEndereco: int.parse(map['idEndereco']!),
+                ) 
+            ),
           );
 
           return c;
@@ -146,10 +175,34 @@ class MaterialDeObraController {
             idMaterial: int.parse(row.assoc()['idMaterial']!),
             descricaoMaterial: row.assoc()['idMaterial'] ?? "",
             nomeMaterial: row.assoc()['nomeMaterial']!,
-            idFornecedor: int.parse(row.assoc()['idFornecedor']!),
-            idOrigem: int.parse(row.assoc()['idOrigem']!),
-            idTipo: int.parse(row.assoc()['idTipo']!),
             valor: double.parse(row.assoc()['valor']!),
+            tipo: TipoDeObraModel(
+              nomeTipo: row.assoc()['nomeTipo']!,
+              idTipo: int.parse(row.assoc()['idTipo']!),
+              descricaoTipo: row.assoc()['descricaoTipo']!
+            ),
+            origem: OrigemRecursoModel(
+              tipoOrigem: row.assoc()['tipoOrigem']!,
+              valor: double.parse(row.assoc()['valor']!),
+              idOrigem: int.parse(row.assoc()['idOrigem']!),
+            ),
+            fornecedor: FornecedorModel(
+              razaoSocial: row.assoc()['razaoSocial']!,
+              telefone: row.assoc()['telefone']!,
+              idFornecedor: int.parse(row.assoc()['idFornecedor']!),
+              tipo: TipoDeFornecedorModel(
+                nomeTipo: row.assoc()['nomeTipo']!, 
+                descricao: row.assoc()['descricao']!,
+                idTipo: int.parse(row.assoc()['idTipo']!),
+                ),
+              endereco: EnderecoModel(
+                cidade: row.assoc()['cidade']!, 
+                complemento: row.assoc()['complemento']!, 
+                estado: row.assoc()['estado']!, 
+                logradouro: row.assoc()['logradouro']!, 
+                idEndereco: int.parse(row.assoc()['idEndereco']!),
+                ) 
+            ),
           );
           lista.add(c);
         }
@@ -185,10 +238,34 @@ class MaterialDeObraController {
             idMaterial: int.parse(row.assoc()['idMaterial']!),
             descricaoMaterial: row.assoc()['descricaoMaterial'] ?? "",
             nomeMaterial: row.assoc()['nomeMaterial']!,
-            idFornecedor: int.parse(row.assoc()['idFornecedor']!),
-            idOrigem: int.parse(row.assoc()['idOrigem']!),
-            idTipo: int.parse(row.assoc()['idTipo']!),
             valor: double.parse(row.assoc()['valor']!),
+            tipo: TipoDeObraModel(
+              nomeTipo: row.assoc()['nomeTipo']!,
+              idTipo: int.parse(row.assoc()['idTipo']!),
+              descricaoTipo: row.assoc()['descricaoTipo']!
+            ),
+            origem: OrigemRecursoModel(
+              tipoOrigem: row.assoc()['tipoOrigem']!,
+              valor: double.parse(row.assoc()['valor']!),
+              idOrigem: int.parse(row.assoc()['idOrigem']!),
+            ),
+            fornecedor: FornecedorModel(
+              razaoSocial: row.assoc()['razaoSocial']!,
+              telefone: row.assoc()['telefone']!,
+              idFornecedor: int.parse(row.assoc()['idFornecedor']!),
+              tipo: TipoDeFornecedorModel(
+                nomeTipo: row.assoc()['nomeTipo']!, 
+                descricao: row.assoc()['descricao']!,
+                idTipo: int.parse(row.assoc()['idTipo']!),
+                ),
+              endereco: EnderecoModel(
+                cidade: row.assoc()['cidade']!, 
+                complemento: row.assoc()['complemento']!, 
+                estado: row.assoc()['estado']!, 
+                logradouro: row.assoc()['logradouro']!, 
+                idEndereco: int.parse(row.assoc()['idEndereco']!),
+                ) 
+            ),
           );
           lista.add(c);
         }

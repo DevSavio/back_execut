@@ -2,6 +2,8 @@ import 'package:mysql_client/mysql_client.dart';
 
 import '../base/database.dart';
 import '../models/custo_prestador_models.dart';
+import '../models/funcao_prestador_models.dart';
+import '../models/prestador_models.dart';
 
 class CustoPrestadorController {
   Future<int?> create({
@@ -103,8 +105,18 @@ class CustoPrestadorController {
             CustoPrestadorModel c = CustoPrestadorModel(
               idCusto: int.parse(map['idCusto']!),
               valor: double.parse(map['valor']!),
-              idPrestador: int.parse(map['idPrestador']!),
-              idFuncao: int.parse(map['idFuncao']!),
+              prestador: PrestadorModel(
+                idPrestador: map['idPrestador']!,
+                nomePrestador: map['nomePrestador']!,
+                tipoPrestador: map['tipoPrestador']!,
+                funcao: FuncaoPrestadorModel(
+                  nomeFuncao: map['nomeFuncao']!, 
+                  descricaoFuncao: map['descricaoFuncao']!),
+              ),
+              funcao: FuncaoPrestadorModel(
+                nomeFuncao: map['nomeFuncao']!, 
+                descricaoFuncao: map['descricaoFuncao']!,
+              ),              
             );
 
             return c;
@@ -137,8 +149,20 @@ class CustoPrestadorController {
             CustoPrestadorModel c = CustoPrestadorModel(
               idCusto: int.parse(row.assoc()['idCusto']!),
               valor: double.parse(row.assoc()['valor']!),
-              idPrestador: int.parse(row.assoc()['idPrestador']!),
-              idFuncao: int.parse(row.assoc()['idFuncao']!),
+              prestador: PrestadorModel(
+                idPrestador: int.parse(row.assoc()['idPrestador']!,),
+                nomePrestador: row.assoc()['nomePrestador']!,
+                tipoPrestador: row.assoc()['tipoPrestador']!,
+                funcao: FuncaoPrestadorModel(
+                  idFuncao: int.parse(row.assoc()['idFuncao']!),
+                  nomeFuncao: row.assoc()['nomeFuncao']!, 
+                  descricaoFuncao: row.assoc()['descricaoFuncao']!),
+              ),
+              funcao: FuncaoPrestadorModel(
+                idFuncao: int.parse(row.assoc()['idFuncao']!),
+                nomeFuncao: row.assoc()['nomeFuncao']!, 
+                descricaoFuncao: row.assoc()['descricaoFuncao']!,
+              ), 
             );
             lista.add(c);
           }
@@ -173,8 +197,20 @@ class CustoPrestadorController {
             CustoPrestadorModel c = CustoPrestadorModel(
               idCusto: int.parse(row.assoc()['idCusto']!),
               valor: double.parse(row.assoc()['valor']!),
-              idPrestador: int.parse(row.assoc()['idPrestador']!),
-              idFuncao: int.parse(row.assoc()['idFuncao']!),
+              prestador: PrestadorModel(
+                idPrestador: int.parse(row.assoc()['idPrestador']!,),
+                nomePrestador: row.assoc()['nomePrestador']!,
+                tipoPrestador: row.assoc()['tipoPrestador']!,
+                funcao: FuncaoPrestadorModel(
+                  idFuncao: int.parse(row.assoc()['idFuncao']!),
+                  nomeFuncao: row.assoc()['nomeFuncao']!, 
+                  descricaoFuncao: row.assoc()['descricaoFuncao']!),
+              ),
+              funcao: FuncaoPrestadorModel(
+                idFuncao: int.parse(row.assoc()['idFuncao']!),
+                nomeFuncao: row.assoc()['nomeFuncao']!, 
+                descricaoFuncao: row.assoc()['descricaoFuncao']!,
+              ), 
             );
             lista.add(c);
           }
