@@ -10,8 +10,8 @@ class FornecedorService {
       int? insertedID = await fornecedorController.create(
         razaoSocial: fornecedorModel.razaoSocial,
         telefone: fornecedorModel.telefone,
-        idTipo: fornecedorModel.idTipo,
-        idEndereco: fornecedorModel.idEndereco
+        idTipo: fornecedorModel.tipo.idTipo!,
+        idEndereco: fornecedorModel.endereco.idEndereco!
       );
 
       if (insertedID != null) {
@@ -32,8 +32,8 @@ class FornecedorService {
       var result = await fornecedorController.update(
         razaoSocial: fornecedorModel.razaoSocial, 
         telefone: fornecedorModel.telefone, 
-        idTipo: fornecedorModel.idTipo, 
-        idEndereco: fornecedorModel.idEndereco,
+        idTipo: fornecedorModel.tipo.idTipo!, 
+        idEndereco: fornecedorModel.endereco.idEndereco!,
         idFornecedor: idFornecedor,
         );
 

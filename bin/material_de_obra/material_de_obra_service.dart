@@ -9,11 +9,11 @@ class MaterialDeObraService {
     try {
       int? insertedID = await materialDeObraController.create(
         descricaoMaterial: materialDeObraModel.descricaoMaterial,
-        idTipo: materialDeObraModel.idTipo,
-        idOrigem: materialDeObraModel.idOrigem,
-        idFornecedor: materialDeObraModel.idFornecedor,
         nomeMaterial: materialDeObraModel.nomeMaterial,
         valor: materialDeObraModel.valor,
+        idTipo: materialDeObraModel.tipo.idTipo!,
+        idOrigem: materialDeObraModel.origem.idOrigem!,
+        idFornecedor: materialDeObraModel.fornecedor.idFornecedor!,
       );
 
       if (insertedID != null) {
@@ -43,12 +43,12 @@ class MaterialDeObraService {
     try {
       var reult = await materialDeObraController.update(
         descricaoMaterial: materialDeObraModel.descricaoMaterial,
-        idFornecedor: materialDeObraModel.idFornecedor,
-        idTipo: materialDeObraModel.idTipo,
-        idOrigem: materialDeObraModel.idOrigem,
         nomeMaterial: materialDeObraModel.nomeMaterial,
         valor: materialDeObraModel.valor,
         idMaterial: idMaterial,
+        idTipo: materialDeObraModel.tipo.idTipo!,
+        idOrigem: materialDeObraModel.origem.idOrigem!,
+        idFornecedor: materialDeObraModel.fornecedor.idFornecedor!,
       );
 
       if (reult) {

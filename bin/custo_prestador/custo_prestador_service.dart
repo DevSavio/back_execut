@@ -10,8 +10,8 @@ class CustoPrestadorService {
     try {
       int? insertedID = await custoPrestadorController.create(
         valor: custoPrestadorModel.valor,
-        idPrestador: custoPrestadorModel.idPrestador,
-        idFuncao: custoPrestadorModel.idFuncao,
+        idPrestador: custoPrestadorModel.prestador.idPrestador!,
+        idFuncao: custoPrestadorModel.funcao.idFuncao!,
       );
 
       if (insertedID != null) {
@@ -41,8 +41,8 @@ class CustoPrestadorService {
     try {
       var result = await custoPrestadorController.update(
         valor: custoPrestadorModel.valor,
-        idFuncao: custoPrestadorModel.idFuncao,
-        idPrestador: custoPrestadorModel.idPrestador,
+       idPrestador: custoPrestadorModel.prestador.idPrestador!,
+        idFuncao: custoPrestadorModel.funcao.idFuncao!,
         idCusto: idCusto,
     );
 

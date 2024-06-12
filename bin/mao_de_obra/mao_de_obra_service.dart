@@ -9,9 +9,9 @@ class MaoDeObraService {
     try {
       int? insertedID = await maoDeObraController.create(
         descricao: maoDeObraModel.descricao,
-        idPrestador: maoDeObraModel.idPrestador,
-        idFuncao: maoDeObraModel.idFuncao,
-        idTipo: maoDeObraModel.idTipo,
+        idPrestador: maoDeObraModel.prestador.idPrestador!,
+        idFuncao: maoDeObraModel.funcao.idFuncao!,
+        idTipo: maoDeObraModel.tipo.idTipo!,
       );
 
       if (insertedID != null) {
@@ -41,9 +41,9 @@ class MaoDeObraService {
     try {
       var reult = await maoDeObraController.update(
         descricao: maoDeObraModel.descricao,
-        idFuncao: maoDeObraModel.idFuncao,
-        idPrestador: maoDeObraModel.idPrestador,
-        idTipo: maoDeObraModel.idTipo,
+        idPrestador: maoDeObraModel.prestador.idPrestador!,
+        idFuncao: maoDeObraModel.funcao.idFuncao!,
+        idTipo: maoDeObraModel.tipo.idTipo!,
         idMao: idMao,
       );
 

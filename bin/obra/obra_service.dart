@@ -12,11 +12,10 @@ class ObraService {
         dataInicio: obraModel.dataInicio,
         responsavelObra: obraModel.responsavelObra,
         valorFinal: obraModel.valorFinal,
-        idCliente: obraModel.idCliente,
-        idPagamento: obraModel.idPagamento,
-        idPrestador: obraModel.idPrestador,
-        idTempo: obraModel.idTempo,
         idEndereco: obraModel.endereco.idEndereco!,
+        idCliente: obraModel.cliente.idCliente!,
+        idPagamento: obraModel.pagamento.idPagamento!,
+        idPrestador: obraModel.prestador.idPrestador!,
       );
 
       if (insertedID != null) {
@@ -49,12 +48,11 @@ class ObraService {
         dataInicio: obraModel.dataInicio,
         responsavelObra: obraModel.responsavelObra,
         valorFinal: obraModel.valorFinal,
-        idCliente: obraModel.idCliente,
-        idPagamento: obraModel.idPagamento,
-        idPrestador: obraModel.idPrestador,
-        idTempo: obraModel.idTempo,
         idObra: idObra,
-        idEndereco: obraModel.endereco.idEndereco!
+        idEndereco: obraModel.endereco.idEndereco!,
+        idCliente: obraModel.cliente.idCliente!,
+        idPagamento: obraModel.pagamento.idPagamento!,
+        idPrestador: obraModel.prestador.idPrestador!,
       );
 
       if (reult) {
