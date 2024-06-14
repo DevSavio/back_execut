@@ -12,6 +12,8 @@
 ## Links da linguagem utilizado no projeto:
    - [x] Linguagem Dart(documentação e instalação):
      https://dart.dev/get-dart
+   - [x] Framework Flutter(documentação e instalação):
+     https://docs.flutter.dev/get-started/install
 
 
 ## Links das bibliotecas utilizadas no projeto:
