@@ -13,16 +13,8 @@ class ControllerConnection {
         port: 3306,
         userName: 'root',
         databaseName: 'execut',
-        password: '0403',
+        password: 'senha',
       );
-
-      // conn = await MySQLConnection.createConnection(
-      //   host: 'localhost',
-      //   port: 32774,
-      //   userName: 'root',
-      //   databaseName: 'execut',
-      //   password: 'root',
-      // );
 
       await conn.connect();
     } catch (e) {
