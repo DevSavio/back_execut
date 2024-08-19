@@ -32,14 +32,6 @@
 ## Rodando pela primeira vez: 
 
    ```shell
-      $ npm i mysql2
-   ```
-
-   ```shell
-      $ node index.js
-   ```
-
-   ```shell
       $ dart run build_runner build
    ```
    
