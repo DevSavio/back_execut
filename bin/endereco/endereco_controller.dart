@@ -33,13 +33,12 @@ class EnderecoController {
     }
   }
 
-  Future<bool> update({
-    required String logradouro,
+  Future<bool> update(
+      {required String logradouro,
     required String complemento,
     required String cidade,
     required String estado,
-    required int idEndereco
-  }) async {
+      required int idEndereco}) async {
     try {
       String sql = "Update endereco set logradouro = '$logradouro', "
           " endereco = '$estado', complemento = '$complemento', cidade = '$cidade'"
