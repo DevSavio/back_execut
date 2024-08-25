@@ -3,6 +3,7 @@ import 'package:mysql_client/mysql_client.dart';
 import '../base/database.dart';
 import '../models/cliente_models.dart';
 import '../models/endereco_models.dart';
+import '../endereco/endereco_controller.dart';
 
 class ClienteController {
   Future<int?> create(
