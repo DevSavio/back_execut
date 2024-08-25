@@ -27,6 +27,31 @@ class ClienteService {
     }
   }
 
+  Future<ClienteModel?> criarClienteEndereco(
+      {required ClienteModel clienteModel}) async {
+    try {
+      int? insertedID = await clienteController.createClienteEndereco(
+          cpfCnpj: clienteModel.cpfCnpj,
+          nomeCliente: clienteModel.nomeCliente,
+          razaoSocial: clienteModel.razaoSocial,
+          telefone: clienteModel.telefone ?? "",
+          cidade: clienteModel.endereco.cidade!,
+          complemento: clienteModel.endereco.complemento!,
+          estado: clienteModel.endereco.estado!,
+          logradouro: clienteModel.endereco.logradouro!);
+
+      if (insertedID != null) {
+        ClienteModel? clienteModel =
+            await clienteController.readByID(idCliente: insertedID);
+        return clienteModel;
+      } else {
+        throw Exception("Erro ao criar cliente ");
+      }
+    } catch (e) {
+      throw Exception("Erro ao criar cliente ");
+    }
+  }
+
   Future<ClienteModel?> buscarCliente(int idCliente) async {
     try {
       return clienteController.readByID(
