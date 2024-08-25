@@ -35,6 +35,46 @@ class ClienteController {
     }
   }
 
+  Future<int?> createClienteEndereco({
+    required String nomeCliente,
+    required String razaoSocial,
+    required String cpfCnpj,
+    required String telefone,
+    required String logradouro,
+    required String complemento,
+    required String cidade,
+    required String estado,
+  }) async {
+    try {
+      EnderecoController enderecoController = EnderecoController();
+      int? inserted = await enderecoController.create(
+          logradouro: logradouro,
+          complemento: complemento,
+          cidade: cidade,
+          estado: estado);
+      String sql =
+          "INSERT INTO cliente (nomeCliente, razaoSocial, cpfCnpj, telefone, idEndereco)"
+          " VALUES ('$nomeCliente', '$razaoSocial','$cpfCnpj', '$telefone', '$inserted');";
+      ControllerConnection c = ControllerConnection();
+      IResultSet? result = await c.create(
+        sql,
+      );
+
+      if (result != null) {
+        if (result.affectedRows >= BigInt.one) {
+          print('Cliente criado com sucesso!');
+          return result.lastInsertID.toInt();
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+
   Future<bool> update(
       {required String nomeCliente,
       required String razaoSocial,
