@@ -42,6 +42,27 @@ class ClientRoute {
       }
     });
 
+    /// Add a new clientes
+    router.post('/clienteEndereco', (Request request) async {
+      try {
+        dynamic body = await request.body.asJson;
+
+        ClienteModel novoCliente = ClienteModel.fromJson(body);
+
+        ClienteModel? clienteAdicionado = await clienteService
+            .criarClienteEndereco(clienteModel: novoCliente);
+
+        if (clienteAdicionado != null) {
+          return {
+            'ok': 'true',
+            'clienteAdicionado': clienteAdicionado,
+          };
+        }
+      } catch (e) {
+        return Response.internalServerError(body: 'Erro ao criar cliente');
+      }
+    });
+
     /// delete a new cliente
     router.delete('/cliente/<id>', (Request request, String id) async {
       try {
