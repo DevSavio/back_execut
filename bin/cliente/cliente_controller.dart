@@ -169,7 +169,8 @@ class ClienteController {
 
   Future<List<ClienteModel>> list() async {
     try {
-      String sql = "select *  from cliente";
+      String sql =
+          "select idCliente, nomeCliente, razaoSocial, cpfCnpj, telefone, endereco.id as 'idEndereco', endereco.logradouro, endereco.complemento, endereco.cidade, endereco.estado from cliente left join endereco on cliente.idCliente = endereco.id";
       ControllerConnection c = ControllerConnection();
       IResultSet? r = await c.read(
         sql,
@@ -186,21 +187,22 @@ class ClienteController {
           List<ClienteModel> lista = [];
           for (var row in r.rows) {
             print('Cliente encontrado: ${row.typedAssoc()}');
-            ClienteModel c = ClienteModel(
-              idCliente: int.parse(row.assoc()['idCliente']!),
-              nomeCliente: row.assoc()['nomeCliente']!,
-              razaoSocial: row.assoc()['razaoSocial']!,
-              cpfCnpj: row.assoc()['cpfCnpj']!,
-              telefone: row.assoc()['telefone']!,
+            var x = row.assoc();
+            ClienteModel cli = ClienteModel(
+              idCliente: int.parse(x['idCliente']!),
+              nomeCliente: x['nomeCliente']!,
+              razaoSocial: x['razaoSocial']!,
+              cpfCnpj: x['cpfCnpj']!,
+              telefone: x['telefone']!,
               endereco: EnderecoModel(
-                idEndereco: int.parse(row.assoc()['idEndereco']!),
-                logradouro: row.assoc()['logradouro']!,
-                complemento: row.assoc()['complemento']!,
-                cidade: row.assoc()['cidade']!,
-                estado: row.assoc()['estado']!,
+                idEndereco: int.parse(x['idEndereco']!),
+                logradouro: x['logradouro'],
+                complemento: x['complemento'],
+                cidade: x['cidade'],
+                estado: x['estado'],
               ),
             );
-            lista.add(c);
+            lista.add(cli);
           }
           return lista;
         }
