@@ -129,7 +129,7 @@ class ClienteController {
   }) async {
     try {
       String sql =
-          "select c.idCliente, c.nomeCliente, c.razaoSocial , c.cpfCnpj, c.telefone , e.logradouro, e.complemento, e.cidade, e.estado from cliente  as c inner join endereco as e on  e.id =  c.idEndereco where idCliente = $idCliente;";
+          "select c.idCliente, c.nomeCliente, c.razaoSocial , c.cpfCnpj, c.telefone, e.id, e.logradouro, e.complemento, e.cidade, e.estado from cliente  as c inner join endereco as e on  e.id =  c.idEndereco where idCliente = $idCliente;";
       ControllerConnection c = ControllerConnection();
       IResultSet? r = await c.read(
         sql,
@@ -151,7 +151,7 @@ class ClienteController {
             cpfCnpj: map['cpfCnpj']!,
             telefone: map['telefone']!,
             endereco: EnderecoModel(
-              idEndereco: int.parse(map['idEndereco']!),
+              idEndereco: int.parse(map['id']!),
               logradouro: map['logradouro']!,
               complemento: map['complemento']!,
               cidade: map['cidade']!,
