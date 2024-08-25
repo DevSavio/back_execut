@@ -5,18 +5,17 @@ part 'endereco_models.g.dart';
 @JsonSerializable()
 class EnderecoModel {
   int? idEndereco;
-  String logradouro;
-  String complemento;
-  String cidade;
-  String estado;
+  String? logradouro;
+  String? complemento;
+  String? cidade;
+  String? estado;
 
-  EnderecoModel({
-    this.idEndereco,
-    required this.logradouro,
-    required this.complemento,
-    required this.cidade,
-    required this.estado
-  });
+  EnderecoModel(
+      {this.idEndereco,
+      this.logradouro,
+      this.complemento,
+      this.cidade,
+      this.estado});
 
   Map<String, dynamic> toJson() => _$EnderecoModelToJson(this);
 

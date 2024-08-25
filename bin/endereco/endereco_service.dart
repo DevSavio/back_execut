@@ -1,5 +1,3 @@
-
-
 import '../models/endereco_models.dart';
 import 'endereco_controller.dart';
 
@@ -10,10 +8,10 @@ class EnderecoService {
       {required EnderecoModel enderecoModel}) async {
     try {
       int? insertedID = await enderecoController.create(
-        logradouro: enderecoModel.logradouro,
-        complemento: enderecoModel.complemento,
-        cidade: enderecoModel.cidade,
-        estado: enderecoModel.estado,
+        logradouro: enderecoModel.logradouro!,
+        complemento: enderecoModel.complemento!,
+        cidade: enderecoModel.cidade!,
+        estado: enderecoModel.estado!,
       );
 
       if (insertedID != null) {
@@ -42,12 +40,11 @@ class EnderecoService {
       {required EnderecoModel enderecoModel, required int idEndereco}) async {
     try {
       var reult = await enderecoController.update(
-        logradouro: enderecoModel.logradouro,
-        cidade: enderecoModel.cidade,
-        estado: enderecoModel.estado,
-        complemento: enderecoModel.complemento,
-        idEndereco: idEndereco
-      );
+          logradouro: enderecoModel.logradouro!,
+          cidade: enderecoModel.cidade!,
+          estado: enderecoModel.estado!,
+          complemento: enderecoModel.complemento!,
+          idEndereco: idEndereco);
 
       if (reult) {
         return true;
