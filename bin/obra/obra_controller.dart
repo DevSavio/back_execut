@@ -163,12 +163,19 @@ class ObraController {
   Future<List<ObraModel>> list() async {
     try {
       String sql = """
-select * from obra 
-inner join cliente on obra.idCliente = cliente.idCliente 
-inner join endereco on endereco.id = cliente.idEndereco  
-inner join prestador on obra.idPrestador = prestador.idPrestador  
-inner join funcao_prestador on funcao_prestador.idFuncao = prestador.idFuncao 
-inner join pagamento on pagamento.idPagamento = obra.idPagamento
+                  select obra.idObra, obra.responsavelObra, obra.valorFinal, 
+                  obra.dataInicio, obra.dataFim, c.idCliente, c.nomeCliente, 
+                  c.razaoSocial, c.telefone as 'tel_cliente', e.id as idEndereco, 
+                  e.logradouro, e.complemento, e.cidade, e.estado, p.idPrestador, 
+                  p.nomePrestador, p.tipoPrestador, p.cpfCnpj, 
+                  p.telefone as 'tel_prestador', fp.idFuncao, fp.nomeFuncao, 
+                  fp.descricaoFuncao, pg.idPagamento, pg.tipoPagamento, pg.moeda 
+                  from obra 
+                    inner join cliente as c on obra.idCliente = c.idCliente 
+                    inner join endereco as e on e.id = c.idEndereco  
+                    inner join prestador as p on obra.idPrestador = p.idPrestador  
+                    inner join funcao_prestador as fp on fp.idFuncao = p.idFuncao 
+                    inner join pagamento as pg on pg.idPagamento = obra.idPagamento
 """;
       ControllerConnection c = ControllerConnection();
       IResultSet? r = await c.read(
@@ -197,7 +204,7 @@ inner join pagamento on pagamento.idPagamento = obra.idPagamento
                   cpfCnpj: row.assoc()['cpfCnpj']!,
                   razaoSocial: row.assoc()['razaoSocial']!,
                   nomeCliente: row.assoc()['nomeCliente']!,
-                  telefone: row.assoc()['telefone']!,
+                  telefone: row.assoc()['tel_cliente']!,
                   endereco: EnderecoModel(
                     logradouro: row.assoc()['logradouro']!,
                     complemento: row.assoc()['complemento']!,
@@ -213,6 +220,9 @@ inner join pagamento on pagamento.idPagamento = obra.idPagamento
               prestador: PrestadorModel(
                 idPrestador: int.parse(row.assoc()['idPrestador']!),
                 nomePrestador: row.assoc()['nomePrestador']!,
+                cpfCnpj: row.assoc()['cpfCnpj']!,
+                tipoPrestador: row.assoc()['tipoPrestador']!,
+                telefone: row.assoc()['tel_prestador']!,
                 funcao: FuncaoPrestadorModel(
                   nomeFuncao: row.assoc()['nomeFuncao']!,
                   descricaoFuncao: row.assoc()['descricaoFuncao']!,
