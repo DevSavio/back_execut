@@ -42,7 +42,7 @@ class ClientRoute {
       }
     });
 
-    /// Add a new clientes
+    /// Add a new clientes address
     router.post('/clienteEndereco', (Request request) async {
       try {
         dynamic body = await request.body.asJson;
