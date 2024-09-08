@@ -132,7 +132,26 @@ class MaoDeObraController {
   
   Future<List<MaoDeObraModel>> list() async {
     try {
-      String sql = "select * from mao_de_obra";
+      String sql = """
+                    SELECT 
+                      mOBRA.idMao, 
+                      mOBRA.descricao AS "maoDescricao", 
+                      mOBRA.idTipo, 
+                      tpMOBRA.nomeTipo, 
+                      tpMOBRA.descricao AS "tipoMaoDescricao", 
+                      mOBRA.idPrestador, 
+                      pres.nomePrestador, 
+                      pres.tipoPrestador, 
+                      pres.cpfCnpj, 
+                      pres.telefone, 
+                      mOBRA.idFuncao, 
+                      fPres.nomeFuncao, 
+                      fPres.descricaoFuncao 
+                        FROM mao_de_obra AS mOBRA 
+                          INNER JOIN tipo_mao_de_obra AS tpMOBRA ON mOBRA.idTipo = tpMOBRA.idTipo 
+                          INNER JOIN prestador AS pres ON mOBRA.idPrestador = pres.idPrestador 
+                          INNER JOIN funcao_prestador AS fPres ON mOBRA.idFuncao = fPres.idFuncao;
+                      """;
     ControllerConnection c = ControllerConnection();
     IResultSet? r = await c.read(
       sql,
@@ -151,12 +170,11 @@ class MaoDeObraController {
             print('Mão de Obra encontrado: ${row.typedAssoc()}');
             MaoDeObraModel c = MaoDeObraModel(
               idMao: int.parse(row.assoc()['idMao']!),
-              descricao: row.assoc()['descricao']!,
+              descricao: row.assoc()['maoDescricao']!,
               funcao: FuncaoPrestadorModel(
                 idFuncao: int.parse(row.assoc()['idFuncao']!),
                 nomeFuncao: row.assoc()['nomeFuncao']!,
-                descricaoFuncao: row.assoc()['descricaoFuncao']!
-              ),
+                  descricaoFuncao: row.assoc()['descricaoFuncao']!),
               prestador: PrestadorModel(
                 idPrestador: int.parse(row.assoc()['idPrestador']!), 
                 nomePrestador: row.assoc()['nomePrestador']!,
@@ -170,9 +188,8 @@ class MaoDeObraController {
               ),
               tipo: TipoMaoDeObraModel(
                 idTipo: int.parse(row.assoc()['idTipo']!),
-                descricao: row.assoc()['descricao']!,
-                nomeTipo: row.assoc()['nomeTipo']!
-              ),
+                  descricao: row.assoc()['tipoMaoDescricao']!,
+                  nomeTipo: row.assoc()['nomeTipo']!),
             );
             lista.add(c);
           }
@@ -180,7 +197,7 @@ class MaoDeObraController {
       }
     }
     } catch (e) {
-      throw('Erro ao listar mão de obra: $e');
+      throw ('Erro ao listar mão de obra: $e');
     }
   }
 
