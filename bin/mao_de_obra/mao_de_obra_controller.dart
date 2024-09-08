@@ -85,9 +85,7 @@ class MaoDeObraController {
     }
   }
 
-  Future<MaoDeObraModel?> readByID({
-    required int idMao
-  }) async {
+  Future<MaoDeObraModel?> readByID({required int idMao}) async {
       try {
         String sql = "select * from mao_de_obra  where idMao = $idMao;";
         ControllerConnection c = ControllerConnection();
@@ -110,8 +108,7 @@ class MaoDeObraController {
                 funcao: FuncaoPrestadorModel(
                   idFuncao: int.parse(map['idFuncao']),
                   nomeFuncao: map['nomeFuncao'],
-                  descricaoFuncao: map['descricaoFuncao']
-                ),
+                descricaoFuncao: map['descricaoFuncao']),
                 prestador: PrestadorModel(
                   idPrestador: int.parse(map['idPrestador']), 
                   nomePrestador: map['nomePrestador'], 
@@ -227,8 +224,7 @@ class MaoDeObraController {
               funcao: FuncaoPrestadorModel(
                 idFuncao: int.parse(row.assoc()['idFuncao']!),
                 nomeFuncao: row.assoc()['nomeFuncao']!,
-                descricaoFuncao: row.assoc()['descricaoFuncao']!
-              ),
+                  descricaoFuncao: row.assoc()['descricaoFuncao']!),
               prestador: PrestadorModel(
                 idPrestador: int.parse(row.assoc()['idPrestador']!), 
                 nomePrestador: row.assoc()['nomePrestador']!,
@@ -243,8 +239,7 @@ class MaoDeObraController {
               tipo: TipoMaoDeObraModel(
                 idTipo: int.parse(row.assoc()['idTipo']!),
                 descricao: row.assoc()['descricao']!,
-                nomeTipo: row.assoc()['nomeTipo']!
-              ),
+                  nomeTipo: row.assoc()['nomeTipo']!),
             );
             lista.add(c);
           }
